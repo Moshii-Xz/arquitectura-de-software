@@ -1,0 +1,104 @@
+@startuml casos-de-uso
+!theme plain
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+
+left to right direction
+
+actor "Pequeño Productor\nAgrícola" as Productor #lightblue
+actor "Sistema\nExterno" as Sistema #lightgray
+actor "Administrador" as Admin #orange
+
+rectangle "Plataforma Agricultura Inteligente" {
+  
+  package "Gestión de Usuarios" #E3F2FD {
+    usecase (Registrarse) as UC1
+    usecase (Iniciar Sesión) as UC2
+    usecase (Actualizar Perfil) as UC3
+  }
+  
+  package "Gestión de Cultivos" #E8F5E9 {
+    usecase (Registrar Cultivo) as UC4
+    usecase (Consultar Estado\nde Cultivo) as UC5
+    usecase (Actualizar Información\nde Cultivo) as UC6
+    usecase (Archivar Cultivo) as UC7
+  }
+  
+  package "Registro de Actividades" #FFF3E0 {
+    usecase (Registrar Actividad\nRealizada) as UC8
+    usecase (Consultar Historial\nde Actividades) as UC9
+  }
+  
+  package "Recomendaciones" #F3E5F5 {
+    usecase (Ver Recomendaciones) as UC10
+    usecase (Generar Recomendación\nde Riego) as UC11
+    usecase (Generar Recomendación\nde Fertilización) as UC12
+    usecase (Marcar Recomendación\ncomo Aplicada) as UC13
+  }
+  
+  package "Alertas y Clima" #FFEBEE {
+    usecase (Ver Condiciones\nClimáticas) as UC14
+    usecase (Recibir Alerta\nClimática) as UC15
+    usecase (Consultar Historial\nde Alertas) as UC16
+  }
+  
+  package "Sincronización" #E8EAF6 {
+    usecase (Trabajar Offline) as UC17
+    usecase (Sincronizar Datos) as UC18
+  }
+  
+  package "Administración" #FCE4EC {
+    usecase (Gestionar Tipos\nde Cultivos) as UC19
+    usecase (Configurar Parámetros\ndel Sistema) as UC20
+    usecase (Ver Estadísticas\nde Uso) as UC21
+  }
+}
+
+' Relaciones Productor
+Productor --> UC1
+Productor --> UC2
+Productor --> UC3
+Productor --> UC4
+Productor --> UC5
+Productor --> UC6
+Productor --> UC7
+Productor --> UC8
+Productor --> UC9
+Productor --> UC10
+Productor --> UC13
+Productor --> UC14
+Productor --> UC15
+Productor --> UC16
+Productor --> UC17
+Productor --> UC18
+
+' Relaciones Sistema
+Sistema --> UC11 : <<genera>>
+Sistema --> UC12 : <<genera>>
+Sistema --> UC15 : <<envía>>
+Sistema --> UC18 : <<ejecuta>>
+
+' Relaciones Admin
+Admin --> UC19
+Admin --> UC20
+Admin --> UC21
+
+' Relaciones extend/include
+UC10 ..> UC11 : <<include>>
+UC10 ..> UC12 : <<include>>
+UC8 ..> UC17 : <<extend>>\n[sin conexión]
+UC18 ..> UC17 : <<include>>
+
+note right of UC17
+  Funcionalidad crítica:
+  Permite uso del sistema
+  sin conexión a internet
+end note
+
+note bottom of UC11
+  Motor de recomendaciones
+  basado en reglas validadas
+  por expertos agrónomos
+end note
+
+@enduml

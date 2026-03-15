@@ -1,0 +1,473 @@
+@startuml base-de-datos
+!theme plain
+skinparam linetype ortho
+
+entity "users" as User {
+  * id : UUID <<PK>>
+  --
+  * documento : VARCHAR(20) <<UK>>
+  * nombre : VARCHAR(100)
+  * telefono : VARCHAR(15)
+  email : VARCHAR(100)
+  * password_hash : VARCHAR(255)
+  * municipio : VARCHAR(50)
+  vereda : VARCHAR(50)
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+entity "cultivos" as Cultivo {
+  * id : UUID <<PK>>
+  --
+  * user_id : UUID <<FK>>
+  * tipo_cultivo : ENUM
+  * area_hectareas : DECIMAL(8,2)
+  * fecha_siembra : DATE
+  latitud : DECIMAL(10,8)
+  longitud : DECIMAL(11,8)
+  * estado : ENUM
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+entity "actividades" as Actividad {
+  * id : UUID <<PK>>
+  --
+  * cultivo_id : UUID <<FK>>
+  * tipo_actividad : ENUM
+  * fecha_hora : TIMESTAMP
+  descripcion : TEXT
+  cantidad : DECIMAL(10,2)
+  unidad : VARCHAR(20)
+  foto_url : VARCHAR(255)
+  * sincronizado : BOOLEAN
+  * created_at : TIMESTAMP
+}
+
+entity "recomendaciones" as Recomendacion {
+  * id : UUID <<PK>>
+  --
+  * cultivo_id : UUID <<FK>>
+  * tipo_recomendacion : ENUM
+  * titulo : VARCHAR(200)
+  * descripcion : TEXT
+  * prioridad : ENUM
+  * fecha_generacion : TIMESTAMP
+  fecha_expiracion : TIMESTAMP
+  * leida : BOOLEAN
+  * aplicada : BOOLEAN
+  justificacion : TEXT
+  * created_at : TIMESTAMP
+}
+
+entity "alertas" as Alerta {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  cultivo_id : UUID <<FK>>
+  * tipo_alerta : ENUM
+  * titulo : VARCHAR(200)
+  * mensaje : TEXT
+  * prioridad : ENUM
+  * fecha_envio : TIMESTAMP
+  * leida : BOOLEAN
+  * created_at : TIMESTAMP
+}
+
+entity "clima_data" as ClimaData {
+  * id : UUID <<PK>>
+  --
+  * municipio : VARCHAR(50)
+  * latitud : DECIMAL(10,8)
+  * longitud : DECIMAL(11,8)
+  * fecha_hora : TIMESTAMP
+  * temperatura : DECIMAL(5,2)
+  * humedad : DECIMAL(5,2)
+  * precipitacion : DECIMAL(8,2)
+  descripcion : VARCHAR(100)
+  * fuente : VARCHAR(50)
+  * created_at : TIMESTAMP
+}
+
+entity "tipos_cultivo_config" as TipoCultivoConfig {
+  * id : UUID <<PK>>
+  --
+  * nombre : VARCHAR(50) <<UK>>
+  * duracion_dias_promedio : INTEGER
+  fases_fenologicas : JSON
+  requerimientos_hidricos : JSON
+  parametros_recomendacion : JSON
+  * created_at : TIMESTAMP
+  * updated_at : TIMESTAMP
+}
+
+' Relaciones
+User ||--o{ Cultivo : "posee"
+User ||--o{ Alerta : "recibe"
+
+Cultivo ||--o{ Actividad : "tiene"
+Cultivo ||--o{ Recomendacion : "recibe"
+Cultivo }o--|| TipoCultivoConfig : "es de tipo"
+
+note right of User
+  Autenticación:
+  - password_hash usa bcrypt
+  - JWT para sesiones
+  Índices:
+  - documento (unique)
+  - municipio (búsqueda)
+end note
+
+note bottom of Cultivo
+  Estado puede ser:
+  - ACTIVO
+  - COSECHADO
+  - ARCHIVADO
+  
+  Índices:
+  - user_id (FK)
+  - fecha_siembra
+  - estado
+end note
+
+note right of Actividad
+  sincronizado indica si
+  fue registrado offline
+  y ya se sincronizó con
+  el servidor
+  
+  Índices:
+  - cultivo_id (FK)
+  - fecha_hora
+  - sincronizado
+end note
+
+note left of ClimaData
+  Cacheo de datos
+  climáticos para
+  reducir llamadas
+  a APIs externas
+  
+  TTL: 6 horas
+  
+  Índices:
+  - municipio + fecha_hora
+end note
+
+note bottom of TipoCultivoConfig
+  Configuración de
+  parámetros por tipo
+  de cultivo (banano,
+  café, yuca, etc.)
+  
+  Gestionado desde
+  panel de admin
+end note
+
+@enduml
+
+- **Node.js 18 LTS**
+- **Express.js 4.x**
+- **PostgreSQL 14+**
+- **Librerías principales:**
+  - `sequelize` - ORM
+  - `jsonwebtoken` - Autenticación JWT
+  - `bcrypt` - Hashing de contraseñas
+  - `express-validator` - Validación
+  - `node-cron` - Tareas programadas
+  - `axios` - Cliente HTTP (APIs externas)
+
+---
+
+## Instalación y Configuración
+
+### Prerrequisitos
+
+- Flutter SDK 3.16+
+- Android Studio / VS Code con extensiones Flutter
+- Node.js 18+
+- PostgreSQL 14+
+- Git
+
+### Configuración Backend
+
+```bash
+# Clonar repositorio
+git clone https://github.com/tu-usuario/agro-backend.git
+cd agro-backend
+
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus credenciales
+
+# Ejecutar migraciones
+npm run migrate
+
+# Iniciar servidor de desarrollo
+npm run dev
+```
+
+### Configuración Frontend
+
+```bash
+# Clonar repositorio
+git clone https://github.com/tu-usuario/agro-app.git
+cd agro-app
+
+# Instalar dependencias
+flutter pub get
+
+# Configurar constantes (URL del backend)
+# Editar lib/core/constants/api_constants.dart
+
+# Ejecutar en emulador/dispositivo
+flutter run
+```
+
+---
+
+## Variables de Entorno (.env Backend)
+
+```env
+# Server
+PORT=3000
+NODE_ENV=development
+
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=agro_db
+DB_USER=postgres
+DB_PASSWORD=tu_password
+
+# JWT
+JWT_SECRET=tu_secret_super_seguro_aqui
+JWT_EXPIRATION=24h
+
+# APIs Externas
+OPENWEATHER_API_KEY=tu_api_key_aqui
+
+# Firebase (FCM)
+FIREBASE_SERVER_KEY=tu_firebase_server_key
+```
+
+---
+
+## Flujo de Trabajo de Desarrollo
+
+### Sprint 1 (Semanas 1-2): Fundamentos
+- Configuración de repos y CI/CD
+- Diseño UI/UX (Figma/Adobe XD)
+- Autenticación (login/register)
+- CRUD básico de cultivos
+
+### Sprint 2 (Semanas 3-4): Datos y Clima
+- Registro de actividades
+- Integración API climática
+- Visualización de clima
+- Base de datos SQLite local
+
+### Sprint 3 (Semanas 5-6): Recomendaciones
+- Motor de recomendaciones (reglas básicas)
+- Sistema de notificaciones push
+- Generación de recomendaciones de riego
+
+### Sprint 4 (Semanas 7-8): Offline y Sincronización
+- Funcionalidad offline completa
+- Sincronización bidireccional
+- Alertas climáticas
+- Testing y refinamiento
+
+---
+
+## Comandos Útiles
+
+### Backend
+
+```bash
+# Desarrollo
+npm run dev          # Servidor con hot-reload (nodemon)
+
+# Testing
+npm test             # Ejecutar tests
+npm run test:watch   # Tests en modo watch
+npm run test:coverage # Cobertura
+
+# Producción
+npm start            # Servidor producción
+
+# Base de datos
+npm run migrate      # Ejecutar migraciones
+npm run seed         # Poblar datos de prueba
+```
+
+### Frontend
+
+```bash
+# Desarrollo
+flutter run                 # Ejecutar en dispositivo conectado
+flutter run -d chrome       # Ejecutar en navegador (debug)
+
+# Testing
+flutter test                # Tests unitarios
+flutter test integration_test/ # Tests de integración
+
+# Build
+flutter build apk           # Build APK (release)
+flutter build appbundle     # Build AAB para Play Store
+
+# Otras
+flutter clean               # Limpiar build
+flutter pub get             # Actualizar dependencias
+flutter doctor              # Verificar instalación
+```
+
+---
+
+## Endpoints de API (Backend)
+
+### Autenticación
+```
+POST   /api/auth/register    # Registrar usuario
+POST   /api/auth/login        # Iniciar sesión
+GET    /api/auth/me           # Obtener perfil (requiere JWT)
+```
+
+### Cultivos
+```
+GET    /api/cultivos          # Listar cultivos del usuario
+POST   /api/cultivos          # Crear nuevo cultivo
+GET    /api/cultivos/:id      # Obtener detalle de cultivo
+PUT    /api/cultivos/:id      # Actualizar cultivo
+DELETE /api/cultivos/:id      # Eliminar/archivar cultivo
+```
+
+### Actividades
+```
+GET    /api/actividades                    # Listar actividades
+POST   /api/actividades                    # Registrar actividad
+GET    /api/actividades/cultivo/:cultivoId # Actividades por cultivo
+POST   /api/actividades/sync               # Sincronización masiva
+```
+
+### Recomendaciones
+```
+GET    /api/recomendaciones                # Listar recomendaciones
+GET    /api/recomendaciones/nuevas         # Nuevas desde última sync
+PUT    /api/recomendaciones/:id/aplicada   # Marcar como aplicada
+```
+
+### Alertas
+```
+GET    /api/alertas           # Listar alertas del usuario
+PUT    /api/alertas/:id/leida # Marcar como leída
+```
+
+### Clima
+```
+GET    /api/clima/actual?municipio=Santa%20Marta  # Clima actual
+GET    /api/clima/pronostico?municipio=...        # Pronóstico 5 días
+```
+
+---
+
+## Testing del Prototipo
+
+### Checklist de Validación
+
+#### Funcionalidad Básica
+- [ ] Usuario puede registrarse exitosamente
+- [ ] Usuario puede iniciar sesión
+- [ ] Usuario puede registrar un cultivo
+- [ ] Usuario puede ver su cultivo en lista
+- [ ] Usuario puede registrar una actividad de riego
+- [ ] Actividad aparece en historial
+
+#### Modo Offline
+- [ ] Usuario puede desactivar WiFi/datos y seguir usando app
+- [ ] Usuario puede registrar actividades offline
+- [ ] Al reconectar, actividades se sincronizan automáticamente
+- [ ] Indicador de "X pendientes de sincronizar" aparece correctamente
+
+#### Recomendaciones
+- [ ] Usuario recibe recomendación de riego (generada por backend)
+- [ ] Notificación push llega al dispositivo
+- [ ] Usuario puede ver detalle de recomendación
+- [ ] Usuario puede marcar como "aplicada"
+
+#### Clima y Alertas
+- [ ] Datos climáticos actuales se muestran correctamente
+- [ ] Si hay alerta crítica, usuario la recibe
+- [ ] Pronóstico de 3-5 días visible
+
+#### Usabilidad
+- [ ] Tutorial de primera vez se muestra al abrir app por primera vez
+- [ ] Navegación es intuitiva (máximo 3 clics para operación común)
+- [ ] Mensajes de error son claros
+- [ ] App carga en < 3 segundos en dispositivo gama baja
+
+---
+
+## Demostración del Prototipo
+
+### Video Demo (Recomendado)
+Grabar video de 3-5 minutos mostrando:
+1. Apertura de app y login
+2. Navegación por pantallas principales
+3. Registro de un cultivo
+4. Registro de actividad
+5. Visualización de recomendación
+6. Demostración de modo offline (activar modo avión, registrar actividad, reconectar)
+
+### Capturas de Pantalla Clave
+1. Pantalla de login
+2. Dashboard principal (home)
+3. Lista de cultivos
+4. Detalle de cultivo
+5. Formulario de registro de actividad
+6. Recomendación de riego
+7. Alerta climática
+8. Modo offline (con indicador visible)
+
+---
+
+## Métricas de Éxito del Prototipo
+
+| Métrica | Objetivo | Resultado |
+|---------|----------|-----------|
+| Tiempo de carga inicial | < 3 seg | _____ |
+| Casos de uso implementados | ≥ 60% | _____ |
+| Cobertura de tests | > 70% lógica crítica | _____ |
+| Usabilidad (SUS Score) | > 70/100 | _____ |
+| Tasa de éxito en tareas (testing usuarios) | > 80% | _____ |
+
+---
+
+## Repositorios
+
+- **Frontend:** [https://github.com/tu-usuario/agro-app](https://github.com/tu-usuario/agro-app)
+- **Backend:** [https://github.com/tu-usuario/agro-backend](https://github.com/tu-usuario/agro-backend)
+
+---
+
+## Siguientes Pasos (Post-MVP)
+
+1. Implementar recomendaciones de fertilización
+2. Añadir alertas fitosanitarias (plagas)
+3. Biblioteca de contenidos educativos
+4. Panel de administración (backoffice)
+5. Reportes en PDF
+6. Integración con más fuentes de datos climáticos
+7. Versión iOS
+8. Multi-idioma (wayuunaiki, inglés)
+
+---
+
+## Contacto y Soporte
+
+Para dudas sobre el prototipo, contactar a:
+- **Líder Técnico:** [nombre@email.com]
+- **Equipo de Desarrollo:** [nombre-equipo@email.com]

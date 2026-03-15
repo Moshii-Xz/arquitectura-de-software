@@ -1,0 +1,249 @@
+@startuml secuencia-sincronizacion
+!theme plain
+skinparam sequenceMessageAlign center
+
+actor "Productor" as User
+participant "App Móvil\n(Flutter)" as App
+database "SQLite\nLocal" as LocalDB
+participant "Sync Service\n(App)" as SyncService
+participant "Backend API\n(Node.js)" as Backend
+database "PostgreSQL" as RemoteDB
+participant "FCM" as FCM
+
+== Usuario Trabaja Offline ==
+
+User -> App: Registra actividad\n(Riego, 20L)
+activate App
+
+App -> LocalDB: INSERT actividad
+activate LocalDB
+LocalDB --> LocalDB: sincronizado = false\nqueue_order = 1
+LocalDB --> App: Actividad guardada\nid: abc-123
+deactivate LocalDB
+
+App --> User: ✓ Actividad registrada\n(Badge: 1 pendiente)
+deactivate App
+
+User -> App: Registra otra actividad\n(Fertilización, 5kg)
+activate App
+
+App -> LocalDB: INSERT actividad
+activate LocalDB
+LocalDB --> LocalDB: sincronizado = false\nqueue_order = 2
+LocalDB --> App: Actividad guardada\nid: def-456
+deactivate LocalDB
+
+App --> User: ✓ Actividad registrada\n(Badge: 2 pendientes)
+deactivate App
+
+note over App, LocalDB
+  Usuario trabaja sin conexión
+  Todas las operaciones se
+  guardan localmente primero
+end note
+
+== Usuario Recupera Conexión ==
+
+App -> App: Detecta conexión\ndisponible
+activate App
+
+App -> User: 🔔 Notificación:\n"Sincronizando..."
+deactivate App
+
+App -> SyncService: syncPendingOperations()
+activate SyncService
+
+SyncService -> LocalDB: SELECT * FROM actividades\nWHERE sincronizado = false\nORDER BY queue_order
+activate LocalDB
+LocalDB --> SyncService: [{id: abc-123, ...},\n{id: def-456, ...}]
+deactivate LocalDB
+
+loop Para cada actividad pendiente
+
+  SyncService -> Backend: POST /api/actividades\n{cultivo_id, tipo, fecha, ...}
+  activate Backend
+  
+  Backend -> Backend: Valida JWT
+  Backend -> Backend: Valida datos
+  
+  Backend -> RemoteDB: INSERT INTO actividades
+  activate RemoteDB
+  RemoteDB --> Backend: Actividad guardada\nid: xyz-789
+  deactivate RemoteDB
+  
+  Backend --> SyncService: 201 Created\n{id: xyz-789, ...}
+  deactivate Backend
+  
+  SyncService -> LocalDB: UPDATE actividades\nSET sincronizado = true\nWHERE id = abc-123
+  activate LocalDB
+  LocalDB --> SyncService: ✓
+  deactivate LocalDB
+
+end
+
+SyncService -> SyncService: Todas sincronizadas
+
+== Backend Genera Nueva Recomendación ==
+
+Backend -> Backend: Cron job diario\nevalúa recomendaciones
+activate Backend
+
+Backend -> RemoteDB: SELECT cultivos\nWHERE estado = ACTIVO
+activate RemoteDB
+RemoteDB --> Backend: Lista de cultivos
+deactivate RemoteDB
+
+Backend -> Backend: Motor de recomendaciones\nevalúa reglas
+Backend -> Backend: Genera recomendación:\n"Regar mañana, 25L/planta"
+
+Backend -> RemoteDB: INSERT INTO recomendaciones
+activate RemoteDB
+RemoteDB --> Backend: ✓
+deactivate RemoteDB
+
+Backend -> FCM: Enviar notificación push\n{title: "Nueva Recomendación", ...}
+activate FCM
+deactivate Backend
+
+FCM --> App: Push notification
+deactivate FCM
+
+App --> User: 🔔 "Nueva recomendación\nde riego disponible"
+
+== Sincronización de Bajada (Download) ==
+
+SyncService -> Backend: GET /api/recomendaciones/nuevas
+activate Backend
+
+Backend -> RemoteDB: SELECT * FROM recomendaciones\nWHERE cultivo_id IN (...)\nAND fecha_generacion > last_sync
+activate RemoteDB
+RemoteDB --> Backend: Lista de nuevas recomendaciones
+deactivate RemoteDB
+
+Backend --> SyncService: 200 OK\n[{id, titulo, descripcion, ...}]
+deactivate Backend
+
+SyncService -> LocalDB: INSERT nuevas recomendaciones
+activate LocalDB
+LocalDB --> SyncService: ✓
+deactivate LocalDB
+
+SyncService --> App: Sincronización completada
+deactivate SyncService
+
+App -> User: ✓ "Sincronización exitosa:\n2 actividades enviadas\n1 recomendación recibida"
+
+note over User, RemoteDB
+  Sincronización bidireccional:
+  - Subida: Actividades locales → Servidor
+  - Bajada: Recomendaciones nuevas → Local
+  
+  Estrategia offline-first garantiza
+  que no se pierda información
+end note
+
+@enduml
+
+| **Responsable de Validación y Calidad** | Testing, QA, validación con usuarios |
+
+---
+
+## 📦 Entregables
+
+### Documentación
+- ✅ Documento de Requerimientos
+- ✅ Comparación y Selección de Arquitectura
+- ✅ Diseño Arquitectónico Final
+- ✅ Diagramas (casos de uso, clases, componentes, despliegue, BD)
+
+### Implementación
+- [ ] Repositorio Backend (GitHub)
+- [ ] Repositorio Frontend (GitHub)
+- [ ] Prototipo funcional (APK instalable)
+- [ ] Video demostración (3-5 min)
+
+### Validación
+- [ ] Reporte de testing
+- [ ] Resultados de usability testing
+- [ ] Validación de atributos de calidad
+- [ ] Validación vs restricciones
+
+---
+
+## 🔧 Cómo Visualizar los Diagramas PlantUML
+
+### Opción 1: VS Code
+1. Instalar extensión "PlantUML" (jebbs.plantuml)
+2. Abrir archivo `.puml`
+3. Presionar `Alt + D` para preview
+
+### Opción 2: Online
+1. Copiar contenido del archivo `.puml`
+2. Pegar en [PlantUML Online Editor](http://www.plantuml.com/plantuml/uml/)
+
+### Opción 3: Exportar como imagen
+```bash
+# Instalar PlantUML (requiere Java)
+java -jar plantuml.jar *.puml
+
+# Genera archivos PNG de todos los diagramas
+```
+
+---
+
+## 📚 Referencias
+
+- **Proyecto Base:** [Proyecto.md](Proyecto.md)
+- **ISO/IEC/IEEE 29148:2018** - Especificación de requisitos
+- **ATAM (Architecture Tradeoff Analysis Method)** - Análisis de trade-offs
+- **Ley 1581 de 2012** - Protección de datos personales (Colombia)
+- **Flutter Documentation:** https://flutter.dev/docs
+- **Node.js Best Practices:** https://github.com/goldbergyoni/nodebestpractices
+
+---
+
+## 📝 Notas Importantes
+
+### Restricciones No Negociables
+1. **Seguridad de datos personales** (Ley 1581/2012)
+2. **Funcionamiento offline básico** (conectividad intermitente)
+3. **Presupuesto operación < $50/mes**
+4. **Tiempo de desarrollo: 4 meses**
+5. **Usabilidad para baja alfabetización digital**
+6. **Recomendaciones seguras y validadas**
+
+### Decisiones Arquitectónicas Clave
+- **ADR-001:** Scrum con sprints de 2 semanas
+- **ADR-002:** Arquitectura Cliente-Servidor en Capas (Monolito Modular)
+- **ADR-003:** Base de datos relacional (PostgreSQL)
+- **ADR-004:** Estrategia Offline-First con sincronización eventual
+- **ADR-005:** Autenticación JWT con expiración de 24h
+- **ADR-006:** Modularización por dominio (DDD ligero)
+
+---
+
+## 🎓 Universidad del Magdalena
+
+**Programa:** Ingeniería de Sistemas  
+**Curso:** Arquitectura de Software  
+**Tipo de Proyecto:** Capstone Design (Experiencia Final de Diseño)  
+**Fecha:** Marzo 2026
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de carácter académico y su implementación está destinada al beneficio de pequeños productores agrícolas del Magdalena. No se permite el uso comercial sin autorización explícita.
+
+---
+
+## 📞 Contacto
+
+Para consultas sobre el proyecto:
+- **Repositorio:** [GitHub - tu-usuario/proyecto-agro](https://github.com/tu-usuario/proyecto-agro)
+- **Email del Equipo:** [equipo@email.com]
+- **Institución:** Universidad del Magdalena - Ingeniería de Sistemas
+
+---
+
+**Última actualización:** Marzo 2026

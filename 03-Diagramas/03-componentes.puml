@@ -1,0 +1,154 @@
+@startuml componentes
+!theme plain
+skinparam componentStyle rectangle
+
+package "Aplicación Móvil (Flutter)" #E3F2FD {
+  
+  component [UI Components\n(Widgets)] as UI #BBDEFB {
+    [Home Screen]
+    [Cultivos Screen]
+    [Actividades Screen]
+    [Alertas Screen]
+    [Perfil Screen]
+  }
+  
+  component [BLoC / State\nManagement] as BLoC #90CAF9 {
+    [Auth BLoC]
+    [Cultivos BLoC]
+    [Actividades BLoC]
+    [Recomendaciones BLoC]
+    [Sync BLoC]
+  }
+  
+  component [Repositories] as Repos #64B5F6 {
+    [User Repository]
+    [Cultivo Repository]
+    [Actividad Repository]
+    [Sync Repository]
+  }
+  
+  component [Data Sources] as DataSources #42A5F5 {
+    [Local Data Source\n(SQLite)]
+    [Remote Data Source\n(API Client)]
+  }
+  
+  component [Services] as MobileServices #2196F3 {
+    [Sync Service]
+    [Notification Service]
+    [Location Service]
+    [Camera Service]
+  }
+  
+  database "SQLite\n(Local DB)" as LocalDB #1976D2
+}
+
+cloud "Internet" as Net #FFF9C4
+
+package "Backend (Node.js + Express)" #E8F5E9 {
+  
+  component [API Gateway\n(Express Router)] as APIGateway #C8E6C9 {
+    [Auth Routes]
+    [Cultivos Routes]
+    [Actividades Routes]
+    [Recomendaciones Routes]
+    [Alertas Routes]
+    [Clima Routes]
+  }
+  
+  component [Middlewares] as Middlewares #A5D6A7 {
+    [Auth Middleware\n(JWT)]
+    [Validation Middleware]
+    [Error Handler]
+    [Rate Limiter]
+  }
+  
+  component [Business Logic\n(Services)] as Services #81C784 {
+    [Auth Service]
+    [Cultivo Service]
+    [Recomendacion Service\n(Motor)]
+    [Alerta Service]
+    [Clima Service]
+    [Sync Service]
+  }
+  
+  component [Data Access\n(Repositories)] as DAL #66BB6A {
+    [User Repository]
+    [Cultivo Repository]
+    [Actividad Repository]
+    [Recomendacion Repository]
+    [Alerta Repository]
+  }
+  
+  component [ORM Layer\n(Sequelize)] as ORM #4CAF50
+  
+  component [Scheduled Jobs\n(Cron)] as Cron #388E3C {
+    [Clima Update Job\n(cada 6h)]
+    [Alertas Check Job\n(cada 1h)]
+    [Recomendaciones Job\n(diario)]
+  }
+  
+  database "PostgreSQL\n(Producción)" as PostgreSQL #2E7D32
+}
+
+package "Servicios Externos" #FFF3E0 {
+  component [OpenWeatherMap\nAPI] as WeatherAPI #FFE082
+  component [Firebase Cloud\nMessaging] as FCM #FFCA28
+}
+
+package "Infraestructura" #F3E5F5 {
+  component [Railway.app\n(PaaS)] as Railway #E1BEE7
+  component [GitHub\n(CI/CD)] as GitHub #CE93D8
+}
+
+' Relaciones App Móvil
+UI --> BLoC : "usa"
+BLoC --> Repos : "coordina"
+Repos --> DataSources : "obtiene datos"
+DataSources --> LocalDB : "lee/escribe"
+DataSources --> Net : "HTTP/REST"
+MobileServices --> DataSources : "usa"
+MobileServices -down-> FCM : "recibe notificaciones"
+
+' Relaciones Backend
+Net --> APIGateway : "HTTPS\nJSON"
+APIGateway --> Middlewares : "pasa por"
+Middlewares --> Services : "autoriza acceso"
+Services --> DAL : "accede datos"
+DAL --> ORM : "queries"
+ORM --> PostgreSQL : "SQL"
+Services --> WeatherAPI : "consume"
+Services --> FCM : "envía notificaciones"
+Cron --> Services : "ejecuta periódicamente"
+
+' Deploy
+Railway --> APIGateway : "hospeda"
+Railway --> PostgreSQL : "hospeda"
+GitHub --> Railway : "deploy automático"
+
+note right of [Sync Service]
+  Maneja sincronización
+  offline → online
+  Resuelve conflictos
+end note
+
+note bottom of [Recomendacion Service\n(Motor)]
+  Motor de reglas basado
+  en conocimiento experto
+  Genera recomendaciones
+  personalizadas
+end note
+
+note left of LocalDB
+  Almacena datos para
+  funcionalidad offline
+  Sincroniza cuando
+  hay conexión
+end note
+
+note bottom of [Clima Update Job\n(cada 6h)]
+  Actualiza datos climáticos
+  de todas las ubicaciones
+  activas cada 6 horas
+end note
+
+@enduml
