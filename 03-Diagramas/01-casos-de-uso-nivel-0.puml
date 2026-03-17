@@ -1,0 +1,32 @@
+@startuml casos-de-uso-nivel-0
+!theme plain
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+
+actor "Productor" as Productor
+actor "Administrador" as Admin
+actor "Servicio Climatico\nExterno" as Clima
+
+rectangle "Plataforma Agricultura Inteligente" {
+  usecase (Gestionar Cuenta) as UC1
+  usecase (Gestionar Cultivos) as UC2
+  usecase (Registrar Actividades) as UC3
+  usecase (Consultar Recomendaciones) as UC4
+  usecase (Recibir Alertas Climaticas) as UC5
+  usecase (Sincronizar Datos\nOffline/Online) as UC6
+  usecase (Administrar Catalogos\ny Parametros) as UC7
+}
+
+Productor --> UC1
+Productor --> UC2
+Productor --> UC3
+Productor --> UC4
+Productor --> UC5
+
+Admin --> UC7
+
+Clima --> UC5 : provee datos
+
+
+@enduml

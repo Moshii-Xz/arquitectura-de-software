@@ -38,6 +38,88 @@ Se requiere diseñar la arquitectura de una plataforma digital que permita:
 
 ---
 
+## 3. Descripción del Problema de Ingeniería
+
+Esta sección define el problema a resolver desde la perspectiva de ingeniería de software, considerando el entorno real de operación, las limitaciones del contexto rural y la necesidad de una solución tecnológica viable para el primer entregable.
+
+### a. Definir condiciones de desarrollo (Breve justificación)
+
+- **Proceso de desarrollo: Scrum**  
+  Se selecciona Scrum porque el proyecto es iterativo, tiene duración limitada (4 meses) y requiere mostrar avances frecuentes al profesor y a stakeholders. Los sprints cortos permiten priorizar funcionalidades críticas (offline, registro de actividades, alertas) y ajustar el alcance sin perder control del cronograma.
+
+- **Base de datos: PostgreSQL**  
+  Se elige PostgreSQL por su robustez, soporte transaccional (ACID), manejo eficiente de relaciones (usuarios, cultivos, actividades, alertas) y bajo costo operativo en entornos cloud. Además, facilita integridad de datos y trazabilidad de información agrícola.
+
+- **Lenguaje de programación: Java**  
+  Java se propone para el backend por estabilidad, alto soporte empresarial, seguridad, ecosistema maduro y mantenibilidad a largo plazo. Es adecuado para construir APIs REST confiables y escalables, necesarias para sincronización de datos y gestión segura de usuarios.
+
+- **Framework o tecnología principal recomendada: Spring Boot**  
+  Para este problema, la opción más adecuada con Java es **Spring Boot** en backend, porque acelera el desarrollo de APIs, integra seguridad (Spring Security), persistencia (JPA/Hibernate), validación y despliegue en contenedores. Se adapta bien a un proyecto académico iterativo y reduce complejidad de configuración frente a otras alternativas.
+
+### b. Definición de requerimientos del diseño
+
+#### i. Contexto del problema
+
+El sistema operará en zonas rurales del Magdalena donde pequeños productores (menos de 5 hectáreas) toman decisiones agrícolas con información limitada, conectividad intermitente y baja adopción tecnológica. La solución debe funcionar con dispositivos móviles de gama baja, permitir trabajo sin internet y sincronizar datos cuando haya conexión.
+
+#### ii. Identificación de stakeholders
+
+- Productores agrícolas (usuario principal)
+- Asociaciones de productores
+- Administrador del sistema
+- Equipo técnico del proyecto
+- Docente evaluador / universidad
+- Entidades de apoyo agrícola (como actor institucional)
+- Proveedores externos de datos climáticos
+
+#### iii. Diagramas de casos de uso
+
+- **Nivel 0 (general):** Vista macro del sistema ya definida en [03-Diagramas/01-casos-de-uso-nivel-0.puml](03-Diagramas/01-casos-de-uso-nivel-0.puml).
+- **Nivel 1 (detalle funcional):** Se desarrollarán mínimo 3 diagramas en iteraciones siguientes:
+  - Gestión de cultivos
+  - Registro de actividades
+  - Sincronización offline/online
+
+#### iv. Especificación de requerimientos (ISO/IEC/IEEE 29148:2018)
+
+La especificación se estructurará conforme al estándar, incluyendo:
+
+- Alcance y contexto del sistema
+- Stakeholders y necesidades
+- Requisitos funcionales priorizados y trazables
+- Requisitos no funcionales (atributos de calidad)
+- Restricciones y supuestos
+- Criterios de aceptación verificables
+
+### vi. Atributos de calidad de la solución
+
+Para este proyecto se priorizan, como mínimo, los siguientes atributos:
+
+- **Usabilidad:** interfaz clara para usuarios con baja alfabetización digital.
+- **Seguridad:** protección de datos personales y productivos.
+- **Escalabilidad:** capacidad de crecer en usuarios y volumen de datos.
+- **Disponibilidad:** operación continua, incluyendo modo offline.
+- **Mantenibilidad:** facilidad para corregir y evolucionar el sistema.
+
+### vii. Análisis de restricciones del proyecto
+
+Se identifican restricciones que condicionan el diseño:
+
+- **Técnicas:** conectividad intermitente, dispositivos de gama baja.
+- **Económicas:** presupuesto limitado para infraestructura y operación.
+- **Sociales:** baja alfabetización digital y contexto rural.
+- **Normativas/legal:** protección de datos (Habeas Data) y confidencialidad.
+- **Éticas:** uso responsable de datos y sistema como apoyo a la decisión.
+
+Riesgos principales asociados:
+
+- Pérdida de datos por fallos de sincronización.
+- Baja adopción por complejidad de uso.
+- Dependencia de servicios externos (clima/notificaciones).
+- Retrasos por alcance superior al tiempo disponible.
+
+---
+
 ## Restricciones
 
 La solución deberá desarrollarse bajo las siguientes restricciones explícitas, que deberán influir en las decisiones arquitectónicas:
