@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup - Plataforma Digital de Agricultura Inteligente</title>
+  <style>
+    :root {
+      --bg: #f3efe4;
+      --bg-alt: #e8f1ea;
+      --card: #ffffff;
+      --ink: #173024;
+      --muted: #607066;
+      --line: #d8e0d8;
+      --accent: #2f7d57;
+      --accent-2: #d98c2b;
+      --accent-soft: #e8f5ee;
+      --warn: #b86b18;
+      --ok: #2f8f5b;
+      --shadow: 0 24px 60px rgba(23, 48, 36, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(47, 125, 87, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(217, 140, 43, 0.16), transparent 30%),
+        linear-gradient(180deg, #fbfaf6 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .hero-panel,
+    .summary-panel,
+    .frame,
+    .guide-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(215, 224, 215, 0.75);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel {
+      border-radius: 34px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -90px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(47, 125, 87, 0.18), rgba(217, 140, 43, 0.18));
+      filter: blur(2px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(47, 125, 87, 0.08);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(47, 125, 87, 0.12);
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 11ch;
+    }
+
+    .hero-panel p {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .pill.secondary {
+      background: rgba(47, 125, 87, 0.08);
+      color: var(--ink);
+      border: 1px solid rgba(47, 125, 87, 0.16);
+    }
+
+    .summary-panel {
+      border-radius: 28px;
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      align-content: space-between;
+    }
+
+    .summary-panel h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      background: linear-gradient(180deg, #fff 0%, #f6f8f5 100%);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .summary-note {
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(47, 125, 87, 0.12), rgba(217, 140, 43, 0.12));
+      border: 1px solid rgba(47, 125, 87, 0.12);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .frame {
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, #183626 0%, #1f4531 100%);
+      color: #eef6f0;
+      min-height: 760px;
+      padding: 24px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #6dbb84, #d9a24a);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .logo::before,
+    .logo::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 999px;
+    }
+
+    .logo::before {
+      width: 22px;
+      height: 6px;
+      top: 18px;
+      left: 12px;
+      transform: rotate(-28deg);
+    }
+
+    .logo::after {
+      width: 24px;
+      height: 6px;
+      top: 26px;
+      left: 16px;
+      transform: rotate(35deg);
+    }
+
+    .brand h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .brand small {
+      display: block;
+      color: rgba(238, 246, 240, 0.75);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .nav {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      color: inherit;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-item.active,
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(2px);
+    }
+
+    .nav-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .offline-card {
+      margin-top: auto;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      line-height: 1.5;
+    }
+
+    .offline-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .content {
+      min-height: 760px;
+      padding: 24px;
+      background: linear-gradient(180deg, #fff 0%, #f8faf7 100%);
+    }
+
+    .content-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .content-top h2 {
+      margin: 0;
+      font-size: 1.45rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .status-strip {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .status b {
+      color: var(--ink);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+
+    .dot.warn {
+      background: var(--warn);
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(23, 48, 36, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.03rem;
+    }
+
+    .crop-card {
+      background: linear-gradient(135deg, #f4fbf6 0%, #ffffff 100%);
+      min-height: 220px;
+    }
+
+    .crop-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .field-chip {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(47, 125, 87, 0.08);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .crop-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .crop-item,
+    .activity-item,
+    .alert-item,
+    .report-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+    }
+
+    .crop-item strong,
+    .activity-item strong,
+    .alert-item strong,
+    .report-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .crop-item span,
+    .activity-item span,
+    .alert-item span,
+    .report-item span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .badge {
+      align-self: center;
+      white-space: nowrap;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .badge.warn {
+      color: var(--warn);
+      background: rgba(184, 107, 24, 0.12);
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .mini {
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #f6faf7 100%);
+      border: 1px solid var(--line);
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 1.18rem;
+      margin-bottom: 4px;
+    }
+
+    .mini span {
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.35;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 5px;
+      flex: 0 0 auto;
+      box-shadow: 0 0 0 6px rgba(47, 125, 87, 0.1);
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+    }
+
+    .timeline-content strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .mobile-preview {
+      border-radius: 36px;
+      padding: 18px;
+      background: linear-gradient(180deg, #1d3c2b 0%, #10271c 100%);
+      color: #fff;
+      min-height: 760px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobile-preview::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .phone {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      width: min(100%, 320px);
+      border-radius: 34px;
+      background: #f7f6f2;
+      color: var(--ink);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      border: 10px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .phone-header {
+      background: linear-gradient(135deg, #2f7d57, #1f593f);
+      color: #fff;
+      padding: 18px;
+    }
+
+    .phone-header h3 {
+      margin: 8px 0 4px;
+      font-size: 1.15rem;
+    }
+
+    .phone-header p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .phone-body {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .phone-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .phone-card h4 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+    }
+
+    .phone-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .action-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f7faf7;
+      border: 1px solid var(--line);
+      font-size: 0.88rem;
+    }
+
+    .action strong {
+      font-size: 0.88rem;
+    }
+
+    .footer-guide {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .guide-card {
+      border-radius: 24px;
+      padding: 20px;
+    }
+
+    .guide-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .guide-card p,
+    .guide-card li {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .guide-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+
+    .legend-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+    }
+
+    .swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 5px;
+      flex: 0 0 auto;
+    }
+
+    .swatch.green {
+      background: var(--accent);
+    }
+
+    .swatch.gold {
+      background: var(--accent-2);
+    }
+
+    .swatch.ink {
+      background: var(--ink);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .link-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+    }
+
+    .link-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .link-item span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1200px) {
+      .hero,
+      .dashboard,
+      .footer-guide {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar,
+      .content,
+      .mobile-preview {
+        min-height: auto;
+      }
+
+      .mobile-preview {
+        padding-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        padding: 16px;
+      }
+
+      .hero-panel,
+      .summary-panel,
+      .content,
+      .sidebar,
+      .mobile-preview,
+      .guide-card {
+        border-radius: 22px;
+      }
+
+      .metric-grid,
+      .mini-metrics,
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .content-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <article class="hero-panel">
+        <div class="eyebrow"><span></span> Plataforma Digital de Agricultura Inteligente</div>
+        <h1>Mockup conceptual para productores rurales</h1>
+        <p>
+          Propuesta visual de baja fidelidad enfocada en decisiones rápidas: registrar cultivos, consultar alertas,
+          revisar recomendaciones y sincronizar datos con conectividad intermitente. El diseño prioriza lenguaje claro,
+          navegación simple y soporte para móvil de gama baja.
+        </p>
+        <div class="cta-row">
+          <div class="pill">Modo offline primero</div>
+          <div class="pill secondary">Casos de uso del Productor</div>
+          <div class="pill secondary">UI simple y comprensible</div>
+        </div>
+      </article>
+
+      <aside class="summary-panel">
+        <h2>Resumen del flujo</h2>
+        <div class="metric-grid">
+          <div class="metric">
+            <strong>5</strong>
+            <span>bloques principales: inicio, cultivos, actividades, recomendaciones y sincronización.</span>
+          </div>
+          <div class="metric">
+            <strong>Mobile first</strong>
+            <span>pensado para pantallas pequeñas y operación en campo.</span>
+          </div>
+          <div class="metric">
+            <strong>Baja carga</strong>
+            <span>interfaz limpia, pocos pasos y jerarquía visual fuerte.</span>
+          </div>
+          <div class="metric">
+            <strong>Offline</strong>
+            <span>acciones guardadas localmente y sincronizadas cuando hay red.</span>
+          </div>
+        </div>
+        <div class="summary-note">
+          La pantalla principal combina productividad y confianza: el productor ve su estado de cultivo, alertas activas,
+          próximas actividades y el estado de conexión en un solo vistazo.
+        </div>
+      </aside>
+    </section>
+
+    <section class="dashboard">
+      <aside class="frame sidebar">
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <h3>AgroInteligente</h3>
+            <small>Soporte a la decisión agrícola para pequeños productores del Magdalena</small>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a class="nav-item active" href="#dashboard">
+            <span class="nav-icon">01</span>
+            <span>Inicio</span>
+          </a>
+          <a class="nav-item" href="#cultivos">
+            <span class="nav-icon">02</span>
+            <span>Cultivos</span>
+          </a>
+          <a class="nav-item" href="#actividades">
+            <span class="nav-icon">03</span>
+            <span>Actividades</span>
+          </a>
+          <a class="nav-item" href="#recomendaciones">
+            <span class="nav-icon">04</span>
+            <span>Recomendaciones</span>
+          </a>
+          <a class="nav-item" href="#sincronizacion">
+            <span class="nav-icon">05</span>
+            <span>Sincronización</span>
+          </a>
+        </nav>
+
+        <div class="offline-card">
+          <strong>Estado actual</strong>
+          Conectividad limitada. Las últimas acciones se guardaron localmente y se enviarán al servidor cuando la red esté disponible.
+        </div>
+      </aside>
+
+      <section class="frame content" id="dashboard">
+        <div class="content-top">
+          <div>
+            <h2>Panel principal del productor</h2>
+            <div class="subtitle">Vista de control rápido para revisar el estado de la finca, alertas activas y tareas pendientes.</div>
+          </div>
+          <div class="status-strip">
+            <span class="status"><span class="dot"></span><b>En línea</b> sincronizando cambios</span>
+            <span class="status"><span class="dot warn"></span><b>2 alertas</b> por revisar</span>
+            <span class="status"><b>Hoy:</b> 3 tareas</span>
+          </div>
+        </div>
+
+        <div class="mini-metrics">
+          <div class="mini">
+            <strong>8 ha</strong>
+            <span>área total registrada en cultivos activos</span>
+          </div>
+          <div class="mini">
+            <strong>67%</strong>
+            <span>estado general del cultivo monitoreado</span>
+          </div>
+          <div class="mini">
+            <strong>15 min</strong>
+            <span>estimación de sincronización completa</span>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <article class="card crop-card" id="cultivos">
+            <div class="crop-header">
+              <div>
+                <h3>Gestión de cultivos</h3>
+                <div class="field-chip">Cultivo principal: Maíz tecnificado</div>
+              </div>
+              <div class="badge">Activo</div>
+            </div>
+            <div class="crop-list">
+              <div class="crop-item">
+                <div>
+                  <strong>Lote 01 - Maíz</strong>
+                  <span>Riego sugerido para mañana por aumento de temperatura.</span>
+                </div>
+                <div class="badge">Revisar</div>
+              </div>
+              <div class="crop-item">
+                <div>
+                  <strong>Lote 02 - Yuca</strong>
+                  <span>Sin alertas críticas. Registro de actividad pendiente.</span>
+                </div>
+                <div class="badge">Normal</div>
+              </div>
+              <div class="crop-item">
+                <div>
+                  <strong>Lote 03 - Plátano</strong>
+                  <span>Se recomienda validar humedad antes de fertilizar.</span>
+                </div>
+                <div class="badge warn">Atención</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" id="actividades">
+            <h3>Registro de actividades</h3>
+            <div class="stack">
+              <div class="activity-item">
+                <div>
+                  <strong>Aplicación de fertilizante</strong>
+                  <span>Programada para hoy 4:30 p. m.</span>
+                </div>
+                <div class="badge">Pendiente</div>
+              </div>
+              <div class="activity-item">
+                <div>
+                  <strong>Inspección fitosanitaria</strong>
+                  <span>Registrada desde el móvil sin conexión.</span>
+                </div>
+                <div class="badge">Guardada</div>
+              </div>
+              <div class="activity-item">
+                <div>
+                  <strong>Riego manual</strong>
+                  <span>Completado y sincronizado con el servidor.</span>
+                </div>
+                <div class="badge">Hecho</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid-cards" style="margin-top:18px;">
+          <article class="card" id="recomendaciones">
+            <h3>Recomendaciones y alertas</h3>
+            <div class="stack">
+              <div class="alert-item">
+                <div>
+                  <strong>Alerta climática</strong>
+                  <span>Posible lluvia en la tarde. Posponer fertilización para evitar pérdida de insumo.</span>
+                </div>
+                <div class="badge warn">Urgente</div>
+              </div>
+              <div class="alert-item">
+                <div>
+                  <strong>Recomendación de riego</strong>
+                  <span>Aplicar riego ligero antes de las 7 a. m. en el lote 01.</span>
+                </div>
+                <div class="badge">Acción</div>
+              </div>
+              <div class="alert-item">
+                <div>
+                  <strong>Recomendación fitosanitaria</strong>
+                  <span>Inspeccionar hojas jóvenes por signos tempranos de plaga.</span>
+                </div>
+                <div class="badge">Sugerida</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" id="sincronizacion">
+            <h3>Sincronización y trazabilidad</h3>
+            <div class="timeline">
+              <div class="timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <strong>Datos capturados offline</strong>
+                  <span>El formulario guarda registros localmente si no hay red.</span>
+                </div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <strong>Sincronización automática</strong>
+                  <span>Cuando la conectividad regresa, el sistema envía cambios sin interrumpir al usuario.</span>
+                </div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <strong>Confirmación de estado</strong>
+                  <span>La pantalla muestra qué quedó guardado, qué se envió y qué necesita revisión.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="mobile-preview">
+        <div class="phone">
+          <div class="phone-header">
+            <div class="eyebrow" style="background: rgba(255,255,255,0.14); color:#fff;"><span style="background:#fff; box-shadow: 0 0 0 6px rgba(255,255,255,0.12);"></span> Vista móvil</div>
+            <h3>Inicio rápido</h3>
+            <p>Resumen simple para revisar estado, abrir acciones clave y operar con una sola mano.</p>
+          </div>
+          <div class="phone-body">
+            <div class="phone-card">
+              <h4>Estado de la finca</h4>
+              <p>Maíz: 67% saludable. Hay 2 alertas activas y 1 recomendación prioritaria.</p>
+            </div>
+            <div class="phone-card">
+              <h4>Acciones rápidas</h4>
+              <div class="action-list">
+                <div class="action"><strong>Registrar actividad</strong><span>+</span></div>
+                <div class="action"><strong>Ver alertas</strong><span>2</span></div>
+                <div class="action"><strong>Sincronizar</strong><span>Offline</span></div>
+              </div>
+            </div>
+            <div class="phone-card">
+              <h4>Mensaje de apoyo</h4>
+              <p>La plataforma recomienda revisar el lote antes de fertilizar y confirmar lluvia en la tarde.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="footer-guide">
+      <article class="guide-card">
+        <h3>Guía visual</h3>
+        <p>La composición está pensada para documentación arquitectónica y presentación académica. El enfoque principal es la claridad de flujo.</p>
+        <div class="legend">
+          <div class="legend-row"><span class="swatch green"></span><span>Verde: navegación, estado positivo y acciones principales.</span></div>
+          <div class="legend-row"><span class="swatch gold"></span><span>Ocre: alertas, decisiones importantes y prioridad de revisión.</span></div>
+          <div class="legend-row"><span class="swatch ink"></span><span>Oscuro: identidad de marca y contención visual.</span></div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h3>Relación con casos de uso</h3>
+        <div class="link-list">
+          <div class="link-item"><strong>Gestionar Perfil y Finca</strong><span>Se refleja en la navegación principal y el resumen inicial del productor.</span></div>
+          <div class="link-item"><strong>Gestionar Actividades de Cultivo</strong><span>Bloque de actividades y registro rápido de tareas del día.</span></div>
+          <div class="link-item"><strong>Consultar Recomendaciones y Alertas</strong><span>Bloques de recomendaciones, alertas y mensajes de apoyo.</span></div>
+          <div class="link-item"><strong>Sincronizar Datos</strong><span>Estado de conexión, guardado local y confirmación de sincronización.</span></div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h3>Criterios de diseño</h3>
+        <ul>
+          <li>Priorización de la acción principal en cada pantalla.</li>
+          <li>Texto corto, directo y comprensible para contexto rural.</li>
+          <li>Estados visibles de online, offline, guardado y pendiente.</li>
+          <li>Jerarquía visual con pocos colores y alto contraste.</li>
+          <li>Diseño adaptable a móvil de gama baja y escritorio.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

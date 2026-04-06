@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Cultivos</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - MODULO GESTION DE CULTIVOS
+      <br />
+      Vista tecnica para registrar, consultar y actualizar cultivos con flujo simple.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Cultivos</strong>
+        <span>Plataforma Agricultura Inteligente</span>
+      </div>
+      <div class="box">GRAFICO GENERAL DEL CULTIVO<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav active">Cultivos</div>
+        <div class="nav">Actividades</div>
+        <div class="nav">Alertas</div>
+        <div class="nav">Reportes</div>
+        <div class="nav">Sincronizacion</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>MENU LATERAL</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Listado de cultivos</div>
+          <div class="nav">2. Registrar cultivo</div>
+          <div class="nav">3. Actualizar cultivo</div>
+          <div class="nav">4. Archivar cultivo</div>
+        </div>
+
+        <div class="state-card">
+          Estado modulo: ACTIVO
+          <br />
+          Usuario: Productor
+          <br />
+          Flujo guiado: ver lista -> seleccionar -> editar
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO - LISTADO Y FORMULARIO</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>A. Filtros y acciones principales</h4>
+          <div class="grid">
+            <div class="field">Campo texto: Buscar lote<span class="spec">Especificacion: 30 caracteres maximo</span></div>
+            <div class="field">Campo seleccion: Estado<span class="spec">Opciones: Todos / Activo / Archivado</span></div>
+            <div class="field">Campo seleccion: Tipo de cultivo<span class="spec">Opciones: Maiz / Yuca / Platano / Otro</span></div>
+            <div class="field">Boton de accion primaria<span class="spec">Etiqueta: Registrar cultivo</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Registrar cultivo</button>
+            <button class="button" type="button">Limpiar filtros</button>
+          </div>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>B. Tabla de cultivos (estructura obligatoria de contenido)</h4>
+          <table class="table" aria-label="Tabla de cultivos">
+            <thead>
+              <tr>
+                <th>Lote</th>
+                <th>Cultivo</th>
+                <th>Area</th>
+                <th>Estado</th>
+                <th>Ultima actividad</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lote 01</td>
+                <td>Maiz</td>
+                <td>2.5 ha</td>
+                <td>Activo</td>
+                <td>05-04-2026</td>
+                <td>Ver / Editar</td>
+              </tr>
+              <tr>
+                <td>Lote 02</td>
+                <td>Yuca</td>
+                <td>1.8 ha</td>
+                <td>Activo</td>
+                <td>04-04-2026</td>
+                <td>Ver / Editar</td>
+              </tr>
+              <tr>
+                <td>Lote 03</td>
+                <td>Platano</td>
+                <td>3.2 ha</td>
+                <td>Archivado</td>
+                <td>20-03-2026</td>
+                <td>Ver</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>C. Placeholder de grafico (salud de cultivo)</h4>
+            <div class="placeholder" aria-label="Placeholder de grafico de salud"></div>
+            <div class="field">Bloque texto: evolucion semanal de estado del cultivo (max 150 caracteres)</div>
+          </article>
+
+          <article class="panel">
+            <h4>D. Formulario tecnico: Registrar/Actualizar cultivo</h4>
+            <div class="rows">
+              <div class="field">Campo texto: Nombre del lote<span class="spec">40 caracteres maximo</span></div>
+              <div class="field">Campo seleccion: Tipo de cultivo<span class="spec">Lista predefinida</span></div>
+              <div class="field">Campo numerico: Area (ha)<span class="spec">Rango: 0.1 a 5.0</span></div>
+              <div class="field">Campo fecha: Fecha de siembra<span class="spec">Formato DD-MM-AAAA</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Guardar</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="note">
+          Contrato visual del modulo: los campos tecnicos, tabla y botones definen comportamiento esperado para analisis y desarrollo.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

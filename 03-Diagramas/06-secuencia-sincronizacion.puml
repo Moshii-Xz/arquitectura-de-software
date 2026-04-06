@@ -1,4 +1,4 @@
-@startuml secuencia-sincronizacion
+﻿@startuml secuencia-sincronizacion
 !theme plain
 skinparam sequenceMessageAlign center
 
@@ -213,7 +213,7 @@ java -jar plantuml.jar *.puml
 6. **Recomendaciones seguras y validadas**
 
 ### Decisiones Arquitectónicas Clave
-- **ADR-001:** Scrum con sprints de 2 semanas
+- **ADR-001:** RUP con iteraciones de 2 semanas
 - **ADR-002:** Arquitectura Cliente-Servidor en Capas (Monolito Modular)
 - **ADR-003:** Base de datos relacional (PostgreSQL)
 - **ADR-004:** Estrategia Offline-First con sincronización eventual
@@ -247,3 +247,5 @@ Para consultas sobre el proyecto:
 ---
 
 **Última actualización:** Marzo 2026
+
+

@@ -1,4 +1,4 @@
-# PROYECTO EXPERIENCIA FINAL DE DISEÑO (CAPSTONE DESIGN)
+﻿# PROYECTO EXPERIENCIA FINAL DE DISEÑO (CAPSTONE DESIGN)
 
 ## CURSO ARQUITECTURA DE SOFTWARE
 
@@ -44,8 +44,8 @@ Esta sección define el problema a resolver desde la perspectiva de ingeniería 
 
 ### a. Definir condiciones de desarrollo (Breve justificación)
 
-- **Proceso de desarrollo: Scrum**  
-  Se selecciona Scrum porque el proyecto es iterativo, tiene duración limitada (4 meses) y requiere mostrar avances frecuentes al profesor y a stakeholders. Los sprints cortos permiten priorizar funcionalidades críticas (offline, registro de actividades, alertas) y ajustar el alcance sin perder control del cronograma.
+- **Proceso de desarrollo: RUP**  
+  Se selecciona RUP porque el proyecto es iterativo, tiene duración limitada (4 meses) y requiere mostrar avances frecuentes al profesor y a stakeholders. Las iteraciones cortas permiten priorizar funcionalidades críticas (offline, registro de actividades, alertas) y ajustar el alcance sin perder control del cronograma.
 
 - **Base de datos: PostgreSQL**  
   Se elige PostgreSQL por su robustez, soporte transaccional (ACID), manejo eficiente de relaciones (usuarios, cultivos, actividades, alertas) y bajo costo operativo en entornos cloud. Además, facilita integridad de datos y trazabilidad de información agrícola.
@@ -380,3 +380,5 @@ Tabla sugerida:
 | Define necesidades y restricciones | Documento de requisitos |
 | Diseña solución con justificación | Diagramas y decisiones |
 | Implementa y valida | Prototipo y evaluación |
+
+

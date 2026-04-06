@@ -1,23 +1,23 @@
-# Plan, Cronograma y Presupuesto de Desarrollo
+﻿# Plan, Cronograma y Presupuesto de Desarrollo
 
 ## 1. Metodología de Desarrollo
 
-### Metodología Seleccionada: **Scrum**
+### Metodología Seleccionada: **RUP**
 
 #### Justificación
 - ✅ **Iteraciones cortas (2 semanas):** Permiten adaptación rápida a cambios
 - ✅ **Feedback temprano:** Validación continua con stakeholders (asociaciones agrícolas)
-- ✅ **Equipo pequeño:** Scrum es ideal para equipos de 5 personas
-- ✅ **Transparencia:** Daily standups mejoran coordinación
+- ✅ **Equipo pequeño:** RUP es ideal para equipos de 5 personas
+- ✅ **Transparencia:** Reuniones diarias de seguimiento mejoran coordinación
 - ✅ **Entregas incrementales:** MVP listo en mes 2, luego mejoras continuas
 
-#### Configuración Scrum
-- **Duración de Sprint:** 2 semanas
-- **Total de Sprints:** 8 (4 meses)
-- **Daily Standup:** Todos los días, 15 minutos, 9:00 AM
-- **Sprint Planning:** Primer día de cada sprint, 2 horas
-- **Sprint Review:** Último día de sprint, 1 hora
-- **Sprint Retrospective:** Último día de sprint, 30 minutos
+#### Configuración RUP
+- **Duración de Iteracion:** 2 semanas
+- **Total de iteraciones:** 8 (4 meses)
+- **Reunion diaria de seguimiento:** Todos los días, 15 minutos, 9:00 AM
+- **Planificacion de Iteracion:** Primer día de cada Iteracion, 2 horas
+- **Revision de Iteracion:** Último día de Iteracion, 1 hora
+- **Iteracion Lecciones aprendidas:** Último día de Iteracion, 30 minutos
 
 ---
 
@@ -25,7 +25,7 @@
 
 ### MES 1: FUNDAMENTOS Y MVP INICIAL
 
-#### Sprint 1 (Semanas 1-2): Setup y Autenticación
+#### Iteracion 1 (Semanas 1-2): Setup y Autenticación
 **Objetivo:** Infraestructura base y módulo de autenticación funcional
 
 | Día | Actividades | Responsable | Entregable |
@@ -36,11 +36,11 @@
 | 8-10 | UI/UX inicial de app (wireframes, mockups) | Analista + Todo el equipo | Mockups aprobados |
 | 8-10 | Implementación pantallas de login/registro (frontend) | Desarrollador Principal | Pantallas funcionales |
 | 11-12 | Integración frontend-backend, testing | QA + Desarrollador | Tests pasando |
-| 13-14 | Sprint Review y Retrospective | Todo el equipo | Demo autenticación |
+| 13-14 | Revision de Iteracion y Lecciones aprendidas | Todo el equipo | Demo autenticación |
 
-**Entregable Sprint 1:** Usuario puede registrarse e iniciar sesión
+**Entregable Iteracion 1:** Usuario puede registrarse e iniciar sesión
 
-#### Sprint 2 (Semanas 3-4): Gestión de Cultivos
+#### Iteracion 2 (Semanas 3-4): Gestión de Cultivos
 **Objetivo:** CRUD completo de cultivos
 
 | Día | Actividades | Responsable | Entregable |
@@ -50,15 +50,15 @@
 | 6-8 | Pantallas de cultivos (lista, detalle, crear) (frontend) | Desarrollador Principal | Pantallas funcionales |
 | 9-10 | Setup de SQLite local, repositorio local | Desarrollador + Diseñador Datos | BD local configurada |
 | 11-12 | Testing unitario e integración | QA | Tests > 70% cobertura |
-| 13-14 | Sprint Review y Retrospective, refinamiento backlog | Todo el equipo | Demo CRUD cultivos |
+| 13-14 | Revision de Iteracion y Lecciones aprendidas, refinamiento backlog | Todo el equipo | Demo CRUD cultivos |
 
-**Entregable Sprint 2:** Usuario puede crear, ver y actualizar cultivos
+**Entregable Iteracion 2:** Usuario puede crear, ver y actualizar cultivos
 
 ---
 
 ### MES 2: NÚCLEO DEL SISTEMA
 
-#### Sprint 3 (Semanas 5-6): Actividades y Clima
+#### Iteracion 3 (Semanas 5-6): Actividades y Clima
 **Objetivo:** Registro de actividades y datos climáticos
 
 | Día | Actividades | Responsable | Entregable |
@@ -69,11 +69,11 @@
 | 8-9 | Visualización de datos climáticos en app | Desarrollador Principal | Pantalla clima |
 | 10-11 | Implementación de caché de datos climáticos | Diseñador de Datos | Tabla clima_data |
 | 12-13 | Testing, optimización | QA + Desarrollador | Tests pasando |
-| 14 | Sprint Review y Retrospective | Todo el equipo | Demo actividades + clima |
+| 14 | Revision de Iteracion y Lecciones aprendidas | Todo el equipo | Demo actividades + clima |
 
-**Entregable Sprint 3:** Usuario puede registrar actividades y ver clima actual
+**Entregable Iteracion 3:** Usuario puede registrar actividades y ver clima actual
 
-#### Sprint 4 (Semanas 7-8): Recomendaciones y Notificaciones
+#### Iteracion 4 (Semanas 7-8): Recomendaciones y Notificaciones
 **Objetivo:** Motor de recomendaciones básico y notificaciones push
 
 | Día | Actividades | Responsable | Entregable |
@@ -84,15 +84,15 @@
 | 8-9 | Setup Firebase Cloud Messaging (FCM) | Desarrollador | FCM configurado |
 | 10-11 | UI de recomendaciones en app | Desarrollador | Pantalla recomendaciones |
 | 12-13 | Cron job para generación diaria de recomendaciones | Desarrollador + Diseñador Datos | Tarea programada |
-| 14 | Sprint Review y Retrospective, Demo a stakeholders | Todo el equipo | **MVP FUNCIONAL** |
+| 14 | Revision de Iteracion y Lecciones aprendidas, Demo a stakeholders | Todo el equipo | **MVP FUNCIONAL** |
 
-**Entregable Sprint 4:** Usuario recibe recomendación de riego y notificación push ✅ **MVP**
+**Entregable Iteracion 4:** Usuario recibe recomendación de riego y notificación push ✅ **MVP**
 
 ---
 
 ### MES 3: FUNCIONALIDADES COMPLEMENTARIAS
 
-#### Sprint 5 (Semanas 9-10): Sincronización Robusta
+#### Iteracion 5 (Semanas 9-10): Sincronización Robusta
 **Objetivo:** Sincronización bidireccional offline→online
 
 | Día | Actividades | Responsable | Entregable |
@@ -102,11 +102,11 @@
 | 6-7 | Resolución de conflictos (timestamps, last-write-wins) | Diseñador de Datos + Líder | Estrategia implementada |
 | 8-10 | Testing exhaustivo de sincronización (offline→online) | QA + Todo el equipo | Casos de prueba completos |
 | 11-12 | Indicadores visuales de sincronización (badges, loaders) | Desarrollador | UI mejorada |
-| 13-14 | Sprint Review y Retrospective | Todo el equipo | Demo sincronización |
+| 13-14 | Revision de Iteracion y Lecciones aprendidas | Todo el equipo | Demo sincronización |
 
-**Entregable Sprint 5:** Sincronización offline→online funciona sin pérdida de datos
+**Entregable Iteracion 5:** Sincronización offline→online funciona sin pérdida de datos
 
-#### Sprint 6 (Semanas 11-12): Alertas y Fertilización
+#### Iteracion 6 (Semanas 11-12): Alertas y Fertilización
 **Objetivo:** Alertas climáticas y recomendaciones de fertilización
 
 | Día | Actividades | Responsable | Entregable |
@@ -117,15 +117,15 @@
 | 7-8 | UI de alertas en app, notificaciones criticas | Desarrollador | Pantalla alertas |
 | 9-10 | Motor de recomendaciones de fertilización | Líder Técnico | Reglas fertilización |
 | 11-12 | Testing, validación con expertos | QA + Analista | Validación |
-| 13-14 | Sprint Review y Retrospective | Todo el equipo | Demo alertas |
+| 13-14 | Revision de Iteracion y Lecciones aprendidas | Todo el equipo | Demo alertas |
 
-**Entregable Sprint 6:** Usuario recibe alertas climáticas críticas oportunamente
+**Entregable Iteracion 6:** Usuario recibe alertas climáticas críticas oportunamente
 
 ---
 
 ### MES 4: VALIDACIÓN Y REFINAMIENTO
 
-#### Sprint 7 (Semanas 13-14): Testing y Optimización
+#### Iteracion 7 (Semanas 13-14): Testing y Optimización
 **Objetivo:** Testing exhaustivo y optimización de rendimiento
 
 | Día | Actividades | Responsable | Entregable |
@@ -136,11 +136,11 @@
 | 8-9 | Optimización de rendimiento (lazy loading, compresión) | Desarrollador + Líder | App optimizada |
 | 10-11 | Corrección de bugs críticos y medios | Todo el equipo | Bugs cerrados |
 | 12-13 | Preparación de entorno de producción (Railway) | Líder Técnico | Deploy staging |
-| 14 | Sprint Review y Retrospective | Todo el equipo | Demo completa |
+| 14 | Revision de Iteracion y Lecciones aprendidas | Todo el equipo | Demo completa |
 
-**Entregable Sprint 7:** Sistema estable con bugs críticos resueltos
+**Entregable Iteracion 7:** Sistema estable con bugs críticos resueltos
 
-#### Sprint 8 (Semanas 15-16): Validación y Deploy
+#### Iteracion 8 (Semanas 15-16): Validación y Deploy
 **Objetivo:** Usability testing, validación final y lanzamiento
 
 | Día | Actividades | Responsable | Entregable |
@@ -154,7 +154,7 @@
 | 13 | Video demostración (3-5 min) | Analista + Desarrollador | Video publicado |
 | 14 | Presentación final al curso y stakeholders | Todo el equipo | **ENTREGA FINAL** ✅ |
 
-**Entregable Sprint 8:** Sistema en producción, validado y documentado
+**Entregable Iteracion 8:** Sistema en producción, validado y documentado
 
 ---
 
@@ -281,10 +281,10 @@ Deploy y Lanzamiento         |       |       |       | ████  |
 | Riesgo | Probabilidad | Impacto | Mitigación |
 |--------|--------------|---------|------------|
 | **Retraso en desarrollo** | Media | Alto | Priorización estricta de MVP, buffer de 1 semana en mes 4 |
-| **Falta de expertos agrónomos** | Baja | Alto | Contactar universidad (Ingeniería Agronómica) desde sprint 1 |
+| **Falta de expertos agrónomos** | Baja | Alto | Contactar universidad (Ingeniería Agronómica) desde Iteracion 1 |
 | **API climática no disponible** | Baja | Alto | Planificar fallback a fuente alternativa (IDEAM) |
-| **Dispositivos más lentos de lo esperado** | Media | Alto | Testing temprano (sprint 2), optimización continua |
-| **Feedback negativo de usuarios** | Media | Medio | Usability testing en sprint 6 (no solo en sprint 8) |
+| **Dispositivos más lentos de lo esperado** | Media | Alto | Testing temprano (Iteracion 2), optimización continua |
+| **Feedback negativo de usuarios** | Media | Medio | Usability testing en Iteracion 6 (no solo en Iteracion 8) |
 | **Costo de infraestructura excede presupuesto** | Baja | Medio | Monitoreo semanal de costos, tier gratuito validado |
 | **Equipo se enferma/ausencias** | Media | Medio | Documentación continua, pair programming |
 
@@ -313,33 +313,33 @@ Deploy y Lanzamiento         |       |       |       | ████  |
 4. **Expertos Agrónomos:** Disponibilidad para validación de reglas (2 sesiones)
 
 ### Dependencias Internas
-1. **Schema de BD finalizado** antes de Sprint 2 (Día 14)
-2. **Mockups aprobados** antes de implementación de UI (cada sprint)
+1. **Schema de BD finalizado** antes de Iteracion 2 (Día 14)
+2. **Mockups aprobados** antes de implementación de UI (cada Iteracion)
 3. **API endpoints listos** antes de integración frontend (coordinación diaria)
 
 ---
 
 ## 8. Criterios de Aceptación por Entregable
 
-### Sprint 2 (CRUD Cultivos)
+### Iteracion 2 (CRUD Cultivos)
 - [ ] Usuario puede crear cultivo con tipo, área, fecha siembra
 - [ ] Usuario ve lista de sus cultivos
 - [ ] Usuario puede ver detalle de un cultivo
 - [ ] Usuario puede actualizar información de cultivo
 - [ ] Tests unitarios > 70% cobertura en módulo de cultivos
 
-### Sprint 4 (MVP)
+### Iteracion 4 (MVP)
 - [ ] Usuario recibe recomendación de riego generada automáticamente
 - [ ] Notificación push llega al dispositivo móvil
 - [ ] Usuario puede ver detalle de recomendación con justificación
 - [ ] Motor de recomendaciones validado por ingeniero agrónomo
 
-### Sprint 6 (Alertas)
+### Iteracion 6 (Alertas)
 - [ ] Usuario recibe alerta si se pronostica lluvia intensa (>50mm)
 - [ ] Alerta llega con anticipación mínima de 6 horas
 - [ ] Usuario puede ver historial de alertas recibidas
 
-### Sprint 8 (Entrega Final)
+### Iteracion 8 (Entrega Final)
 - [ ] Sistema cumple 6/7 escenarios críticos (EC-01 a EC-07)
 - [ ] Usability testing: > 80% de usuarios completan tareas sin ayuda
 - [ ] SUS Score > 70/100
@@ -369,16 +369,16 @@ Deploy y Lanzamiento         |       |       |       | ████  |
 ## 10. Estrategia de Comunicación
 
 ### Comunicación Interna (Equipo)
-- **Daily Standup:** Lunes a Viernes, 9:00 AM, 15 min (Presencial/Zoom)
-- **Sprint Planning:** Primer lunes de cada sprint, 2 horas
-- **Sprint Review:** Último viernes de sprint, 1 hora
-- **Retrospective:** Último viernes, 30 min después de review
+- **Reunion diaria de seguimiento:** Lunes a Viernes, 9:00 AM, 15 min (Presencial/Zoom)
+- **Planificacion de Iteracion:** Primer lunes de cada Iteracion, 2 horas
+- **Revision de Iteracion:** Último viernes de Iteracion, 1 hora
+- **Lecciones aprendidas:** Último viernes, 30 min después de review
 - **Canal de comunicación:** Slack/WhatsApp para comunicación asíncrona
 
 ### Comunicación Externa (Stakeholders)
-- **Demo a profesor:** Al final de cada sprint (opcional semanal)
-- **Demo a stakeholders (asociaciones agrícolas):** Fin de Sprint 4 (MVP) y Sprint 8 (Final)
-- **Consulta con expertos agrónomos:** Sprint 4 y Sprint 6
+- **Demo a profesor:** Al final de cada Iteracion (opcional semanal)
+- **Demo a stakeholders (asociaciones agrícolas):** Fin de Iteracion 4 (MVP) y Iteracion 8 (Final)
+- **Consulta con expertos agrónomos:** Iteracion 4 y Iteracion 6
 
 ---
 
@@ -398,3 +398,6 @@ Deploy y Lanzamiento         |       |       |       | ████  |
 **Versión:** 1.0  
 **Fecha de Creación:** Marzo 2026  
 **Última Actualización:** Marzo 2026
+
+
+

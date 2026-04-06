@@ -1,4 +1,4 @@
-# Registro de Decisiones Arquitectónicas (ADR)
+﻿# Registro de Decisiones Arquitectónicas (ADR)
 
 ## Introducción
 
@@ -15,13 +15,13 @@ Este documento registra las decisiones arquitectónicas clave tomadas durante el
 El proyecto debe completarse en 4 meses con un equipo de 5 personas. Necesitamos una metodología que permita adaptabilidad, entregas incrementales y validación temprana con stakeholders.
 
 ### Decisión
-Adoptar **Scrum** con sprints de 2 semanas.
+Adoptar **RUP** con iteraciones de 2 semanas.
 
 ### Justificación
 - **Iteraciones cortas:** Permiten adaptación rápida a cambios de requisitos
-- **Feedback continuo:** Sprint reviews cada 2 semanas con stakeholders
-- **Transparencia:** Daily standups mejoran coordinación en equipo pequeño
-- **Experiencia del equipo:** Equipo tiene experiencia previa con Scrum
+- **Feedback continuo:** Revision de iteraciones cada 2 semanas con stakeholders
+- **Transparencia:** Reuniones diarias de seguimiento mejoran coordinación en equipo pequeño
+- **Experiencia del equipo:** Equipo tiene experiencia previa con RUP
 - **Entregas incrementales:** MVP en 2 meses, luego mejoras continuas
 - **Gestión de riesgos:** Identificación temprana de problemas
 
@@ -33,7 +33,7 @@ Adoptar **Scrum** con sprints de 2 semanas.
 
 2. **Kanban**
    - ⚠️ Considerada: Útil para flujo continuo
-   - ❌ Rechazada: Menos estructura que Scrum, no hay sprints definidos
+   - ❌ Rechazada: Menos estructura que RUP, no hay iteraciones definidas
    - ❌ Equipo prefiere time-boxes claros
 
 ### Consecuencias
@@ -46,13 +46,13 @@ Adoptar **Scrum** con sprints de 2 semanas.
 
 #### Negativas
 - ⚠️ Overhead de ceremonias (planning, review, retro) - ~4h cada 2 semanas
-- ⚠️ Requiere disciplina para mantener sprints consistentes
+- ⚠️ Requiere disciplina para mantener iteraciones consistentes
 - ⚠️ Product Owner (profesor/stakeholders) debe estar disponible
 
 ### Notas
-- Daily standups a las 9:00 AM (15 minutos)
-- Sprint review abierta a stakeholders externos
-- Retrospectives enfocadas en mejora continua
+- Reuniones diarias de seguimiento a las 9:00 AM (15 minutos)
+- Revision de Iteracion abierta a stakeholders externos
+- Lecciones aprendidas de iteracion enfocadas en mejora continua
 
 ---
 
@@ -597,7 +597,7 @@ Implementar autenticación con **JWT (JSON Web Tokens)** con expiración de 24 h
 
 | ID | Decisión | Estado | Impacto |
 |----|----------|--------|---------|
-| ADR-001 | Metodología: Scrum (sprints 2 semanas) | Aceptada | Alto |
+| ADR-001 | Metodología: RUP (iteraciones 2 semanas) | Aceptada | Alto |
 | ADR-002 | Arquitectura: Cliente-Servidor en Capas (Monolito Modular) | Aceptada | Crítico |
 | ADR-003 | Base de Datos: PostgreSQL | Aceptada | Alto |
 | ADR-004 | Conectividad: Offline-First + Eventual Consistency | Aceptada | Crítico |
@@ -645,3 +645,6 @@ Implementar autenticación con **JWT (JSON Web Tokens)** con expiración de 24 h
 
 **Mantenido por:** Líder Técnico / Arquitecto  
 **Última Actualización:** Marzo 2026
+
+
+

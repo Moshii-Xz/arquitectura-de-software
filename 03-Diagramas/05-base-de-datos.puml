@@ -1,4 +1,4 @@
-@startuml base-de-datos
+﻿@startuml base-de-datos
 !theme plain
 skinparam linetype ortho
 
@@ -258,24 +258,24 @@ FIREBASE_SERVER_KEY=tu_firebase_server_key
 
 ## Flujo de Trabajo de Desarrollo
 
-### Sprint 1 (Semanas 1-2): Fundamentos
+### Iteracion 1 (Semanas 1-2): Fundamentos
 - Configuración de repos y CI/CD
 - Diseño UI/UX (Figma/Adobe XD)
 - Autenticación (login/register)
 - CRUD básico de cultivos
 
-### Sprint 2 (Semanas 3-4): Datos y Clima
+### Iteracion 2 (Semanas 3-4): Datos y Clima
 - Registro de actividades
 - Integración API climática
 - Visualización de clima
 - Base de datos SQLite local
 
-### Sprint 3 (Semanas 5-6): Recomendaciones
+### Iteracion 3 (Semanas 5-6): Recomendaciones
 - Motor de recomendaciones (reglas básicas)
 - Sistema de notificaciones push
 - Generación de recomendaciones de riego
 
-### Sprint 4 (Semanas 7-8): Offline y Sincronización
+### Iteracion 4 (Semanas 7-8): Offline y Sincronización
 - Funcionalidad offline completa
 - Sincronización bidireccional
 - Alertas climáticas
@@ -471,3 +471,4 @@ Grabar video de 3-5 minutos mostrando:
 Para dudas sobre el prototipo, contactar a:
 - **Líder Técnico:** [nombre@email.com]
 - **Equipo de Desarrollo:** [nombre-equipo@email.com]
+

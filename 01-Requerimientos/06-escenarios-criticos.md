@@ -1,4 +1,4 @@
-# Escenarios de Calidad Críticos
+﻿# Escenarios de Calidad Críticos
 
 ## Introducción
 
@@ -334,7 +334,7 @@ Los datos personales del productor (identidad, ubicación) y datos productivos (
 → **Estrategia de sincronización eventual (Eventual Consistency)**
 
 ### De EC-03 (Usabilidad):
-→ **Diseño UI/UX como prioridad desde Sprint 1**  
+→ **Diseño UI/UX como prioridad desde Iteracion 1**  
 → **Testing con usuarios reales como validación obligatoria**
 
 ### De EC-04 (Alertas):
@@ -348,3 +348,5 @@ Los datos personales del productor (identidad, ubicación) y datos productivos (
 ### De EC-07 (Seguridad):
 → **Autenticación y autorización desde diseño inicial**  
 → **HTTPS obligatorio en todas las comunicaciones**
+
+

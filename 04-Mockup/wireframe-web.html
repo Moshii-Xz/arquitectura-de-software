@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe Web - Agricultura Inteligente</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - APP WEB AGRICULTURA INTELIGENTE
+      <br />
+      Objetivo: esquema tecnico para usabilidad, navegacion guiada y operacion ligera en contexto rural.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Plataforma Agricultura Inteligente</strong>
+        <span>Nombre de compania / asociacion</span>
+      </div>
+      <div class="box">GRAFICO / IMAGEN ENCABEZADO<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav active">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Actividades</div>
+        <div class="nav">Alertas</div>
+        <div class="nav">Reportes</div>
+        <div class="nav">Sincronizacion</div>
+        <div class="nav">Perfil</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>MENU LATERAL (Navegacion guiada)</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Inicio</div>
+          <div class="nav">2. Registrar cultivo</div>
+          <div class="nav">3. Registrar actividad</div>
+          <div class="nav">4. Ver alertas</div>
+          <div class="nav">5. Sincronizar</div>
+        </div>
+
+        <div class="state-card">
+          Estado del sistema: EN LINEA
+          <br />
+          Ultima sincronizacion: 06-04-2026 15:40
+          <br />
+          Nota: el color verde solo indica cambio de estado.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>A. Grafico / resumen de cultivo</h4>
+            <div class="placeholder" aria-label="Placeholder de grafico"></div>
+            <div class="rows">
+              <div class="field">Bloque texto: resumen de estado del cultivo (max 280 caracteres)</div>
+              <div class="field">Bloque texto: recomendacion simple en lenguaje rural (max 120 caracteres)</div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>B. Alertas y recomendaciones</h4>
+            <div class="placeholder" aria-label="Placeholder de alertas"></div>
+            <div class="rows">
+              <div class="field">Alerta 1: Lluvia esperada, posponer fertilizacion</div>
+              <div class="field">Alerta 2: Riego sugerido antes de 7:00 AM</div>
+              <div class="field">Alerta 3: Revision fitosanitaria preventiva</div>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h4>C. Formulario de interaccion (Registro de actividad)</h4>
+          <div class="grid">
+            <div class="field">
+              Campo texto: Nombre del lote
+              <span class="spec">Especificacion tecnica: 40 caracteres maximo</span>
+            </div>
+            <div class="field">
+              Campo seleccion: Tipo de actividad
+              <span class="spec">Opciones: Riego, Fertilizacion, Fitosanitaria, Otro</span>
+            </div>
+            <div class="field">
+              Campo fecha: Fecha de actividad
+              <span class="spec">Formato tecnico: DD-MM-AAAA</span>
+            </div>
+            <div class="field">
+              Campo texto largo: Observacion
+              <span class="spec">Especificacion tecnica: 200 caracteres maximo</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Registrar</button>
+            <button class="button" type="button">Cancelar</button>
+          </div>
+        </article>
+
+        <article class="panel" style="margin-top: 10px;">
+          <h4>D. Tabla de datos (contenido operativo)</h4>
+          <table class="table" aria-label="Tabla de actividades">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Lote</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Riego</td>
+                <td>Lote 01</td>
+                <td>06-04-2026</td>
+                <td>Guardado</td>
+                <td>Ver</td>
+              </tr>
+              <tr>
+                <td>Fertilizacion</td>
+                <td>Lote 02</td>
+                <td>05-04-2026</td>
+                <td>Sincronizado</td>
+                <td>Ver</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="note">
+          Contrato visual: este wireframe define estructura, navegacion, contenido e interaccion.
+          No representa diseno final. Prioriza simplicidad, consistencia y comunicabilidad.
+        </div>
+      </section>
+    </section>
+
+    <section class="legend">
+      Regla cromatica aplicada:
+      <ul>
+        <li>5 colores en esta ventana (blanco, grises, texto oscuro y verde de estado).</li>
+        <li>El color verde solo se usa para estado activo o cambio de estado del sistema.</li>
+        <li>El resto de elementos usa tonos neutros para mantener baja fidelidad y claridad tecnica.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

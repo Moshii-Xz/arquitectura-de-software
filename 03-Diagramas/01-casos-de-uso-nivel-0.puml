@@ -1,32 +1,50 @@
-@startuml casos-de-uso-nivel-0
-!theme plain
+@startuml nivel-0.puml
 left to right direction
-skinparam actorStyle awesome
 skinparam packageStyle rectangle
 
-actor "Productor" as Productor
+' =====================
+' Actores
+' =====================
+actor "Productor de la finca" as Productor
 actor "Administrador" as Admin
-actor "Servicio Climatico\nExterno" as Clima
+actor "Asociaciones agrícolas" as Asociaciones
+actor "Entidades Regulatorias" as Entidades
+actor "Servicio Climático Externo\n(IDEAM)" as IDEAM
 
-rectangle "Plataforma Agricultura Inteligente" {
-  usecase (Gestionar Cuenta) as UC1
-  usecase (Gestionar Cultivos) as UC2
-  usecase (Registrar Actividades) as UC3
-  usecase (Consultar Recomendaciones) as UC4
-  usecase (Recibir Alertas Climaticas) as UC5
-  usecase (Sincronizar Datos\nOffline/Online) as UC6
-  usecase (Administrar Catalogos\ny Parametros) as UC7
+' =====================
+' Límite del Sistema
+' =====================
+package "Plataforma Agricultura Inteligente" {
+
+  usecase "Gestionar Perfil y Finca" as UC1
+  usecase "Gestionar Actividades de Cultivo" as UC2
+  usecase "Consultar Recomendaciones y Alertas" as UC3
+  usecase "Generar Reportes de Producción" as UC4
+  usecase "Sincronizar Datos" as UC5
+  usecase "Administrar Usuarios y Parámetros" as UC6
 }
 
+' =====================
+' Relaciones Productor
+' =====================
 Productor --> UC1
 Productor --> UC2
 Productor --> UC3
 Productor --> UC4
 Productor --> UC5
 
-Admin --> UC7
+' =====================
+' Relaciones Administrador
+' =====================
+Admin --> UC6
+Admin --> UC5
 
-Clima --> UC5 : provee datos
+' =====================
+' Relaciones Externas
+' =====================
+IDEAM --> UC3
 
+Asociaciones --> UC4
+Entidades --> UC4
 
 @enduml

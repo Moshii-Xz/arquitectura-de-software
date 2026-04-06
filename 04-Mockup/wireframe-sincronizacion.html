@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Sincronizacion y Offline</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - MODULO SINCRONIZACION Y OPERACION OFFLINE
+      <br />
+      Vista tecnica para confirmar estado, datos pendientes y accion manual de sincronizar.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Sincronizacion</strong>
+        <span>Conectividad intermitente - prioridad del proyecto</span>
+      </div>
+      <div class="box">INDICADOR DE ESTADO<br />[Online / Offline]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Actividades</div>
+        <div class="nav">Alertas</div>
+        <div class="nav">Reportes</div>
+        <div class="nav active">Sincronizacion</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>MENU DE ESTADOS</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Estado actual</div>
+          <div class="nav">2. Datos pendientes</div>
+          <div class="nav">3. Historial de sincronizacion</div>
+          <div class="nav">4. Accion manual</div>
+        </div>
+
+        <div class="state-card">
+          Modo actual: OFFLINE
+          <br />
+          Mensaje al usuario: Los datos se guardan localmente.
+          <br />
+          Cambio de estado marcado con color de apoyo.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO - CONTROL DE SINCRONIZACION</h3>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>A. Estado del sistema</h4>
+            <div class="rows">
+              <div class="field">Conectividad: Offline</div>
+              <div class="field">Ultima sincronizacion: 06-04-2026 09:15</div>
+              <div class="field">Registros pendientes: 5 actividades, 2 cambios de cultivo</div>
+              <div class="field">Tamano estimado de envio: 18 KB</div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Sincronizar ahora</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>B. Placeholder de progreso de sincronizacion</h4>
+            <div class="placeholder" aria-label="Placeholder de progreso"></div>
+            <div class="field">Bloque texto: barra de progreso [0% a 100%]</div>
+            <div class="field">Bloque texto: registros enviados / total</div>
+          </article>
+        </div>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>C. Historial de sincronizacion</h4>
+          <table class="table" aria-label="Tabla de historial de sincronizacion">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Registros</th>
+                <th>Tamano</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>06-04-2026</td>
+                <td>09:15</td>
+                <td>3</td>
+                <td>12 KB</td>
+                <td>Exitosa</td>
+              </tr>
+              <tr>
+                <td>05-04-2026</td>
+                <td>16:40</td>
+                <td>4</td>
+                <td>15 KB</td>
+                <td>Exitosa</td>
+              </tr>
+              <tr>
+                <td>05-04-2026</td>
+                <td>10:20</td>
+                <td>2</td>
+                <td>6 KB</td>
+                <td>Exitosa</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h4>D. Reglas de interaccion (usabilidad y comunicabilidad)</h4>
+          <div class="rows">
+            <div class="field">Mensaje claro 1: Sin internet, los datos quedan guardados en el dispositivo.</div>
+            <div class="field">Mensaje claro 2: Cuando vuelva la red, presione "Sincronizar ahora".</div>
+            <div class="field">Mensaje claro 3: Confirmacion visible de envio exitoso.</div>
+          </div>
+        </article>
+
+        <div class="note">
+          Contrato visual del modulo: define estructura de monitoreo, accion principal y retroalimentacion de estado para conectividad intermitente.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

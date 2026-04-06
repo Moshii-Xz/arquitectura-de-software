@@ -1,4 +1,4 @@
-# Arquitectura Seleccionada
+﻿# Arquitectura Seleccionada
 
 ## 1. Decisión Arquitectónica
 
@@ -271,12 +271,12 @@ PWA (Progressive Web App) con Backend Serverless fue descartada debido a:
 ## 5. Decisiones Arquitectónicas Clave (ADR)
 
 ### ADR-001: Selección de Metodología de Desarrollo
-**Decisión:** Scrum con sprints de 2 semanas  
+**Decisión:** RUP con iteraciones de 2 semanas  
 **Justificación:**
 - Equipo pequeño (5 personas) se beneficia de iteraciones cortas
 - Feedback temprano de usuarios (asociaciones agrícolas)
 - Adaptación a cambios en requisitos
-- Daily standups para coordinación
+- Reuniones diarias de seguimiento para coordinación
 
 **Alternativa rechazada:** Waterfall (poco flexible para proyecto de 4 meses)
 
@@ -604,7 +604,7 @@ backend/
 ## 10. Plan de Implementación (4 Meses)
 
 ### Mes 1: Fundamentos
-**Sprints 1-2**
+**iteraciones 1-2**
 - ✅ Setup de proyecto (repos, CI/CD)
 - ✅ Diseño UI/UX (wireframes, mockups)
 - ✅ Arquitectura de BD (schema, migraciones)
@@ -613,7 +613,7 @@ backend/
 - **Entregable:** Usuario puede registrarse y crear un cultivo
 
 ### Mes 2: Núcleo del Sistema
-**Sprints 3-4**
+**iteraciones 3-4**
 - ✅ Registro de actividades (offline-first)
 - ✅ Integración API climática (backend)
 - ✅ Visualización de clima en app
@@ -622,7 +622,7 @@ backend/
 - **Entregable:** Usuario recibe su primera recomendación de riego
 
 ### Mes 3: Funcionalidades Complementarias
-**Sprints 5-6**
+**iteraciones 5-6**
 - ✅ Sincronización robusta (queue, reintentos)
 - ✅ Historial de actividades
 - ✅ Motor de alertas climáticas
@@ -631,7 +631,7 @@ backend/
 - **Entregable:** Sistema funcional con 60% de casos de uso
 
 ### Mes 4: Validación y Refinamiento
-**Sprints 7-8**
+**iteraciones 7-8**
 - ✅ Testing exhaustivo (unit, integration, E2E)
 - ✅ Usability testing con 10 usuarios
 - ✅ Corrección de bugs críticos
@@ -693,3 +693,6 @@ La arquitectura seleccionada es:
 - ✅ **Prioriza atributos de calidad** correctos (rendimiento, usabilidad, disponibilidad)
 
 La decisión está fundamentada en análisis riguroso, no en modas tecnológicas ni preferencias personales.
+
+
+
