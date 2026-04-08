@@ -1,0 +1,47 @@
+@startuml nivel 1 gestionar cultivos
+left to right direction
+
+skinparam actorStyle awesome
+
+actor "Productor Agrícola" as Productor
+actor "Operario de Campo" as Operario
+
+package "Gestionar Cultivos" {
+
+  usecase "Registrar Cultivo" as UC1
+  usecase "Editar Cultivo" as UC2
+  usecase "Eliminar Cultivo" as UC3
+  usecase "Listar Cultivos" as UC4
+  usecase "Consultar Detalle\ndel Cultivo" as UC5
+
+  usecase "Validar Datos\ndel Cultivo" as UC6
+  usecase "Cambiar Estado\ndel Cultivo" as UC7
+  usecase "Confirmar Eliminación" as UC8
+  usecase "Buscar / Filtrar\nCultivos" as UC9
+  usecase "Registrar Observaciones" as UC10
+  usecase "Adjuntar Fotografías" as UC11
+}
+
+Operario --> UC1
+Operario --> UC2
+Operario --> UC4
+Operario --> UC5 
+
+Productor --> UC1
+Productor --> UC2
+Productor --> UC3
+Productor --> UC4
+Productor --> UC5 
+
+UC2 ..> UC6 : <<include>>
+UC2 ..> UC7 : <<extend>>
+
+UC3 ..> UC8 : <<include>>
+
+UC4 ..> UC9 : <<extend>>
+
+UC1 ..> UC6 : <<include>>
+UC1 ..> UC10 : <<extend>>
+UC1 ..> UC11 : <<extend>>
+
+@enduml

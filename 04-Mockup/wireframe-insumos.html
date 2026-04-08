@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Insumos</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - CASO DE USO NIVEL 1: GESTIONAR INSUMOS AGRICOLAS
+      <br />
+      Estructura tecnica para registrar, consultar, editar y eliminar insumos aplicados.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Insumos</strong>
+        <span>Productor Agricola</span>
+      </div>
+      <div class="box">CATALOGO / ALERTA<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Actividades</div>
+        <div class="nav">Alertas</div>
+        <div class="nav active">Insumos</div>
+        <div class="nav">Reportes</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>NAVEGACION DEL MODULO</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Registrar insumo</div>
+          <div class="nav">2. Consultar catalogo</div>
+          <div class="nav">3. Listar por cultivo</div>
+          <div class="nav">4. Editar registro</div>
+          <div class="nav">5. Eliminar registro</div>
+        </div>
+
+        <div class="state-card">
+          Caso de uso principal: Gestionar Insumos Agricolas
+          <br />
+          Actor: Productor Agricola
+          <br />
+          Regla: alertar insumos de alto impacto.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de insumos">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Registrar Aplicacion de Insumo</td>
+                <td>Seccion E + boton "Registrar insumo" y "Guardar"</td>
+              </tr>
+              <tr>
+                <td>Editar Registro de Insumo</td>
+                <td>Seccion B columna "Accion: Ver / Editar"</td>
+              </tr>
+              <tr>
+                <td>Listar Insumos de un Cultivo</td>
+                <td>Seccion B + filtro por cultivo en Seccion A</td>
+              </tr>
+              <tr>
+                <td>Eliminar Registro de Insumo</td>
+                <td>Seccion B (accion eliminar) + Seccion D</td>
+              </tr>
+              <tr>
+                <td>Gestionar Catalogo de Insumos</td>
+                <td>Seccion C + boton "Gestionar catalogo"</td>
+              </tr>
+              <tr>
+                <td>Consultar Catalogo de Insumos</td>
+                <td>Seccion C + boton "Consultar catalogo"</td>
+              </tr>
+              <tr>
+                <td>Seleccionar Cultivo Destino</td>
+                <td>Seccion A y Seccion E campo "Cultivo destino"</td>
+              </tr>
+              <tr>
+                <td>Validar Datos del Insumo</td>
+                <td>Seccion E especificaciones tecnicas por campo</td>
+              </tr>
+              <tr>
+                <td>Alertar por Insumo de Alto Impacto</td>
+                <td>Seccion F placeholder de alerta + bloque de mensaje</td>
+              </tr>
+              <tr>
+                <td>Calcular Costo Total de Insumos</td>
+                <td>Seccion G resumen tecnico de costos acumulados</td>
+              </tr>
+              <tr>
+                <td>Confirmar Eliminacion</td>
+                <td>Seccion D con botones "Confirmar" y "Cancelar"</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>A. Filtros y accion primaria</h4>
+          <div class="grid">
+            <div class="field">Campo seleccion: Cultivo destino<span class="spec">Lista de lotes / cultivos</span></div>
+            <div class="field">Campo seleccion: Tipo de insumo<span class="spec">Fertilizante / Insecticida / Otro</span></div>
+            <div class="field">Campo texto: Buscar insumo<span class="spec">30 caracteres maximo</span></div>
+            <div class="field">Boton de accion primaria<span class="spec">Registrar insumo</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Registrar insumo</button>
+            <button class="button" type="button">Limpiar</button>
+          </div>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>B. Tabla de insumos por cultivo</h4>
+          <table class="table" aria-label="Tabla de insumos">
+            <thead>
+              <tr>
+                <th>Insumo</th>
+                <th>Cultivo</th>
+                <th>Fecha</th>
+                <th>Costo</th>
+                <th>Impacto</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>NPK 20-20-20</td>
+                <td>Maiz</td>
+                <td>05-04-2026</td>
+                <td>$ 85.000</td>
+                <td>Bajo</td>
+                <td>Ver / Editar</td>
+              </tr>
+              <tr>
+                <td>Control plagas X</td>
+                <td>Yuca</td>
+                <td>04-04-2026</td>
+                <td>$ 120.000</td>
+                <td>Alto</td>
+                <td>Ver / Editar / Eliminar</td>
+              </tr>
+              <tr>
+                <td>Abono organico</td>
+                <td>Platano</td>
+                <td>03-04-2026</td>
+                <td>$ 60.000</td>
+                <td>Bajo</td>
+                <td>Ver / Eliminar</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>C. Catalogo de insumos</h4>
+            <div class="placeholder" aria-label="Placeholder de catalogo de insumos"></div>
+            <div class="rows">
+              <div class="field">Campo texto: categoria del catalogo<span class="spec">Fertilizantes / Insecticidas / Organicos</span></div>
+              <div class="field">Campo texto: descripcion del insumo<span class="spec">Maximo 120 caracteres</span></div>
+              <div class="field">Campo texto: impacto ambiental<span class="spec">Bajo / Medio / Alto</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Consultar catalogo</button>
+              <button class="button" type="button">Gestionar catalogo</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>D. Confirmacion de eliminacion</h4>
+            <div class="field">Mensaje tecnico: eliminar solo oculta el registro, pero conserva el historial.</div>
+            <div class="field">Campo seleccion: motivo de eliminacion<span class="spec">Opcional</span></div>
+            <div class="actions">
+              <button class="button primary" type="button">Confirmar</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>E. Formulario tecnico de registro</h4>
+            <div class="rows">
+              <div class="field">Campo seleccion: Cultivo destino<span class="spec">Seleccion obligatoria</span></div>
+              <div class="field">Campo seleccion: Insumo<span class="spec">Lista catalogo</span></div>
+              <div class="field">Campo numerico: Cantidad<span class="spec">Unidad tecnica definida</span></div>
+              <div class="field">Campo numerico: Costo total<span class="spec">Moneda COP</span></div>
+              <div class="field">Campo fecha: Fecha de aplicacion<span class="spec">Formato DD-MM-AAAA</span></div>
+              <div class="field">Reglas de validacion<span class="spec">Campos obligatorios, costo mayor a 0 y fecha valida</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Guardar</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>F. Placeholder de alertas y catalogo</h4>
+            <div class="placeholder" aria-label="Placeholder de alerta de alto impacto"></div>
+            <div class="field">Alerta visual: insumo de alto impacto ambiental</div>
+            <div class="field">Bloque texto: justificacion / recomendacion asociada (max 160 caracteres)</div>
+          </article>
+        </div>
+
+        <article class="panel" style="margin-top: 10px;">
+          <h4>G. Resumen tecnico de insumos</h4>
+          <table class="table" aria-label="Resumen tecnico de insumos">
+            <thead>
+              <tr>
+                <th>Cultivo</th>
+                <th>Total insumos</th>
+                <th>Costo acumulado</th>
+                <th>Ultimo registro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Maiz</td>
+                <td>3</td>
+                <td>$ 205.000</td>
+                <td>05-04-2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="note">
+          Contrato visual del caso de uso: registrar, consultar, editar, eliminar y alertar por insumo de alto impacto.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

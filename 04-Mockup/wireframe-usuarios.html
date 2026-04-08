@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Usuarios</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - CASO DE USO NIVEL 1: GESTIONAR USUARIOS
+      <br />
+      Estructura tecnica para crear, listar, editar, desactivar y reactivar cuentas.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Usuarios</strong>
+        <span>Administrador del sistema</span>
+      </div>
+      <div class="box">INDICADOR DE ROLES<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Actividades</div>
+        <div class="nav">Alertas</div>
+        <div class="nav">Reportes</div>
+        <div class="nav active">Usuarios</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>NAVEGACION DE ADMINISTRACION</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Listar usuarios</div>
+          <div class="nav">2. Crear cuenta</div>
+          <div class="nav">3. Editar datos</div>
+          <div class="nav">4. Desactivar cuenta</div>
+          <div class="nav">5. Asignar rol</div>
+        </div>
+
+        <div class="state-card">
+          Caso de uso principal: Gestionar Usuarios
+          <br />
+          Actor: Administrador
+          <br />
+          Reglas: permisos, actividad reciente y confirmacion.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de usuarios">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Crear Cuenta de Usuario</td><td>Seccion A boton "Crear usuario" + Seccion D formulario</td></tr>
+              <tr><td>Editar Datos de Usuario</td><td>Seccion B accion "Editar" + Seccion D</td></tr>
+              <tr><td>Listar Usuarios Registrados</td><td>Seccion B tabla principal</td></tr>
+              <tr><td>Desactivar Cuenta de Usuario</td><td>Seccion B accion "Desactivar" + Seccion F</td></tr>
+              <tr><td>Reactivar Cuenta de Usuario</td><td>Seccion B accion "Reactivar" + Seccion F</td></tr>
+              <tr><td>Asignar Rol y Permisos</td><td>Seccion C</td></tr>
+              <tr><td>Enviar Contraseña Temporal</td><td>Seccion C boton "Enviar clave temporal"</td></tr>
+              <tr><td>Validar Datos del Usuario</td><td>Seccion D reglas y formato obligatorio</td></tr>
+              <tr><td>Cambiar Rol del Usuario</td><td>Seccion C campo de rol + boton Guardar rol</td></tr>
+              <tr><td>Buscar Usuario</td><td>Seccion A campo "Buscar usuario"</td></tr>
+              <tr><td>Consultar Actividad del Usuario</td><td>Seccion E placeholder de actividad</td></tr>
+              <tr><td>Confirmar Desactivación</td><td>Seccion F botones Confirmar/Cancelar</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>A. Filtros y acciones</h4>
+          <div class="grid">
+            <div class="field">Campo texto: Buscar usuario<span class="spec">40 caracteres maximo</span></div>
+            <div class="field">Campo seleccion: Rol<span class="spec">Productor / Operario / Admin / Asociacion</span></div>
+            <div class="field">Campo seleccion: Estado<span class="spec">Activo / Inactivo</span></div>
+            <div class="field">Boton de accion primaria<span class="spec">Crear cuenta de usuario</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Crear usuario</button>
+            <button class="button" type="button">Limpiar</button>
+          </div>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>B. Tabla de usuarios registrados</h4>
+          <table class="table" aria-label="Tabla de usuarios">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Ultima actividad</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Juan Mosquera</td>
+                <td>juan@correo.com</td>
+                <td>Admin</td>
+                <td>Activo</td>
+                <td>06-04-2026</td>
+                <td>Editar / Desactivar / Cambiar rol</td>
+              </tr>
+              <tr>
+                <td>Miguel Olaya</td>
+                <td>miguel@correo.com</td>
+                <td>Operario</td>
+                <td>Activo</td>
+                <td>05-04-2026</td>
+                <td>Editar / Desactivar</td>
+              </tr>
+              <tr>
+                <td>Luis Ramirez</td>
+                <td>luis@correo.com</td>
+                <td>Productor</td>
+                <td>Inactivo</td>
+                <td>01-04-2026</td>
+                <td>Reactivar / Ver actividad</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>C. Asignacion de rol y permisos</h4>
+          <div class="grid">
+            <div class="field">Campo seleccion: rol del usuario<span class="spec">Productor / Operario / Admin / Asociacion</span></div>
+            <div class="field">Campo seleccion: permisos<span class="spec">Lectura / Escritura / Administracion</span></div>
+            <div class="field">Campo texto: correo para notificacion<span class="spec">Debe coincidir con la cuenta</span></div>
+            <div class="field">Boton de accion primaria<span class="spec">Enviar contraseña temporal</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Guardar rol</button>
+            <button class="button" type="button">Enviar clave temporal</button>
+          </div>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>D. Formulario tecnico de usuario</h4>
+            <div class="rows">
+              <div class="field">Campo texto: Nombre completo<span class="spec">60 caracteres maximo</span></div>
+              <div class="field">Campo texto: Correo electronico<span class="spec">Formato valido obligatorio</span></div>
+              <div class="field">Campo seleccion: Rol<span class="spec">Lista predefinida</span></div>
+              <div class="field">Campo seleccion: Estado<span class="spec">Activo / Inactivo</span></div>
+              <div class="field">Campo texto: Telefono<span class="spec">15 caracteres maximo</span></div>
+              <div class="field">Reglas de validacion<span class="spec">Datos requeridos, correo unico y formato correcto</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Guardar</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>E. Placeholder de actividad y permisos</h4>
+            <div class="placeholder" aria-label="Placeholder de permisos"></div>
+            <div class="field">Bloque texto: actividad reciente del usuario (max 160 caracteres)</div>
+            <div class="field">Bloque texto: permisos asignados y observaciones (max 120 caracteres)</div>
+          </article>
+        </div>
+
+        <article class="panel" style="margin-top: 10px;">
+          <h4>F. Confirmacion de desactivacion / reactivacion</h4>
+          <div class="field">Mensaje tecnico: la cuenta no se elimina, solo cambia su estado operativo.</div>
+          <div class="field">Campo seleccion: motivo de cambio de estado<span class="spec">Opcional</span></div>
+          <div class="actions">
+            <button class="button primary" type="button">Confirmar</button>
+            <button class="button" type="button">Cancelar</button>
+          </div>
+        </article>
+
+        <div class="note">
+          Contrato visual del caso de uso: crear, listar, editar, desactivar, reactivar y asignar rol sin complejidad innecesaria.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

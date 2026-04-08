@@ -57,6 +57,31 @@
         <h3>AREA DE CONTENIDO - LISTADO Y FORMULARIO</h3>
 
         <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de cultivos">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Registrar Cultivo</td><td>Seccion F + boton "Registrar cultivo" y "Guardar"</td></tr>
+              <tr><td>Editar Cultivo</td><td>Seccion B columna Accion "Ver / Editar"</td></tr>
+              <tr><td>Eliminar Cultivo</td><td>Seccion C boton "Eliminar cultivo" + Seccion D</td></tr>
+              <tr><td>Listar Cultivos</td><td>Seccion B tabla principal</td></tr>
+              <tr><td>Consultar Detalle del Cultivo</td><td>Seccion C boton "Consultar detalle"</td></tr>
+              <tr><td>Validar Datos del Cultivo</td><td>Seccion F reglas tecnicas por campo</td></tr>
+              <tr><td>Cambiar Estado del Cultivo</td><td>Seccion C campo "estado actual"</td></tr>
+              <tr><td>Confirmar Eliminación</td><td>Seccion D botones Confirmar/Cancelar</td></tr>
+              <tr><td>Buscar / Filtrar Cultivos</td><td>Seccion A filtros de busqueda, estado y tipo</td></tr>
+              <tr><td>Registrar Observaciones</td><td>Seccion C y F campo observaciones</td></tr>
+              <tr><td>Adjuntar Fotografías</td><td>Seccion F campo de adjuntos</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
           <h4>A. Filtros y acciones principales</h4>
           <div class="grid">
             <div class="field">Campo texto: Buscar lote<span class="spec">Especificacion: 30 caracteres maximo</span></div>
@@ -98,7 +123,7 @@
                 <td>1.8 ha</td>
                 <td>Activo</td>
                 <td>04-04-2026</td>
-                <td>Ver / Editar</td>
+                <td>Ver / Editar / Eliminar</td>
               </tr>
               <tr>
                 <td>Lote 03</td>
@@ -106,7 +131,7 @@
                 <td>3.2 ha</td>
                 <td>Archivado</td>
                 <td>20-03-2026</td>
-                <td>Ver</td>
+                <td>Ver / Eliminar</td>
               </tr>
             </tbody>
           </table>
@@ -114,18 +139,47 @@
 
         <div class="grid">
           <article class="panel">
-            <h4>C. Placeholder de grafico (salud de cultivo)</h4>
+            <h4>C. Detalle del cultivo seleccionado</h4>
+            <div class="placeholder" aria-label="Placeholder de detalle de cultivo"></div>
+            <div class="rows">
+              <div class="field">Campo texto: ubicacion del lote<span class="spec">Referencia descriptiva del terreno</span></div>
+              <div class="field">Campo texto: estado actual<span class="spec">Activo / En seguimiento / Archivado</span></div>
+              <div class="field">Campo texto largo: observaciones<span class="spec">200 caracteres maximo</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Consultar detalle</button>
+              <button class="button" type="button">Eliminar cultivo</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>D. Confirmacion de eliminacion</h4>
+            <div class="field">Mensaje tecnico: Esta accion conserva el historial y solicita confirmacion.</div>
+            <div class="field">Campo seleccion: motivo de eliminacion<span class="spec">Opcional</span></div>
+            <div class="actions">
+              <button class="button primary" type="button">Confirmar</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>E. Placeholder de grafico (salud de cultivo)</h4>
             <div class="placeholder" aria-label="Placeholder de grafico de salud"></div>
             <div class="field">Bloque texto: evolucion semanal de estado del cultivo (max 150 caracteres)</div>
           </article>
 
           <article class="panel">
-            <h4>D. Formulario tecnico: Registrar/Actualizar cultivo</h4>
+            <h4>F. Formulario tecnico: Registrar/Actualizar cultivo</h4>
             <div class="rows">
               <div class="field">Campo texto: Nombre del lote<span class="spec">40 caracteres maximo</span></div>
               <div class="field">Campo seleccion: Tipo de cultivo<span class="spec">Lista predefinida</span></div>
               <div class="field">Campo numerico: Area (ha)<span class="spec">Rango: 0.1 a 5.0</span></div>
               <div class="field">Campo fecha: Fecha de siembra<span class="spec">Formato DD-MM-AAAA</span></div>
+              <div class="field">Campo texto largo: Observaciones<span class="spec">200 caracteres maximo</span></div>
+              <div class="field">Campo adjunto: Fotografias<span class="spec">Hasta 3 imagenes por cultivo</span></div>
+              <div class="field">Reglas de validacion<span class="spec">Campos obligatorios y formato valido</span></div>
             </div>
             <div class="actions">
               <button class="button primary" type="button">Guardar</button>
