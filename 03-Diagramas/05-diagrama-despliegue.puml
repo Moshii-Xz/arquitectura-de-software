@@ -1,0 +1,33 @@
+@startuml
+title Diagrama de Despliegue - Arquitectura por Capas
+
+node "Cliente Web (Gama Baja)" {
+  artifact "Web Browser" as browser
+  artifact "WebApp_React.build" as webapp
+}
+
+node "Servidor de Aplicaciones" {
+  artifact "API Rest" as api
+  [Presentacion] as presentacion
+  [Lógica de Negocio] as negocio
+  [Persistencia] as persistencia
+}
+
+node "Servidor de Base de Datos" {
+  database "PostgreSQL" as postgres
+}
+
+
+' Conexiones
+webapp --> presentacion : HTTPS / JSON
+
+presentacion --> negocio
+negocio --> persistencia
+persistencia --> postgres : TCP/IP (JDBC Protocol)
+
+
+' Despliegue
+webapp ..> browser : <<deploy>>
+api ..> presentacion : <<deploy>>
+
+@enduml

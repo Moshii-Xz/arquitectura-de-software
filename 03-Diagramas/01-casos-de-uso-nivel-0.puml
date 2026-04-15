@@ -5,7 +5,6 @@ skinparam actorStyle awesome
 actor "Operario de campo" as Operario
 actor "Productor Agrícola" as Productor
 actor "Asociaciones Agrícolas" as Asociacion
-actor "Servicio Climático Externo" as Clima
 actor "Administrador" as Admin
 
 package "Plataforma Agricultura Inteligente" {
@@ -16,7 +15,6 @@ package "Plataforma Agricultura Inteligente" {
   usecase "Gestionar Recomendaciones" as UC4
   usecase "Gestionar Usuarios" as UC5
   usecase "Gestionar Reportes" as UC6
-  usecase "Gestionar Alerta\nClimática" as UC7
 }
 
 Operario --> UC1
@@ -26,11 +24,10 @@ Productor --> UC2
 Productor --> UC3
 Productor --> UC4
 Productor --> UC6
-Productor --> UC7
 
 Asociacion --> UC6
 
-Clima --> UC7
+
 
 UC5 <--Admin  
 UC6 <-- Admin 
