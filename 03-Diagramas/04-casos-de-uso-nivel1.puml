@@ -10,13 +10,12 @@ package "Gestionar Insumos Agrícolas" {
   usecase "Editar Registro\nde Insumo" as UC2
   usecase "Listar Insumos\nde un Cultivo" as UC3
   usecase "Eliminar Registro\nde Insumo" as UC4
-  usecase "Gestionar Catálogo\nde Insumos" as UC5
-  usecase "Consultar Catálogo\nde Insumos" as UC6
-  usecase "Seleccionar Cultivo\nDestino" as UC7
-  usecase "Validar Datos\ndel Insumo" as UC8
-  usecase "Alertar por Insumo\nde Alto Impacto" as UC9
-  usecase "Calcular Costo Total\nde Insumos" as UC10
-  usecase "Confirmar Eliminación" as UC11
+  usecase "Consultar Catálogo\nde Insumos" as UC5
+  usecase "Seleccionar Cultivo\nDestino" as UC6
+  usecase "Validar Datos\ndel Insumo" as UC7
+  usecase "Alertar por Insumo\nde Alto Impacto" as UC8
+  usecase "Calcular Costo Total\nde Insumos" as UC9
+  usecase "Confirmar Eliminación" as UC10
 }
 
 Productor --> UC1
@@ -25,13 +24,13 @@ Productor --> UC3
 Productor --> UC4
 Productor --> UC5
 
+UC1 ..> UC5 : <<include>>
 UC1 ..> UC6 : <<include>>
 UC1 ..> UC7 : <<include>>
-UC1 ..> UC8 : <<include>>
-UC1 ..> UC9 : <<extend>>
+UC1 ..> UC8 : <<extend>>
 
-UC3 ..> UC10 : <<extend>>
+UC3 ..> UC9 : <<extend>>
 
-UC4 ..> UC11 : <<include>>
+UC4 ..> UC10 : <<include>>
 
 @enduml

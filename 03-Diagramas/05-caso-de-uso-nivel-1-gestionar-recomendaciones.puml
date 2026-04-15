@@ -1,0 +1,30 @@
+@startuml nivel 1 gestionar recomendaciones
+left to right direction
+
+skinparam actorStyle awesome
+actor "Productor Agrícola" as Productor
+
+package "Gestionar Recomendaciones" {
+
+  usecase "Consultar\nRecomendaciones Activas" as UC1
+  usecase "Generar Recomendación\nde Fertilización" as UC2
+  usecase "Generar Recomendación\nFitosanitaria" as UC3
+  usecase "Mostrar Detalle\ny Justificación" as UC4
+  usecase "Marcar como\nAtendida" as UC5
+  usecase "Descartar\nRecomendación" as UC6
+  usecase "Consultar Historial\nde Recomendaciones" as UC7
+  usecase "Filtrar por Tipo\ny Fecha" as UC8
+}
+
+Productor --> UC1
+Productor --> UC7
+
+UC1 ..> UC2 : <<include>>
+UC1 ..> UC3 : <<include>>
+UC1 ..> UC4 : <<include>>
+UC1 ..> UC5 : <<include>>
+UC1 ..> UC6 : <<include>>
+
+UC7 ..> UC8 : <<extend>>
+
+@enduml

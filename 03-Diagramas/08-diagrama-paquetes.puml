@@ -1,0 +1,47 @@
+@startuml diagrama de Paquetes
+title Diagrama de Paquetes - Plataforma Agricultura Inteligente
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+package "GUI" as GUI {
+  [Inicio de sesión]
+  [Dashboard]
+  [Cultivos]
+  [Insumos]
+  [Recomendaciones]
+  [Reportes]
+  [Sincronización]
+  [Mantenimiento]
+}
+
+package "Negocio" as NEGOCIO {
+  [Autenticación]
+  [Gestión de usuarios]
+  [Gestión de cultivos]
+  [Gestión de insumos]
+  [Gestión de recomendaciones]
+  [Gestión de reportes]
+  [Notificaciones]
+  [Sincronización]
+}
+
+package "BD" as BD {
+  [Persistencia]
+  [Eliminación lógica]
+}
+
+package "Utilidad" as UTIL {
+  [ObjetoID]
+  [Validaciones]
+  [Manejo de fechas]
+}
+
+GUI ..> NEGOCIO
+NEGOCIO ..> BD
+NEGOCIO ..> UTIL
+BD ..> UTIL
+GUI ..> UTIL
+
+@enduml

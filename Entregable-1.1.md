@@ -5,8 +5,6 @@
 ## Plataforma Digital de Agricultura Inteligente para Pequeños Productores del Magdalena
 
 **PRESENTADO POR:**
-- 2019214057 - Miguel Olaya Cadena
-- 2015114002 - Luis Mateus
 - 2021114055 - Juan Mosquera
 - 2021214058 - Mauricio Saballeth
 

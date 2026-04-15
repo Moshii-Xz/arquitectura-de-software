@@ -1,0 +1,47 @@
+@startuml nivel 1 gestionar perfil
+left to right direction
+
+skinparam actorStyle awesome
+
+actor "Operario de Campo" as Operario
+actor "Productor Agrícola" as Productor
+
+package "Gestionar Perfil" {
+
+  usecase "Crear Perfil" as UC0
+  usecase "Consultar Perfil" as UC1
+  usecase "Actualizar Datos\nPersonales" as UC2
+  usecase "Cambiar Contraseña" as UC3
+  usecase "Cargar Foto\nde Perfil" as UC4
+  usecase "Registrar\nUbicación" as UC5
+  usecase "Configurar\nIdioma" as UC6
+  usecase "Actualizar Preferencias\nde Notificaciones" as UC7
+  usecase "Validar Datos\ndel Perfil" as UC8
+  usecase "Confirmar Cambio\nde Contraseña" as UC9
+}
+
+Operario --> UC0
+Operario --> UC1
+Operario --> UC2
+Operario --> UC3
+Operario --> UC4
+Operario --> UC5
+Operario --> UC6
+Operario --> UC7
+
+Productor --> UC0
+Productor --> UC1
+Productor --> UC2
+Productor --> UC3
+Productor --> UC4
+Productor --> UC5
+Productor --> UC6
+Productor --> UC7
+
+UC0 ..> UC8 : <<include>>
+UC2 ..> UC8 : <<include>>
+UC3 ..> UC8 : <<include>>
+UC3 ..> UC9 : <<include>>
+UC7 ..> UC8 : <<include>>
+
+@enduml

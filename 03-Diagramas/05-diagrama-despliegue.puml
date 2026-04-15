@@ -1,14 +1,14 @@
-@startuml
+@startuml diagrama de desplgieue
 title Diagrama de Despliegue - Arquitectura por Capas
 
-node "Cliente Web (Gama Baja)" {
-  artifact "Web Browser" as browser
-  artifact "WebApp_React.build" as webapp
+node "Cliente Web" {
+  artifact "Navegador moderno" as browser
+  artifact "Frontend web responsivo" as webapp
 }
 
 node "Servidor de Aplicaciones" {
-  artifact "API Rest" as api
-  [Presentacion] as presentacion
+  artifact "Spring Boot API REST" as api
+  [Presentación] as presentacion
   [Lógica de Negocio] as negocio
   [Persistencia] as persistencia
 }
@@ -18,12 +18,12 @@ node "Servidor de Base de Datos" {
 }
 
 
+
 ' Conexiones
 webapp --> presentacion : HTTPS / JSON
-
 presentacion --> negocio
 negocio --> persistencia
-persistencia --> postgres : TCP/IP (JDBC Protocol)
+persistencia --> postgres : JDBC / TCP
 
 
 ' Despliegue
