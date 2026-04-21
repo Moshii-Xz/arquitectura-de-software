@@ -1,47 +1,46 @@
-@startuml diagrama de Paquetes
+@startuml
 title Diagrama de Paquetes - Plataforma Agricultura Inteligente
 
 left to right direction
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-package "GUI" as GUI {
-  [Inicio de sesión]
-  [Dashboard]
-  [Cultivos]
-  [Insumos]
-  [Recomendaciones]
-  [Reportes]
-  [Sincronización]
-  [Mantenimiento]
+package "Presentación" as PRESENTACION {
+  [Interfaz Web]
 }
 
-package "Negocio" as NEGOCIO {
+package "Aplicación" as APLICACION {
+  [Servicios de Aplicación]
+}
+
+package "Dominio" as DOMINIO {
   [Autenticación]
-  [Gestión de usuarios]
-  [Gestión de cultivos]
-  [Gestión de insumos]
-  [Gestión de recomendaciones]
-  [Gestión de reportes]
+  [Gestión de Usuarios]
+  [Gestión de Cultivos]
+  [Gestión de Insumos]
+  [Recomendaciones]
+  [Reportes]
   [Notificaciones]
   [Sincronización]
 }
 
-package "BD" as BD {
-  [Persistencia]
-  [Eliminación lógica]
+package "Persistencia" as PERSISTENCIA {
+  [Repositorios]
 }
 
-package "Utilidad" as UTIL {
+package "Utilidades" as UTIL {
   [ObjetoID]
   [Validaciones]
-  [Manejo de fechas]
+  [Fechas]
 }
 
-GUI ..> NEGOCIO
-NEGOCIO ..> BD
-NEGOCIO ..> UTIL
-BD ..> UTIL
-GUI ..> UTIL
+' Dependencias por capas (CORRECTO)
+PRESENTACION ..> APLICACION
+APLICACION ..> DOMINIO
+DOMINIO ..> PERSISTENCIA
+
+' Uso transversal
+DOMINIO ..> UTIL
+PERSISTENCIA ..> UTIL
 
 @enduml

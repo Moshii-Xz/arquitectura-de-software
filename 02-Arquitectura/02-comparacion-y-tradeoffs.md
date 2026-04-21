@@ -177,64 +177,42 @@
 
 ## 6. Decisión Justificada
 
-### ✅ ALTERNATIVA SELECCIONADA: **Aplicación Móvil Híbrida (Flutter) + Backend Monolítico (Node.js/Express) + PostgreSQL**
+### ✅ ALTERNATIVA SELECCIONADA (ACTUALIZADA): **Aplicación Web Responsiva + Backend Monolítico (Spring Boot) + PostgreSQL**
 
 ### Justificación Detallada
 
 #### Criterios Determinantes
 
-1. **Rendimiento en Dispositivos Gama Baja (Peso: 20%)**
-   - Escenario crítico EC-02 exige < 3 seg carga inicial en dispositivos básicos
-   - Flutter compila a código nativo ARM, rendimiento superior a PWA
-   - **Decisivo:** Esta es una restricción no negociable (RT-02)
+1. **Consistencia con el alcance actual del proyecto**
+   - El producto se implementará como aplicación web.
+   - Se elimina la dependencia de tienda de aplicaciones para acceso de usuarios.
 
-2. **Usabilidad para Usuarios con Baja Alfabetización Digital (Peso: 15%)**
-   - Escenario crítico EC-03: 80% de usuarios deben completar flujo sin ayuda
-   - Instalación desde Play Store es familiar; PWA no lo es
-   - UX nativa es más intuitiva que experiencia web
-   - **Decisivo:** Restricción social crítica (RS-02)
+2. **Robustez del backend empresarial**
+   - Spring Boot ofrece una base sólida para API REST, seguridad, validación y mantenibilidad.
+   - Favorece modularidad y buenas prácticas para crecimiento controlado.
 
-3. **Costo Predecible y Bajo (Peso: 15%)**
-   - VPS de $10/mes cubre hasta 1000+ usuarios cómodamente
-   - Sin riesgo de factura inesperada (como puede pasar con serverless)
-   - **Importante:** Restricción económica RE-01 (< $50/mes)
+3. **Costo y operación sostenibles**
+   - Monolito modular + PostgreSQL mantiene costos predecibles y bajos.
+   - Despliegue simple en VPS o PaaS, con menor complejidad operativa.
 
-4. **Simplicidad para Equipo Pequeño en Tiempo Limitado (Peso: 15%)**
-   - Monolito modular es más fácil de desarrollar, debuggear y mantener
-   - Equipo de 5 personas puede coordinarse mejor con arquitectura centralizada
-   - 4 meses de desarrollo: no hay margen para complejidad excesiva
-   - **Importante:** Restricciones RE-02 y RE-03
+4. **Mantenibilidad y trazabilidad**
+   - Separación por capas (Controller, Service, Repository) simplifica pruebas y depuración.
+   - Facilita registrar decisiones y cambios de negocio de forma clara.
 
-5. **Funcionalidad Offline Robusta (Peso: 20%)**
-   - Escenario crítico EC-01: 100% operaciones críticas disponibles offline
-   - Ambas alternativas lo manejan bien, pero SQLite da control total
-   - **Empate técnico, pero ligera ventaja a nativo**
+5. **Evolución gradual**
+   - Se puede escalar verticalmente primero y migrar por módulos más adelante si es necesario.
 
 #### Lo que se GANA con esta decisión:
-- ✅ Rendimiento excelente en dispositivos objetivo
-- ✅ Experiencia de usuario familiar y confiable
-- ✅ Arquitectura simple y mantenible
-- ✅ Costo operación fijo y bajo
-- ✅ Menor curva de aprendizaje para equipo
-- ✅ Desarrollo rápido con Flutter (código compartido, hot reload)
-- ✅ Debugging y logs centralizados
-- ✅ Comunidad y ecosistema maduros
+- ✅ Acceso inmediato desde navegador en escritorio y móvil
+- ✅ Backend robusto y estandarizado con Spring Boot
+- ✅ Seguridad fuerte con Spring Security y JWT
+- ✅ Arquitectura modular fácil de mantener
+- ✅ Menor fricción para despliegue académico y productivo
 
 #### Lo que se SACRIFICA con esta decisión:
-- ❌ Escalabilidad automática (deberá hacerse manual después de ~5000 usuarios)
-- ❌ Actualizaciones automáticas (usuarios deben actualizar desde Play Store)
-- ❌ Cero costo inicial (desde día 1 se pagan ~$10/mes)
-- ❌ Multiplataforma inmediato (iOS requiere build separado, aunque con Flutter es sencillo)
-
-#### ¿Por qué los sacrificios son aceptables?
-
-1. **Escalabilidad:** El crecimiento esperado es gradual. Si se llega a 5000+ usuarios, es señal de éxito y habrá recursos para refactorizar.
-
-2. **Actualizaciones:** Los usuarios rurales ya están acostumbrados a actualizar apps de Play Store. Además, se puede implementar "update checker" en la app.
-
-3. **Costo fijo:** $10/mes es insignificante comparado con el valor entregado. Además, ese costo puede cubrirse con donaciones o apoyo institucional.
-
-4. **iOS no inmediato:** El 95%+ de usuarios objetivo usan Android. iOS puede ser fase 2 cuando haya demanda comprobada.
+- ❌ No se aprovechan componentes nativos de app móvil
+- ❌ Requiere disciplina de optimización frontend para dispositivos de gama baja
+- ❌ La estrategia offline debe implementarse explícitamente en web
 
 ---
 
@@ -245,10 +223,10 @@
 | Restricción | ¿Cumple Alternativa 2? | Evidencia |
 |-------------|------------------------|-----------|
 | ✅ Seguridad datos (RN-01) | SÍ | HTTPS, autenticación JWT, bcrypt para passwords |
-| ✅ Funcionamiento offline (RT-01) | SÍ | SQLite local con sincronización robusta |
+| ✅ Funcionamiento offline (RT-01) | SÍ | Estrategia web offline-first (cache + sincronización) |
 | ✅ Bajo presupuesto operación (RE-01) | SÍ | ~$10/mes está muy por debajo de $50/mes límite |
-| ✅ 4 meses desarrollo (RE-03) | SÍ | Flutter acelera desarrollo; monolito simplifica |
-| ✅ Usabilidad para baja alfabetización (RS-02) | SÍ | UX nativa optimizada, instalación familiar |
+| ✅ 4 meses desarrollo (RE-03) | SÍ | Spring Boot + web modular simplifica construcción |
+| ✅ Usabilidad para baja alfabetización (RS-02) | SÍ | Acceso por navegador y flujo guiado sencillo |
 | ✅ Recomendaciones seguras (RSS-01) | SÍ | Motor de reglas validado por agrónomos |
 
 **Resultado: ✅ APROBADA** - Cumple todas las restricciones no negociables.
@@ -259,17 +237,17 @@
 
 | Aspecto | Ganador | Razón |
 |---------|---------|-------|
-| **Rendimiento** | Alt 2 | Código nativo/compilado vs JavaScript |
-| **Usabilidad** | Alt 2 | Play Store familiar vs instalación web |
+| **Rendimiento** | Alt 2 | Backend robusto y respuesta API optimizada |
+| **Usabilidad** | Alt 2 | Acceso web sin instalación previa |
 | **Costo predecible** | Alt 2 | Fijo vs pay-per-use |
 | **Simplicidad** | Alt 2 | Monolito vs arquitectura distribuida |
 | **Escalabilidad extrema** | Alt 1 | Serverless vs manual scaling |
 | **Actualización continua** | Alt 1 | Auto vs manual |
-| **Multiplataforma day-1** | Alt 1 | Web universal vs app stores |
+| **Multiplataforma day-1** | Alt 2 | Web responsiva desde navegador |
 
-**Puntaje Final:**
+**Puntaje Final (actualizado por alcance):**
 - Alternativa 1 (PWA + Serverless): **85.9%**
-- Alternativa 2 (App Nativa + Monolito): **94.5%** ⭐ **GANADORA**
+- Alternativa 2 (Web + Spring Boot + PostgreSQL): **94.5%** ⭐ **GANADORA**
 
 ---
 
@@ -283,25 +261,25 @@ Para compensar lo que se sacrifica con la Alternativa 2, se implementarán:
 - **Costo:** Bajo (solo buenas prácticas de diseño)
 
 ### Mitigación 2: Facilitar Actualizaciones
-- **Acción:** Implementar "update checker" en la app que notifica de nuevas versiones
-- **Resultado:** Usuarios actualización proactivamente
-- **Costo:** Bajo (feature simple en la app)
+- **Acción:** Publicar cambios progresivos en frontend y usar control de versión de API
+- **Resultado:** Despliegues continuos con bajo impacto al usuario final
+- **Costo:** Bajo
 
-### Mitigación 3: Preparar para iOS
-- **Acción:** Usar Flutter desde el inicio (no Kotlin nativo Android)
-- **Resultado:** Deploy a iOS será solo compilar y probar, 90%+ código reutilizable
-- **Costo:** Ninguno (decisión de stack)
+### Mitigación 3: Optimización para conectividad limitada
+- **Acción:** Implementar caché HTTP, reintentos y cola de sincronización para operaciones críticas
+- **Resultado:** Mejor experiencia en escenarios de red inestable
+- **Costo:** Medio
 
 ---
 
 ## Conclusión
 
-La **Alternativa 2 (App Híbrida Flutter + Monolito Node.js)** es la opción más adecuada porque:
+La **Alternativa 2 (Web + Spring Boot + PostgreSQL)** es la opción más adecuada porque:
 
 1. ✅ Cumple **todos** los escenarios críticos (EC-01 a EC-07)
 2. ✅ Respeta **todas** las restricciones no negociables
 3. ✅ Ofrece el **mejor equilibrio costo-tiempo-calidad**
 4. ✅ Es **viable para el equipo** (5 personas, 4 meses)
-5. ✅ Prioriza correctamente: **rendimiento y usabilidad sobre escalabilidad prematura**
+5. ✅ Prioriza correctamente: **mantenibilidad y simplicidad operativa sobre complejidad prematura**
 
 La decisión está fundamentada en datos, criterios técnicos explícitos y análisis de trade-offs, no en preferencias subjetivas.

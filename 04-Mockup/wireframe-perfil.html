@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Perfil</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - CASO DE USO NIVEL 1: GESTIONAR PERFIL
+      <br />
+      Estructura tecnica para crear, consultar y actualizar perfil del productor/operario.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Perfil</strong>
+        <span>Actores: Productor Agricola / Operario de Campo</span>
+      </div>
+      <div class="box">FOTO PERFIL<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Insumos</div>
+        <div class="nav">Recomendaciones</div>
+        <div class="nav active">Perfil</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>NAVEGACION DEL MODULO</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Crear perfil</div>
+          <div class="nav">2. Consultar perfil</div>
+          <div class="nav">3. Actualizar datos personales</div>
+          <div class="nav">4. Cambiar contrasena</div>
+          <div class="nav">5. Preferencias e idioma</div>
+        </div>
+
+        <div class="state-card">
+          Caso de uso principal: Gestionar Perfil
+          <br />
+          Regla: datos claros, validacion y seguridad.
+          <br />
+          Estado: perfil completo al 85%.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de perfil">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Crear Perfil</td><td>Seccion A formulario inicial</td></tr>
+              <tr><td>Consultar Perfil</td><td>Seccion B resumen del perfil</td></tr>
+              <tr><td>Actualizar Datos Personales</td><td>Seccion A boton Guardar cambios</td></tr>
+              <tr><td>Cambiar Contrasena</td><td>Seccion C formulario de seguridad</td></tr>
+              <tr><td>Cargar Foto de Perfil</td><td>Seccion A campo de foto</td></tr>
+              <tr><td>Registrar Ubicacion</td><td>Seccion A campo de ubicacion</td></tr>
+              <tr><td>Configurar Idioma</td><td>Seccion D selector de idioma</td></tr>
+              <tr><td>Actualizar Preferencias de Notificaciones</td><td>Seccion D preferencias</td></tr>
+              <tr><td>Validar Datos del Perfil</td><td>Seccion A y C reglas de validacion</td></tr>
+              <tr><td>Confirmar Cambio de Contrasena</td><td>Seccion C boton Confirmar cambio</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>A. Formulario de perfil</h4>
+            <div class="rows">
+              <div class="field">Campo texto: nombres y apellidos<span class="spec">60 caracteres maximo</span></div>
+              <div class="field">Campo texto: telefono<span class="spec">15 caracteres maximo</span></div>
+              <div class="field">Campo texto: ubicacion<span class="spec">Municipio / vereda</span></div>
+              <div class="field">Campo adjunto: foto de perfil<span class="spec">PNG/JPG, maximo 2MB</span></div>
+              <div class="field">Reglas de validacion<span class="spec">Campos obligatorios y formato valido</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Guardar cambios</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>B. Consulta de perfil</h4>
+            <div class="placeholder" aria-label="Placeholder de consulta de perfil"></div>
+            <div class="field">Bloque texto: informacion personal y productiva en una sola vista.</div>
+            <div class="field">Bloque texto: ultimo cambio realizado y fecha de actualizacion.</div>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>C. Cambio de contrasena</h4>
+            <div class="rows">
+              <div class="field">Campo clave: contrasena actual<span class="spec">Obligatorio</span></div>
+              <div class="field">Campo clave: nueva contrasena<span class="spec">Minimo 8 caracteres</span></div>
+              <div class="field">Campo clave: confirmar nueva contrasena<span class="spec">Debe coincidir</span></div>
+              <div class="field">Validacion de seguridad<span class="spec">Complejidad y coincidencia</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Confirmar cambio</button>
+              <button class="button" type="button">Cancelar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>D. Idioma y notificaciones</h4>
+            <div class="rows">
+              <div class="field">Campo seleccion: idioma<span class="spec">Espanol / Ingles</span></div>
+              <div class="field">Campo seleccion: notificaciones internas<span class="spec">Activadas / Desactivadas</span></div>
+              <div class="field">Campo seleccion: alertas criticas<span class="spec">Siempre / Solo importantes</span></div>
+            </div>
+            <div class="actions">
+              <button class="button primary" type="button">Guardar preferencias</button>
+              <button class="button" type="button">Restablecer</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="note">
+          Contrato visual del caso de uso: crear/consultar perfil, actualizar datos, cambiar contrasena y gestionar preferencias.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

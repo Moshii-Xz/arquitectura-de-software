@@ -593,6 +593,49 @@ Implementar autenticación con **JWT (JSON Web Tokens)** con expiración de 24 h
 
 ---
 
+## ADR-008: Corrección de Plataforma y Stack Backend
+
+### Estado
+**Aceptada** - 21 de Abril 2026
+
+### Contexto
+Durante la consolidación documental se identificó una inconsistencia entre la arquitectura registrada y el alcance real del proyecto.
+
+La documentación previa señalaba:
+- Frontend móvil con Flutter
+- Backend Node.js/Express
+
+Sin embargo, la decisión vigente del equipo es:
+- Aplicación **web** (no móvil nativa)
+- Backend **Spring Boot**
+
+### Decisión
+Se adopta oficialmente el stack:
+
+**Aplicación Web Responsiva + Backend Monolítico Modular (Spring Boot) + PostgreSQL**
+
+Esta decisión **reemplaza** las decisiones tecnológicas previas de:
+- ADR-005 (Frontend Flutter)
+- ADR-006 (Backend Node.js/Express)
+
+### Justificación
+- Alineación total con el alcance funcional actual del producto.
+- Mayor consistencia con prácticas empresariales del backend y mantenibilidad.
+- Mejor coherencia entre documentos de arquitectura, despliegue y diseño del sistema.
+
+### Consecuencias
+
+#### Positivas
+- ✅ Documentación coherente en todos los entregables de arquitectura
+- ✅ Menor ambigüedad técnica para implementación del CRUD y demás módulos
+- ✅ Base sólida para seguridad, validación y escalabilidad incremental
+
+#### Negativas
+- ⚠️ Requiere actualizar referencias históricas en documentos comparativos
+- ⚠️ Implica retirar trazas de decisiones previas que ya no aplican
+
+---
+
 ## Resumen de ADRs
 
 | ID | Decisión | Estado | Impacto |
@@ -601,9 +644,10 @@ Implementar autenticación con **JWT (JSON Web Tokens)** con expiración de 24 h
 | ADR-002 | Arquitectura: Cliente-Servidor en Capas (Monolito Modular) | Aceptada | Crítico |
 | ADR-003 | Base de Datos: PostgreSQL | Aceptada | Alto |
 | ADR-004 | Conectividad: Offline-First + Eventual Consistency | Aceptada | Crítico |
-| ADR-005 | Frontend: Flutter 3.x | Aceptada | Alto |
-| ADR-006 | Backend: Node.js + Express.js | Aceptada | Alto |
+| ADR-005 | Frontend: Flutter 3.x | Supersedida por ADR-008 | Alto |
+| ADR-006 | Backend: Node.js + Express.js | Supersedida por ADR-008 | Alto |
 | ADR-007 | Autenticación: JWT con expiración 24h | Aceptada | Medio |
+| ADR-008 | Corrección a Web + Spring Boot + PostgreSQL | Aceptada | Crítico |
 
 ---
 

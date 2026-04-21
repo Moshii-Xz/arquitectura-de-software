@@ -1,33 +1,84 @@
-@startuml diagrama de desplgieue
-title Diagrama de Despliegue - Arquitectura por Capas
+@startuml
+title Diagrama de Despliegue - Plataforma Agricultura Inteligente
 
+' =========================
+' CLIENTE
+' =========================
 node "Cliente Web" {
-  artifact "Navegador moderno" as browser
-  artifact "Frontend web responsivo" as webapp
+  artifact "Navegador" as navegador
 }
 
+' =========================
+' SERVIDOR (BACKEND MONOLÍTICO POR CAPAS)
+' =========================
 node "Servidor de Aplicaciones" {
-  artifact "Spring Boot API REST" as api
-  [Presentación] as presentacion
-  [Lógica de Negocio] as negocio
-  [Persistencia] as persistencia
+
+  ' Capa Presentación
+  [AuthController]
+  [CultivoController]
+  [InsumoController]
+  [ReporteController]
+
+  ' Capa Aplicación / Servicios
+  [AuthService]
+  [CultivoService]
+  [InsumoService]
+  [ReporteService]
+
+  ' Capa Dominio
+  [Usuario]
+  [Cultivo]
+  [Insumo]
+  [Recomendacion]
+
+  ' Capa Persistencia
+  [UsuarioRepository]
+  [CultivoRepository]
+  [InsumoRepository]
+  [ReporteRepository]
 }
 
-node "Servidor de Base de Datos" {
-  database "PostgreSQL" as postgres
+' =========================
+' BASE DE DATOS
+' =========================
+node "Base de Datos" {
+  database "PostgreSQL" as db
 }
 
+' =========================
+' SERVICIO EXTERNO (IMPORTANTE)
+' =========================
 
 
-' Conexiones
-webapp --> presentacion : HTTPS / JSON
-presentacion --> negocio
-negocio --> persistencia
-persistencia --> postgres : JDBC / TCP
+' =========================
+' CONEXIONES CLIENTE → BACKEND
+' =========================
+navegador --> [AuthController] : HTTPS / JSON
+navegador --> [CultivoController] : HTTPS / JSON
+navegador --> [ReporteController] : HTTPS / JSON
 
+' =========================
+' FLUJO INTERNO (CAPAS)
+' =========================
+[AuthController] --> [AuthService]
+[CultivoController] --> [CultivoService]
+[InsumoController] --> [InsumoService]
+[ReporteController] --> [ReporteService]
 
-' Despliegue
-webapp ..> browser : <<deploy>>
-api ..> presentacion : <<deploy>>
+[AuthService] --> [Usuario]
+[CultivoService] --> [Cultivo]
+[InsumoService] --> [Insumo]
+
+[AuthService] --> [UsuarioRepository]
+[CultivoService] --> [CultivoRepository]
+[InsumoService] --> [InsumoRepository]
+[ReporteService] --> [ReporteRepository]
+
+' =========================
+' BASE DE DATOS
+' =========================
+[UsuarioRepository] --> db : JDBC / SQL
+[CultivoRepository] --> db : JDBC / SQL
+[InsumoRepository] --> db : JDBC / SQL
 
 @enduml

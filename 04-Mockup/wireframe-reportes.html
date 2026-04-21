@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Reportes</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - CASO DE USO NIVEL 1: GESTIONAR REPORTES
+      <br />
+      Estructura tecnica para generar, filtrar y exportar reportes en PDF.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Reportes</strong>
+        <span>Actores: Productor / Asociacion / Administrador</span>
+      </div>
+      <div class="box">RESUMEN GRAFICO<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Insumos</div>
+        <div class="nav">Recomendaciones</div>
+        <div class="nav active">Reportes</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>NAVEGACION DEL MODULO</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Reporte estado cultivos</div>
+          <div class="nav">2. Reporte consumo insumos</div>
+          <div class="nav">3. Reporte alertas recibidas</div>
+          <div class="nav">4. Reporte comparativo</div>
+          <div class="nav">5. Filtros y exportacion</div>
+        </div>
+
+        <div class="state-card">
+          Caso de uso principal: Gestionar Reportes
+          <br />
+          Regla: reportes claros, comparables y exportables.
+          <br />
+          Estado: ultimo reporte generado hoy.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de reportes">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Generar Reporte de Estado de Cultivos</td><td>Seccion A</td></tr>
+              <tr><td>Generar Reporte de Consumo de Insumos</td><td>Seccion B</td></tr>
+              <tr><td>Generar Reporte de Alertas Recibidas</td><td>Seccion C</td></tr>
+              <tr><td>Generar Reporte Comparativo</td><td>Seccion D</td></tr>
+              <tr><td>Filtrar por Periodo de Tiempo</td><td>Seccion E filtros</td></tr>
+              <tr><td>Exportar Reporte a PDF</td><td>Seccion E boton Exportar PDF</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>A. Reporte de estado de cultivos</h4>
+            <div class="placeholder" aria-label="Placeholder reporte estado cultivos"></div>
+            <div class="field">Bloque texto: estado general por lote y fecha de corte.</div>
+            <div class="actions">
+              <button class="button primary" type="button">Generar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>B. Reporte de consumo de insumos</h4>
+            <div class="placeholder" aria-label="Placeholder reporte consumo insumos"></div>
+            <div class="field">Bloque texto: costo total, cantidad y tipo de insumo por cultivo.</div>
+            <div class="actions">
+              <button class="button primary" type="button">Generar</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>C. Reporte de alertas recibidas</h4>
+            <div class="placeholder" aria-label="Placeholder reporte alertas"></div>
+            <div class="field">Bloque texto: alertas por prioridad, fecha y estado de atencion.</div>
+            <div class="actions">
+              <button class="button primary" type="button">Generar</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>D. Reporte comparativo</h4>
+            <div class="placeholder" aria-label="Placeholder reporte comparativo"></div>
+            <div class="field">Bloque texto: comparacion entre cultivos o periodos.</div>
+            <div class="actions">
+              <button class="button primary" type="button">Generar</button>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel" style="margin-top: 10px;">
+          <h4>E. Filtros y exportacion</h4>
+          <div class="grid">
+            <div class="field">Campo fecha: desde<span class="spec">Formato DD-MM-AAAA</span></div>
+            <div class="field">Campo fecha: hasta<span class="spec">Formato DD-MM-AAAA</span></div>
+            <div class="field">Campo seleccion: tipo de reporte<span class="spec">Cultivos / Insumos / Alertas / Comparativo</span></div>
+            <div class="field">Campo seleccion: actor<span class="spec">Productor / Asociacion / Admin</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button">Aplicar filtros</button>
+            <button class="button" type="button">Exportar PDF</button>
+          </div>
+
+          <table class="table" aria-label="Tabla resumen de resultados">
+            <thead>
+              <tr>
+                <th>Reporte</th>
+                <th>Periodo</th>
+                <th>Registros</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Estado de cultivos</td>
+                <td>01-04-2026 a 15-04-2026</td>
+                <td>12</td>
+                <td>Ver / Exportar PDF</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="note">
+          Contrato visual del caso de uso: generar cuatro tipos de reporte, filtrar por periodo y exportar a PDF.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

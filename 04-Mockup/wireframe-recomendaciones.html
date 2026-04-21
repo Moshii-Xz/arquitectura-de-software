@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe - Gestion de Recomendaciones</title>
+  <link rel="stylesheet" href="wireframe-web.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="frame-title">
+      WIREFRAME DE BAJA FIDELIDAD - CASO DE USO NIVEL 1: GESTIONAR RECOMENDACIONES
+      <br />
+      Estructura tecnica para consultar recomendaciones activas, gestionarlas y revisar historial.
+    </section>
+
+    <header class="header">
+      <div class="box">LOGOTIPO<br />[160x60]</div>
+      <div class="company">
+        <strong>Modulo: Gestion de Recomendaciones</strong>
+        <span>Actor principal: Productor Agricola</span>
+      </div>
+      <div class="box">ALERTA / PRIORIDAD<br />[placeholder X]</div>
+    </header>
+
+    <nav class="top-nav" aria-label="Navegacion principal">
+      <div class="nav-list">
+        <div class="nav">Dashboard</div>
+        <div class="nav">Cultivos</div>
+        <div class="nav">Insumos</div>
+        <div class="nav active">Recomendaciones</div>
+        <div class="nav">Reportes</div>
+      </div>
+    </nav>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <h3>NAVEGACION DEL MODULO</h3>
+        <div class="side-menu">
+          <div class="nav active">1. Recomendaciones activas</div>
+          <div class="nav">2. Ver detalle y justificacion</div>
+          <div class="nav">3. Marcar como atendida</div>
+          <div class="nav">4. Descartar recomendacion</div>
+          <div class="nav">5. Historial y filtros</div>
+        </div>
+
+        <div class="state-card">
+          Caso de uso principal: Gestionar Recomendaciones
+          <br />
+          Regla: mensajes claros y accion concreta.
+          <br />
+          Estado: 2 recomendaciones prioritarias.
+        </div>
+      </aside>
+
+      <section class="main">
+        <h3>AREA DE CONTENIDO PRINCIPAL</h3>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>0. Cobertura explicita de casos de uso (Nivel 1)</h4>
+          <table class="table" aria-label="Cobertura de casos de uso de recomendaciones">
+            <thead>
+              <tr>
+                <th>Caso de uso del diagrama</th>
+                <th>Evidencia en wireframe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Consultar Recomendaciones Activas</td><td>Seccion A lista activa</td></tr>
+              <tr><td>Generar Recomendacion de Fertilizacion</td><td>Seccion A tipo "Fertilizacion"</td></tr>
+              <tr><td>Generar Recomendacion Fitosanitaria</td><td>Seccion A tipo "Fitosanitaria"</td></tr>
+              <tr><td>Mostrar Detalle y Justificacion</td><td>Seccion B detalle tecnico</td></tr>
+              <tr><td>Marcar como Atendida</td><td>Seccion C boton "Marcar atendida"</td></tr>
+              <tr><td>Descartar Recomendacion</td><td>Seccion C boton "Descartar"</td></tr>
+              <tr><td>Consultar Historial de Recomendaciones</td><td>Seccion D tabla de historial</td></tr>
+              <tr><td>Filtrar por Tipo y Fecha</td><td>Seccion D filtros por tipo y periodo</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel" style="margin-bottom: 10px;">
+          <h4>A. Recomendaciones activas</h4>
+          <table class="table" aria-label="Tabla de recomendaciones activas">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Prioridad</th>
+                <th>Cultivo</th>
+                <th>Fecha</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fertilizacion</td>
+                <td>Alta</td>
+                <td>Maiz</td>
+                <td>15-04-2026</td>
+                <td>Ver detalle</td>
+              </tr>
+              <tr>
+                <td>Fitosanitaria</td>
+                <td>Media</td>
+                <td>Yuca</td>
+                <td>14-04-2026</td>
+                <td>Ver detalle</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <h4>B. Detalle y justificacion</h4>
+            <div class="placeholder" aria-label="Placeholder de detalle de recomendacion"></div>
+            <div class="rows">
+              <div class="field">Bloque texto: recomendacion puntual para el productor (max 160 caracteres)</div>
+              <div class="field">Bloque texto: justificacion tecnica basada en condiciones del cultivo</div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h4>C. Interaccion sobre recomendacion</h4>
+            <div class="field">Campo seleccion: estado de recomendacion<span class="spec">Activa / Atendida / Descartada</span></div>
+            <div class="field">Campo texto: comentario del productor<span class="spec">120 caracteres maximo</span></div>
+            <div class="actions">
+              <button class="button primary" type="button">Marcar atendida</button>
+              <button class="button" type="button">Descartar</button>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel" style="margin-top: 10px;">
+          <h4>D. Historial de recomendaciones</h4>
+          <div class="grid">
+            <div class="field">Campo seleccion: filtrar por tipo<span class="spec">Fertilizacion / Fitosanitaria / Todas</span></div>
+            <div class="field">Campo fecha: periodo de tiempo<span class="spec">DD-MM-AAAA a DD-MM-AAAA</span></div>
+          </div>
+          <table class="table" aria-label="Tabla de historial de recomendaciones">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Cultivo</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fertilizacion</td>
+                <td>Maiz</td>
+                <td>Atendida</td>
+                <td>10-04-2026</td>
+              </tr>
+              <tr>
+                <td>Fitosanitaria</td>
+                <td>Yuca</td>
+                <td>Descartada</td>
+                <td>09-04-2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div class="note">
+          Contrato visual del caso de uso: ver recomendaciones activas, justificar, atender/descartar y consultar historial filtrado.
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
