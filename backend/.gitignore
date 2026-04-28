@@ -6,3 +6,11 @@ target/
 .DS_Store
 .env
 application-local.yml
+target/
+.idea/
+.vscode/
+*.log
+*.iml
+.DS_Store
+.env
+application-local.yml

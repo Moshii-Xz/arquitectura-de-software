@@ -4,11 +4,10 @@ Backend monolítico modular en Spring Boot para la plataforma de agricultura int
 
 ## Requisitos
 
-- Java 21
+- Java 17
 - Maven 3.9+
-- PostgreSQL
 
-## Ejecución
+## Ejecución local
 
 ```bash
 mvn spring-boot:run
@@ -16,20 +15,24 @@ mvn spring-boot:run
 
 ## Perfiles
 
-- `dev`: PostgreSQL local con Flyway y validación del esquema.
-- `embedded`: PostgreSQL embebido para validación rápida en Windows.
+- `dev`: H2 en memoria para arranque local rápido.
+- `prod`: PostgreSQL con variables de entorno.
+# Agro Inteligente Backend
 
-## Módulos principales
+Backend monolítico modular en Spring Boot para la plataforma de agricultura inteligente.
 
-- `auth`: registro, login y JWT.
-- `usuarios`: gestión de usuarios y perfil.
-- `cultivos`: CRUD de cultivos.
-- `insumos`: catálogo y aplicaciones de insumos.
-- `recomendaciones`: CRUD y estado de recomendaciones.
-- `reportes`: generación y CRUD de reportes.
-- `clima`: integración REST con API externa o simulación.
-- `notificaciones`: almacenamiento y lectura de alertas.
+## Requisitos
 
-## Documentación funcional
+- Java 17
+- Maven 3.9+
 
-Ver [API-trazabilidad.md](API-trazabilidad.md) para el mapeo de endpoints, casos de uso y requerimientos funcionales.
+## Ejecución local
+
+```bash
+mvn spring-boot:run
+```
+
+## Perfiles
+
+- `dev`: H2 en memoria para arranque local rápido.
+- `prod`: PostgreSQL con variables de entorno.

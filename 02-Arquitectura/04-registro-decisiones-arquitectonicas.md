@@ -82,11 +82,11 @@ Adoptar **Arquitectura Cliente-Servidor en Capas (Layered Architecture)** con **
 ### Arquitectura Específica
 ```
 ┌──────────────────┐
-│   Presentation   │ (Flutter App)
+│  Clients Front   │ (Web / Mobile / Desktop)
 └────────┬─────────┘
-         │ REST/JSON
+         │ REST/JSON or GraphQL
 ┌────────┴─────────┐
-│   API Layer      │ (Express Routes)
+│   API Layer      │ (REST / GraphQL)
 ├──────────────────┤
 │  Business Logic  │ (Services)
 ├──────────────────┤
@@ -124,6 +124,7 @@ Adoptar **Arquitectura Cliente-Servidor en Capas (Layered Architecture)** con **
 - ✅ Costo fijo y predecible
 - ✅ Debugging sencillo (stack traces completos)
 - ✅ Transacciones ACID simples
+- ✅ API pura para desacoplar clientes frontales independientes
 
 #### Negativas
 - ⚠️ Escalabilidad limitada (vertical scaling hasta cierto punto)
@@ -612,7 +613,7 @@ Sin embargo, la decisión vigente del equipo es:
 ### Decisión
 Se adopta oficialmente el stack:
 
-**Aplicación Web Responsiva + Backend Monolítico Modular (Spring Boot) + PostgreSQL**
+**Monolito Modular por Capas + API REST/GraphQL + PostgreSQL + Clientes Frontales Independientes**
 
 Esta decisión **reemplaza** las decisiones tecnológicas previas de:
 - ADR-005 (Frontend Flutter)

@@ -44,12 +44,12 @@ A continuación se justifica la selección de tecnologías y herramientas que gu
 |---------------------|----------------|
 | Base de Datos | PostgreSQL. Ofrece robustez para el manejo de datos históricos climáticos y de cultivos, siendo una opción de bajo costo y alta fiabilidad. |
 | Lenguaje de Programación | Java. Se selecciona Java por su madurez, soporte empresarial y compatibilidad con Spring Boot. |
-| Framework Backend | Spring Boot. Facilita la creación de servicios web escalables, seguros y mantenibles para el procesamiento de alertas, cultivos y recomendaciones. |
-| Framework Frontend | React JS. Permite desarrollar una interfaz web responsiva, ligera y fácil de evolucionar. |
+| Framework Backend | Spring Boot. Facilita la creación de una API REST/GraphQL escalable, segura y mantenible para el procesamiento de alertas, cultivos y recomendaciones. |
+| Framework Frontend | React JS. Se implementa como cliente frontal independiente que consume la API y puede evolucionar a otros clientes. |
 
 ### 3b(i). Contexto del Problema
 
-El sistema operará en el departamento del Magdalena, Colombia, en zonas rurales con conectividad intermitente y usuarios con bajo nivel de alfabetización digital. Para esta fase del curso el alcance se concentra en una aplicación web responsiva, accesible desde navegador y preparada para evolucionar luego hacia una solución móvil. La solución debe adaptarse a estas condiciones para ser técnicamente viable, de bajo costo y socialmente adoptada por los productores.
+El sistema operará en el departamento del Magdalena, Colombia, en zonas rurales con conectividad intermitente y usuarios con bajo nivel de alfabetización digital. Para esta fase del curso el alcance se concentra en una solución monolítica modular expuesta como API pura, consumida por uno o varios clientes frontales independientes. La primera experiencia de uso será una interfaz web responsiva, pero la arquitectura queda preparada para otros clientes sin acoplar la capa de presentación al backend. La solución debe adaptarse a estas condiciones para ser técnicamente viable, de bajo costo y socialmente adoptada por los productores.
 
 ### 3b(ii). Identificación de stakeholders
 
@@ -206,7 +206,7 @@ Los requerimientos no funcionales se enfocan en desempeño web, seguridad, conti
 - **Arquitecto de Software / Líder Técnico (Juan Mosquera):** Responsable de decisiones arquitectónicas y coherencia del sistema.
 - **Analista de Requisitos (Juan Mosquera):** Encargado de la especificación de requerimientos y validación con el contexto del problema.
 - **Desarrollador Backend (Mauricio Saballeth):** Implementación de lógica de negocio, servicios web y persistencia de datos con Spring Boot.
-- **Desarrollador Frontend Web (Miguel Olaya):** Desarrollo de la aplicación web responsiva optimizada para usuarios finales.
+- **Desarrollador Frontend (Miguel Olaya):** Desarrollo del cliente frontal principal y mantenimiento de la integración con la API.
 - **Responsable de Calidad y Validación (Luis Mateus Ramirez):** Pruebas, validación de atributos de calidad y cumplimiento de restricciones.
 
 #### Mecanismos de Comunicación
@@ -250,7 +250,7 @@ Los requerimientos no funcionales se enfocan en desempeño web, seguridad, conti
 - **Disponibilidad y Conectividad:** Funcionamiento web estable con tolerancia a conectividad intermitente y degradación controlada.
 - **Rendimiento:** Respuesta a acciones del usuario en menos de 3 segundos.
 - **Seguridad:** Control de acceso por roles e integridad de datos almacenados.
-- **Compatibilidad y Portabilidad:** Soporte para navegadores modernos en escritorio y dispositivo móvil mediante diseño responsivo.
+- **Compatibilidad y Portabilidad:** Soporte para clientes frontales independientes, incluyendo navegador de escritorio y móvil mediante diseño responsivo.
 - **Resiliencia y Escalabilidad:** Recuperación ante fallos y soporte para múltiples fincas.
 - **Mantenibilidad:** Actualizaciones sin afectar la operación.
 - **Eficiencia:** Minimizar el consumo de recursos del navegador y del servidor.

@@ -14,9 +14,9 @@
 
 # Documento de Comparación y Selección de Arquitectura
 
-Este documento consolida la comparación entre dos alternativas viables para la plataforma y justifica la arquitectura seleccionada, de acuerdo con el contexto rural, las restricciones del proyecto y el alcance actual del curso: **aplicación web** con backend en **Spring Boot**. La aplicación móvil se contempla como fase posterior.
+Este documento consolida la comparación entre dos alternativas viables para la plataforma y justifica la arquitectura seleccionada, de acuerdo con el contexto rural, las restricciones del proyecto y el alcance actual del curso: **monolito modular por capas expuesto como API pura**, consumido por uno o varios clientes frontales independientes. La primera experiencia de uso será un frontend web responsivo; la arquitectura queda lista para otros clientes sin acoplar la presentación al backend.
 
-La redacción y decisiones de este entregable están alineadas con [Entregable-1.1.md](Entregable-1.1.md), especialmente con: alcance web, stack tecnológico (React + Spring Boot + PostgreSQL), catálogo de requerimientos funcionales RF-01 a RF-62 y requerimientos no funcionales RNF-01 a RNF-28.
+La redacción y decisiones de este entregable están alineadas con [Entregable-1.1.md](Entregable-1.1.md), especialmente con: alcance web inicial, stack tecnológico (React + Spring Boot + PostgreSQL), catálogo de requerimientos funcionales RF-01 a RF-62 y requerimientos no funcionales RNF-01 a RNF-28.
 
 ---
 
@@ -32,7 +32,7 @@ La redacción y decisiones de este entregable están alineadas con [Entregable-1
 ### Alternativa 2: Arquitectura por Capas 
 
 - **Estilo arquitectónico:** cliente-servidor por capas (presentación, aplicación, dominio, persistencia).
-- **Estructura general:** frontend web (React) + backend único en Spring Boot organizado por módulos + PostgreSQL + seguridad centralizada.
+- **Estructura general:** clientes frontales independientes (web principal y otros futuros) + backend único en Spring Boot organizado por módulos + PostgreSQL + seguridad centralizada.
 - **Ventaja principal:** menor complejidad técnica y mayor velocidad de implementación.
 - **Desventaja principal:** escalabilidad menos granular en etapas de crecimiento alto.
 
@@ -57,7 +57,7 @@ Los criterios y ponderaciones se definieron considerando los atributos de calida
 
 ## 3. Decisión Justificada
 
-La alternativa seleccionada es la **Alternativa 2: Arquitectura por Capas con Spring Boot**. Aunque la arquitectura de microservicios ofrece mejor escalabilidad y autonomía por dominio, la alternativa seleccionada responde mejor al alcance actual porque prioriza simplicidad, velocidad de implementación y control técnico.
+La alternativa seleccionada es la **Alternativa 2: Arquitectura por Capas con Spring Boot**. Aunque la arquitectura de microservicios ofrece mejor escalabilidad y autonomía por dominio, la alternativa seleccionada responde mejor al alcance actual porque prioriza simplicidad, velocidad de implementación y control técnico, sin acoplar la presentación al backend.
 
 Los criterios más determinantes fueron:
 
@@ -65,6 +65,7 @@ Los criterios más determinantes fueron:
 - **Tiempo de implementación**, para lograr un prototipo web funcional y evaluable dentro del curso.
 - **Costo y operación**, para evitar sobrecostos en infraestructura distribuida y observabilidad avanzada.
 - **Mantenibilidad**, porque una base única en Spring Boot facilita pruebas, integración y trazabilidad.
+- **Desacoplamiento de clientes**, porque la misma API puede ser consumida por varios frontends independientes sin duplicar lógica de negocio.
 
 Esta selección permite cubrir de forma más directa los bloques funcionales definidos en [Entregable-1.1.md](Entregable-1.1.md):
 
@@ -92,7 +93,7 @@ En términos de trazabilidad, la arquitectura por capas responde mejor a las res
 
 ### Equilibrio entre costo, tiempo y calidad
 
-La decisión equilibra costo, tiempo y atributos de calidad. Se prioriza construir una solución web robusta con Spring Boot y PostgreSQL, manteniendo abierta la evolución a microservicios cuando el volumen de usuarios o la complejidad del dominio lo justifique.
+La decisión equilibra costo, tiempo y atributos de calidad. Se prioriza construir una solución API robusta con Spring Boot y PostgreSQL, manteniendo abiertos varios clientes frontales independientes y la evolución futura a microservicios cuando el volumen de usuarios o la complejidad del dominio lo justifique.
 
 ---
     

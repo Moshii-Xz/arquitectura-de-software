@@ -1,20 +1,11 @@
-@startuml agricultura_inteligente
-left to right direction
-skinparam linetype ortho
-skinparam shadowing false
+@startuml Diagrama base de datos
 hide circle
-
-title Diagrama de Base de Datos - Plataforma Digital de Agricultura Inteligente
-
-note top of diagram
-  PostgreSQL
-end note
+skinparam linetype ortho
 
 entity usuario {
-  * id_usuario : int <<PK>>
-  --
+  id : int <<PK>>
   nombre : varchar
-  correo : varchar <<unique>>
+  correo : varchar
   password_hash : text
   rol : varchar
   estado : varchar
@@ -22,85 +13,50 @@ entity usuario {
 }
 
 entity perfil {
-  * id_perfil : int <<PK>>
-  --
-  id_usuario : int <<FK>> <<unique>>
+  id : int <<PK>>
+  usuario_id : int <<FK>>
+  telefono : varchar
   municipio : varchar
   finca : varchar
-  telefono : varchar
   idioma : varchar
   foto_url : text
 }
 
 entity ubicacion {
-  * id_ubicacion : int <<PK>>
-  --
-  id_usuario : int <<FK>>
+  id : int <<PK>>
+  usuario_id : int <<FK>>
   latitud : decimal
   longitud : decimal
 }
 
 entity cultivo {
-  * id_cultivo : int <<PK>>
-  --
-  id_usuario : int <<FK>>
+  id : int <<PK>>
+  usuario_id : int <<FK>>
+  nombre : varchar
   tipo : varchar
   area : decimal
   fecha_siembra : date
-  variedad : varchar
   estado : varchar
   fecha_creacion : timestamp
 }
 
 entity cultivo_foto {
-  * id_foto : int <<PK>>
-  --
-  id_cultivo : int <<FK>>
+  id : int <<PK>>
+  cultivo_id : int <<FK>>
   url : text
   fecha : timestamp
 }
 
 entity cultivo_observacion {
-  * id_observacion : int <<PK>>
-  --
-  id_cultivo : int <<FK>>
+  id : int <<PK>>
+  cultivo_id : int <<FK>>
   descripcion : text
   fecha : timestamp
-}
-
-entity insumo {
-  * id_insumo : int <<PK>>
-  --
-  nombre : varchar
-  tipo : varchar
-  impacto_ambiental : boolean
-}
-
-entity aplicacion_insumo {
-  * id_aplicacion : int <<PK>>
-  --
-  id_cultivo : int <<FK>>
-  id_insumo : int <<FK>>
-  cantidad : decimal
-  unidad : varchar
-  costo : decimal
-  fecha : date
-}
-
-entity alerta_climatica {
-  * id_alerta : int <<PK>>
-  --
-  id_cultivo : int <<FK>>
-  tipo : varchar
-  descripcion : text
-  fecha : timestamp
-  estado : varchar
 }
 
 entity recomendacion {
-  * id_recomendacion : int <<PK>>
-  --
-  id_cultivo : int <<FK>>
+  id : int <<PK>>
+  cultivo_id : int <<FK>>
   tipo : varchar
   descripcion : text
   prioridad : varchar
@@ -108,10 +64,26 @@ entity recomendacion {
   fecha : timestamp
 }
 
+entity insumo {
+  id : int <<PK>>
+  nombre : varchar
+  tipo : varchar
+  descripcion : varchar
+  impacto_alto : boolean
+}
+
+entity aplicacion_insumo {
+  id : int <<PK>>
+  cultivo_id : int <<FK>>
+  insumo_id : int <<FK>>
+  cantidad : decimal
+  costo : decimal
+  fecha : date
+}
+
 entity notificacion {
-  * id_notificacion : int <<PK>>
-  --
-  id_usuario : int <<FK>>
+  id : int <<PK>>
+  usuario_id : int <<FK>>
   tipo : varchar
   mensaje : text
   leida : boolean
@@ -119,24 +91,23 @@ entity notificacion {
 }
 
 entity reporte {
-  * id_reporte : int <<PK>>
-  --
-  id_usuario : int <<FK>>
+  id : int <<PK>>
+  usuario_id : int <<FK>>
   tipo : varchar
-  fecha_generacion : timestamp
-  url : text
+  fecha : timestamp
 }
 
-usuario ||--|| perfil : posee
-usuario ||--o{ ubicacion : registra
-usuario ||--o{ cultivo : administra
-cultivo ||--o{ cultivo_foto : adjunta
-cultivo ||--o{ cultivo_observacion : contiene
-cultivo ||--o{ aplicacion_insumo : usa
-insumo ||--o{ aplicacion_insumo : clasifica
-cultivo ||--o{ alerta_climatica : genera
-cultivo ||--o{ recomendacion : recibe
+usuario ||--|| perfil : tiene
+usuario ||--o{ ubicacion : posee
+usuario ||--o{ cultivo : gestiona
 usuario ||--o{ notificacion : recibe
-usuario ||--o{ reporte : solicita
+usuario ||--o{ reporte : genera
+
+cultivo ||--o{ cultivo_foto : contiene
+cultivo ||--o{ cultivo_observacion : registra
+cultivo ||--o{ recomendacion : recibe
+cultivo ||--o{ aplicacion_insumo : usa
+
+insumo ||--o{ aplicacion_insumo : aplicado_en
 
 @enduml

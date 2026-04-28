@@ -1,19 +1,19 @@
-@startuml
+@startuml despliegue_api_pura
 title Diagrama de Despliegue - Plataforma Agricultura Inteligente
 
 ' =========================
-' CLIENTE
+' CLIENTES FRONTALES INDEPENDIENTES
 ' =========================
-node "Cliente Web" {
-  artifact "Navegador" as navegador
+node "Clientes Frontales Independientes" as clientes {
+  artifact "Frontend Web / React" as frontend
 }
 
 ' =========================
 ' SERVIDOR (BACKEND MONOLÍTICO POR CAPAS)
 ' =========================
-node "Servidor de Aplicaciones" {
+node "Servidor de Aplicaciones" as appserver {
 
-  ' Capa Presentación
+  ' Capa Presentación / API
   [AuthController]
   [CultivoController]
   [InsumoController]
@@ -41,21 +41,22 @@ node "Servidor de Aplicaciones" {
 ' =========================
 ' BASE DE DATOS
 ' =========================
-node "Base de Datos" {
+node "Base de Datos" as dbserver {
   database "PostgreSQL" as db
 }
 
 ' =========================
 ' SERVICIO EXTERNO (IMPORTANTE)
 ' =========================
+node "IDEAM / Servicio Climático" as ideam
 
 
 ' =========================
 ' CONEXIONES CLIENTE → BACKEND
 ' =========================
-navegador --> [AuthController] : HTTPS / JSON
-navegador --> [CultivoController] : HTTPS / JSON
-navegador --> [ReporteController] : HTTPS / JSON
+frontend --> [AuthController] : HTTPS / JSON
+frontend --> [CultivoController] : HTTPS / JSON
+frontend --> [ReporteController] : HTTPS / JSON
 
 ' =========================
 ' FLUJO INTERNO (CAPAS)
@@ -80,5 +81,8 @@ navegador --> [ReporteController] : HTTPS / JSON
 [UsuarioRepository] --> db : JDBC / SQL
 [CultivoRepository] --> db : JDBC / SQL
 [InsumoRepository] --> db : JDBC / SQL
+[ReporteRepository] --> db : JDBC / SQL
+
+appserver --> ideam : HTTPS / REST API (RF-38)
 
 @enduml

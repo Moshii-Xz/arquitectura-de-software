@@ -3,10 +3,10 @@
 ## 1. Decisión Arquitectónica
 
 ### Arquitectura Elegida
-**Aplicación Web Responsiva + Backend Monolítico Modular (Spring Boot) + Base de Datos Relacional (PostgreSQL)**
+**Monolito Modular por Capas + API REST/GraphQL + Base de Datos Relacional (PostgreSQL)**
 
 ### Estilo Arquitectónico Principal
-**Cliente-Servidor en Capas (Layered Architecture) con patrón MVC en backend**
+**Cliente-Servidor en Capas (Layered Architecture) con API pura en la capa de presentación**
 
 ---
 
@@ -14,15 +14,15 @@
 
 ### Razones de la selección
 - Se prioriza simplicidad de despliegue, mantenibilidad y trazabilidad para el equipo actual.
-- Spring Boot permite una base robusta para API REST, validaciones, seguridad y crecimiento modular.
-- La aplicación web responsiva reduce fricción de acceso: navegador en escritorio o móvil sin instalar app nativa.
+- Spring Boot permite una base robusta para una API REST/GraphQL, validaciones, seguridad y crecimiento modular.
+- La capa de presentación queda desacoplada del backend, de modo que uno o varios clientes frontales independientes puedan consumir la misma API.
 - PostgreSQL cubre bien el modelo relacional del dominio (usuarios, cultivos, insumos, recomendaciones y reportes).
 
 ### Restricciones y atributos de calidad cubiertos
 - **Bajo costo operativo:** despliegue en VPS o PaaS de bajo costo.
 - **Mantenibilidad:** separación por capas y módulos de negocio.
 - **Seguridad:** Spring Security + JWT + cifrado de contraseñas.
-- **Rendimiento:** API optimizable con índices, caché y paginación.
+- **Rendimiento:** API optimizable con índices, caché, paginación y respuestas livianas.
 - **Escalabilidad:** monolito modular como base de evolución a microservicios si el crecimiento lo exige.
 
 ---
@@ -39,23 +39,24 @@
                         │ HTTPS
                         ▼
 ┌─────────────────────────────────────────────────────────┐
-│              FRONTEND WEB RESPONSIVO                    │
-│  - Módulos UI: cultivos, insumos, recomendaciones,     │
-│    reportes, usuarios y perfil                          │
-│  - Validaciones de formulario y manejo de sesión        │
+│          CLIENTES FRONTALES INDEPENDIENTES              │
+│  - Web responsivo como cliente principal                │
+│  - Posibles clientes futuros: móvil o desktop           │
+│  - Consumo de API y manejo de sesión por token          │
 └───────────────────────┬─────────────────────────────────┘
-                        │ REST/JSON + JWT
+                        │ REST/JSON o GraphQL + JWT
                         ▼
 ┌─────────────────────────────────────────────────────────┐
-│                 BACKEND (Spring Boot)                   │
+│              BACKEND API (Spring Boot)                  │
 │  ┌────────────────────────────────────────────────────┐ │
-│  │ Controllers (API Layer)                           │ │
+│  │ API Layer                                          │ │
 │  │ - /api/auth                                        │ │
 │  │ - /api/cultivos                                    │ │
 │  │ - /api/insumos                                     │ │
 │  │ - /api/recomendaciones                             │ │
 │  │ - /api/reportes                                    │ │
 │  │ - /api/usuarios                                    │ │
+│  │ - /graphql (opcional)                              │ │
 │  └────────────────┬───────────────────────────────────┘ │
 │  ┌────────────────┴───────────────────────────────────┐ │
 │  │ Services (Business Layer)                          │ │
@@ -79,13 +80,14 @@
 
 ### 4.1. Frontend Web
 - HTML5, CSS3 y JavaScript/TypeScript.
-- Enfoque responsivo (desktop y móvil).
-- Consumo de API REST con manejo de sesión por token.
+- Cliente frontal independiente, con enfoque responsivo (desktop y móvil).
+- Consumo de API REST/GraphQL con manejo de sesión por token.
 
 ### 4.2. Backend
 - **Java 17+**
 - **Spring Boot 3.x**
 - **Spring Web** para API REST
+- **Spring for GraphQL** cuando aplique
 - **Spring Security + JWT** para autenticación/autorización
 - **Spring Data JPA (Hibernate)** para persistencia
 - **Bean Validation** para validaciones de entrada
@@ -103,7 +105,7 @@
 
 ## 5. Organización por Capas y Módulos
 
-- **Capa API:** controladores REST por módulo.
+- **Capa API:** controladores REST o GraphQL por módulo.
 - **Capa de Servicio:** reglas de negocio y orquestación.
 - **Capa de Persistencia:** repositorios JPA y consultas optimizadas.
 - **Módulos principales:** autenticación, cultivos, insumos, recomendaciones, reportes, usuarios.
@@ -128,4 +130,4 @@ Esta versión reemplaza cualquier referencia previa a:
 - Aplicación móvil híbrida con Flutter
 
 La línea oficial del proyecto queda definida como:
-**Aplicación Web Responsiva + Spring Boot + PostgreSQL**.
+**Monolito modular por capas + API REST/GraphQL + PostgreSQL + clientes frontales independientes**.

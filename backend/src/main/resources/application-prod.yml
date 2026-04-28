@@ -1,10 +1,14 @@
 spring:
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/agrointeligente}
+    username: ${DATABASE_USERNAME:agrointeligente}
+    password: ${DATABASE_PASSWORD:agrointeligente}
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
 
-logging:
-  level:
-    root: INFO

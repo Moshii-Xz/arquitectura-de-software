@@ -1,46 +1,45 @@
 @startuml
-title Diagrama de Paquetes - Plataforma Agricultura Inteligente
-
-left to right direction
+top to bottom direction
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-package "Presentación" as PRESENTACION {
-  [Interfaz Web]
+title Diagrama de Paquetes - Plataforma Agricultura Inteligente
+
+package "Capa de Presentacion" as PRESENTACION {
+  class CultivoController
+  class UsuarioController
+  class ReporteController
 }
 
-package "Aplicación" as APLICACION {
-  [Servicios de Aplicación]
+package "Capa de Logica de Negocio" as LOGICA_NEGOCIO {
+  class CultivoService
+  class RecomendacionService
+  class NotificacionService
 }
 
-package "Dominio" as DOMINIO {
-  [Autenticación]
-  [Gestión de Usuarios]
-  [Gestión de Cultivos]
-  [Gestión de Insumos]
-  [Recomendaciones]
-  [Reportes]
-  [Notificaciones]
-  [Sincronización]
+package "Capa de Persistencia" as PERSISTENCIA {
+  class CultivoRepository
+  class UsuarioRepository
+  class InsumoRepository
+  class Cultivo
+  class Usuario
+  class Insumo
+  class Recomendacion
+  class Notificacion
 }
 
-package "Persistencia" as PERSISTENCIA {
-  [Repositorios]
+package "Capa de Acceso a Datos" as ACCESO_DATOS {
+  class PostgreSQLConnector
+  class DataSourceConfig
 }
 
-package "Utilidades" as UTIL {
-  [ObjetoID]
-  [Validaciones]
-  [Fechas]
-}
+PRESENTACION ..> LOGICA_NEGOCIO
+LOGICA_NEGOCIO ..> PERSISTENCIA
+PERSISTENCIA ..> ACCESO_DATOS
 
-' Dependencias por capas (CORRECTO)
-PRESENTACION ..> APLICACION
-APLICACION ..> DOMINIO
-DOMINIO ..> PERSISTENCIA
-
-' Uso transversal
-DOMINIO ..> UTIL
-PERSISTENCIA ..> UTIL
+' Orden visual vertical de arriba hacia abajo
+PRESENTACION -down[hidden]-> LOGICA_NEGOCIO
+LOGICA_NEGOCIO -down[hidden]-> PERSISTENCIA
+PERSISTENCIA -down[hidden]-> ACCESO_DATOS
 
 @enduml

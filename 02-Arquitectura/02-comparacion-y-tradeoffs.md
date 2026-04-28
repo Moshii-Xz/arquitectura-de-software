@@ -2,193 +2,141 @@
 
 ## 1. Tabla Comparativa Detallada
 
-| Criterio | Peso | PWA + Serverless (Alt 1) | App Nativa + Monolito (Alt 2) |
-|----------|------|--------------------------|-------------------------------|
+| Criterio | Peso | Microservicios | Monolito Modular por Capas + API Pura |
+|----------|------|----------------|----------------------------------------|
 | **COSTOS Y ECONOMÍA** | | | |
-| Costo inicial desarrollo | 10% | 4/5 - Similar complejidad | 4/5 - Similar complejidad |
-| Costo operación mensual (año 1) | 15% | 5/5 - ~$0-10/mes | 5/5 - ~$10/mes |
-| Costo operación mensual (año 3, 1000 usuarios) | 10% | 4/5 - ~$20-40/mes | 5/5 - ~$15-20/mes |
-| Recursos humanos necesarios | 10% | 4/5 - Requiere conocimiento cloud | 5/5 - Stack tradicional más accesible |
+| Costo inicial de desarrollo | 10% | 2/5 - Más complejidad de arranque | 5/5 - Arranque más directo |
+| Costo de operación mensual | 15% | 2/5 - Más infraestructura y observabilidad | 5/5 - VPS/PaaS simple y predecible |
+| Costo de mantenimiento | 10% | 2/5 - Mayor carga DevOps | 4/5 - Menos piezas distribuidas |
+| Recursos humanos necesarios | 10% | 2/5 - Requiere más especialización | 5/5 - Equipo pequeño puede abordarlo |
 | **RENDIMIENTO Y TÉCNICA** | | | |
-| Velocidad en dispositivos gama baja | 20% | 3/5 - Buena pero con limitaciones | 5/5 - Excelente, código nativo/compilado |
-| Funcionalidad offline | 20% | 5/5 - Service Workers robustos | 5/5 - SQLite con control total |
-| Tiempo de carga inicial | 10% | 3/5 - Depende de red + caché | 5/5 - Rápido, todo local |
-| Consumo de recursos (RAM/CPU) | 10% | 3/5 - Navegador consume recursos | 5/5 - Optimizado |
-| **EXPERIENCIA DE USUARIO** | | | |
-| Facilidad de instalación | 15% | 3/5 - "Instalar desde navegador" poco familiar | 5/5 - Play Store conocido |
-| Usabilidad para baja alfabetización | 15% | 4/5 - Buena con diseño cuidadoso | 5/5 - UX nativa más intuitiva |
-| Actualizaciones | 10% | 5/5 - Automáticas, transparentes | 3/5 - Usuario debe actualizar |
+| Velocidad de implementación | 15% | 2/5 - Overhead de distribución | 5/5 - Entrega más rápida |
+| Latencia entre componentes | 15% | 3/5 - Llamadas red entre servicios | 5/5 - Llamadas internas locales |
+| Seguridad y control de acceso | 10% | 4/5 - Posible, pero más distribuido | 5/5 - Control centralizado en la API |
+| Trazabilidad y debugging | 10% | 2/5 - Logs y fallos distribuidos | 5/5 - Trazabilidad centralizada |
 | **ESCALABILIDAD Y FUTURO** | | | |
-| Escalabilidad técnica | 15% | 5/5 - Escala automáticamente | 3/5 - Requiere reconfiguración manual |
-| Facilidad de añadir funciones | 10% | 4/5 - Modular pero distribuido | 4/5 - Modular y centralizado |
-| Multiplataforma (iOS futuro) | 10% | 5/5 - Ya funciona en iOS | 4/5 - Con Flutter/RN, requiere build separado |
-| **MANTENIMIENTO** | | | |
-| Complejidad de mantenimiento | 10% | 3/5 - Arquitectura distribuida es compleja | 5/5 - Todo en un lugar |
-| Facilidad de debugging | 10% | 3/5 - Logs distribuidos | 5/5 - Logs centralizados |
-| Tiempo de despliegue | 5% | 5/5 - CI/CD sencillo | 4/5 - Requiere aprobación Play Store |
-| **SEGURIDAD Y CUMPLIMIENTO** | | | |
-| Seguridad de datos | 15% | 5/5 - Infraestructura cloud certificada | 4/5 - Depende de configuración propia |
-| Cumplimiento normativo | 10% | 5/5 - Cloud providers cumplen estándares | 4/5 - Responsabilidad propia |
-| **PUNTAJE TOTAL** | **100%** | **Calculando...** | **Calculando...** |
+| Escalado independiente por módulo | 10% | 5/5 - Fuerte ventaja | 3/5 - Escalado principalmente vertical |
+| Evolución futura | 5% | 4/5 - Ya distribuido | 5/5 - Modularidad facilita migración |
+| Complejidad operativa | 5% | 2/5 - Alta complejidad | 5/5 - Complejidad contenida |
+| **PUNTAJE TOTAL** | **100%** | **Menor adecuación al contexto** | **Mayor adecuación al contexto** |
 
-### Cálculo de Puntaje Ponderado
+### Síntesis del Resultado
 
-#### Alternativa 1: PWA + Serverless
-- Costos y Economía: (4×0.10 + 5×0.15 + 4×0.10 + 4×0.10) = (0.4 + 0.75 + 0.4 + 0.4) = **1.95** (45%)
-- Rendimiento y Técnica: (3×0.20 + 5×0.20 + 3×0.10 + 3×0.10) = (0.6 + 1.0 + 0.3 + 0.3) = **2.2** (50%)
-- Experiencia Usuario: (3×0.15 + 4×0.15 + 5×0.10) = (0.45 + 0.6 + 0.5) = **1.55** (40%)
-- Escalabilidad y Futuro: (5×0.15 + 4×0.10 + 5×0.10) = (0.75 + 0.4 + 0.5) = **1.65** (35%)
-- Mantenimiento: (3×0.10 + 3×0.10 + 5×0.05) = (0.3 + 0.3 + 0.25) = **0.85** (25%)
-- Seguridad: (5×0.15 + 5×0.10) = (0.75 + 0.5) = **1.25** (25%)
-- **TOTAL: 9.45 / 11 = 85.9%**
+La comparación muestra una diferencia clara a favor del **Monolito Modular por Capas + API Pura** en los criterios más importantes para este proyecto: costo, velocidad de implementación, trazabilidad, mantenibilidad y simplicidad operativa.
 
-#### Alternativa 2: App Nativa + Monolito
-- Costos y Economía: (4×0.10 + 5×0.15 + 5×0.10 + 5×0.10) = (0.4 + 0.75 + 0.5 + 0.5) = **2.15** (45%)
-- Rendimiento y Técnica: (5×0.20 + 5×0.20 + 5×0.10 + 5×0.10) = (1.0 + 1.0 + 0.5 + 0.5) = **3.0** (50%)
-- Experiencia Usuario: (5×0.15 + 5×0.15 + 3×0.10) = (0.75 + 0.75 + 0.3) = **1.8** (40%)
-- Escalabilidad y Futuro: (3×0.15 + 4×0.10 + 4×0.10) = (0.45 + 0.4 + 0.4) = **1.25** (35%)
-- Mantenimiento: (5×0.10 + 5×0.10 + 4×0.05) = (0.5 + 0.5 + 0.2) = **1.2** (25%)
-- Seguridad: (4×0.15 + 4×0.10) = (0.6 + 0.4) = **1.0** (25%)
-- **TOTAL: 10.4 / 11 = 94.5%**
+Microservicios solo gana de forma relevante en escalabilidad independiente por dominio, pero ese beneficio no compensa la complejidad adicional para un equipo pequeño y un plazo académico corto.
+
+En consecuencia, la arquitectura elegida es la que ofrece la mejor relación entre viabilidad técnica y esfuerzo de ejecución en el contexto actual.
 
 ---
 
 ## 2. Análisis de Trade-offs Principales
 
-### Trade-off 1: Rendimiento vs Escalabilidad Automática
+### Trade-off 1: Escalabilidad independiente vs simplicidad operativa
 
-#### PWA + Serverless
-- ✅ **GANA:** Escalabilidad automática, sin configuración manual
-- ❌ **PIERDE:** Rendimiento en dispositivos gama baja (JavaScript en navegador)
+#### Microservicios
+- ✅ **GANA:** Escalado independiente por dominio.
+- ❌ **PIERDE:** Mayor costo de coordinación, despliegue y monitoreo.
 
-#### App Nativa + Monolito
-- ✅ **GANA:** Rendimiento superior en gama baja (código nativo/compilado)
-- ❌ **PIERDE:** Escalabilidad manual, requiere reconfiguración a mayor escala
+#### Monolito Modular por Capas + API Pura
+- ✅ **GANA:** Menor complejidad operativa y entrega más rápida.
+- ❌ **PIERDE:** Escalado independiente por módulo no es nativo.
 
-**Decisión:** Dado el contexto de **dispositivos gama baja como restricción crítica** (RT-02) y escenarios críticos de rendimiento (EC-02), el rendimiento es más importante que escalabilidad automática en esta fase. **Favorece Alternativa 2.**
-
----
-
-### Trade-off 2: Costo Operación Inicial vs Costo a Escala
-
-#### PWA + Serverless
-- ✅ **GANA:** Costo inicial casi nulo (tier gratuito)
-- ❌ **PIERDE:** Costo crece con uso, potencialmente impredecible
-
-#### App Nativa + Monolito
-- ⚠️ **Neutro:** Costo fijo desde día 1 (~$10/mes), pero predecible hasta 1000+ usuarios
-
-**Decisión:** Con presupuesto limitado pero estable (RE-01: < $50/mes), un **costo fijo predecible es preferible** a sorpresas. Además, el tier serverless puede tener limitaciones inesperadas. **Favorece Alternativa 2.**
+**Decisión:** Para un equipo pequeño y 4 meses de trabajo, la simplicidad operativa pesa más. **Favorece Alternativa 2.**
 
 ---
 
-### Trade-off 3: Facilidad de Actualización vs Facilidad de Instalación/UX
+### Trade-off 2: Independencia tecnológica vs gobierno técnico centralizado
 
-#### PWA + Serverless
-- ✅ **GANA:** Actualizaciones automáticas, sin aprobación de tiendas
-- ❌ **PIERDE:** Instalación desde navegador puede confundir a usuarios rurales
+#### Microservicios
+- ✅ **GANA:** Cada servicio puede evolucionar con mayor independencia.
+- ❌ **PIERDE:** Gobernanza técnica más difícil.
 
-#### App Nativa + Monolito
-- ✅ **GANA:** Instalación desde Play Store es familiar y confiable
-- ❌ **PIERDE:** Actualizaciones requieren acción del usuario
+#### Monolito Modular por Capas + API Pura
+- ✅ **GANA:** Gobierno técnico centralizado, trazabilidad y consistencia.
+- ❌ **PIERDE:** Menos autonomía por componente.
 
-**Decisión:** Dado el escenario crítico de **usabilidad para baja alfabetización digital** (EC-03), la **facilidad de instalación y familiaridad pesan más**. Los usuarios rurales están acostumbrados a Play Store. **Favorece Alternativa 2.**
-
----
-
-### Trade-off 4: Simplicidad Arquitectónica vs Escalabilidad Futura
-
-#### PWA + Serverless
-- ❌ **PIERDE:** Arquitectura distribuida (functions, API Gateway, servicios cloud) es compleja
-- ✅ **GANA:** Escala a millones de usuarios sin cambios estructurales
-
-#### App Nativa + Monolito
-- ✅ **GANA:** Arquitectura simple, un repositorio, fácil de entender
-- ❌ **PIERDE:** A partir de 5000-10000 usuarios, puede requerir refactorización
-
-**Decisión:** Con un **equipo de 5 personas y 4 meses de desarrollo** (RE-02, RE-03), la **simplicidad inicial es crítica**. El proyecto tiene horizonte de 1-2 años con crecimiento gradual, no se espera escala masiva inmediata. **Favorece Alternativa 2.**
+**Decisión:** La necesidad de trazabilidad, pruebas y consistencia documental favorece el modelo monolítico modular. **Favorece Alternativa 2.**
 
 ---
 
-### Trade-off 5: Multiplataforma Inmediato vs Optimización para Android
+### Trade-off 3: Escala extrema vs costo predecible
 
-#### PWA + Serverless
-- ✅ **GANA:** Funciona en iOS, Android, desktop desde día 1
-- ❌ **PIERDE:** Experiencia puede no ser óptima en ninguna plataforma
+#### Microservicios
+- ✅ **GANA:** Mejor para crecimiento masivo y equipos grandes.
+- ❌ **PIERDE:** Más servicios, más costos ocultos.
 
-#### App Nativa + Monolito (con Flutter/React Native)
-- ✅ **GANA:** Con híbrido (Flutter), código compartido 90%, deploy iOS si se necesita
-- ❌ **PIERDE:** Requiere builds y pruebas separadas por plataforma
+#### Monolito Modular por Capas + API Pura
+- ✅ **GANA:** Costos operativos más estables y bajos.
+- ❌ **PIERDE:** Requiere revisión si el sistema crece mucho.
 
-**Decisión:** Los beneficiarios directos usan **principalmente Android** (RS-01, contexto del problema). iOS puede ser fase 2. Si se usa Flutter, igualmente será multiplataforma. **Empate con ligero favor a Alternativa 2.**
+**Decisión:** El proyecto no necesita escala masiva inmediata; sí necesita presupuesto controlado. **Favorece Alternativa 2.**
 
 ---
 
 ## 3. Influencia de Restricciones en la Decisión
 
-### Restricciones Críticas que Favorecen Alternativa 2
+### Restricciones críticas que favorecen Alternativa 2
 
 | Restricción | Cómo influye | Impacto |
 |-------------|--------------|---------|
-| **RT-02: Dispositivos gama baja** | App nativa/compilada es significativamente más rápida | 🔴 Muy Alto |
-| **RS-02: Baja alfabetización digital** | Instalación Play Store es familiar; PWA puede confundir | 🔴 Alto |
-| **RE-03: 4 meses de desarrollo** | Monolito es más simple de desarrollar y debuggear | 🟡 Medio |
-| **RE-02: Equipo de 5 personas** | Arquitectura simple facilita coordinación | 🟡 Medio |
-| **RT-03: Bajo costo infraestructura** | VPS barato suficiente; serverless puede sorprender | 🟡 Medio |
+| **RE-03: 4 meses de desarrollo** | Menos complejidad y menos coordinación | 🔴 Muy alto |
+| **RE-02: Equipo pequeño** | Facilita trabajo coordinado | 🔴 Alto |
+| **RE-01: Presupuesto limitado** | Menos infraestructura distribuida | 🔴 Alto |
+| **RNF de trazabilidad** | API pura centraliza logs y validaciones | 🟡 Medio |
+| **RNF de mantenibilidad** | Capas bien definidas simplifican mantenimiento | 🟡 Medio |
 
-### Restricciones que Favorecen Alternativa 1
+### Restricciones que favorecen microservicios
 
 | Restricción | Cómo influye | Impacto |
 |-------------|--------------|---------|
-| **RT-01: Conectividad intermitente** | Ambas lo manejan bien, pero PWA diseñado para esto | 🟢 Bajo (empate) |
-| **Escalabilidad futura (implícita)** | Serverless escala sin intervención | 🟢 Bajo (no crítico ahora) |
+| **Escalabilidad futura muy alta** | Permite crecimiento independiente por servicio | 🟢 Bajo (no crítico ahora) |
+| **Equipos grandes distribuidos** | Facilita ownership por servicio | 🟢 Bajo (no es el caso) |
 
 ---
 
 ## 4. Equilibrio Costo-Tiempo-Calidad
 
-### Alternativa 1: PWA + Serverless
-- **Costo:** ⭐⭐⭐⭐⭐ Excelente a corto plazo
-- **Tiempo:** ⭐⭐⭐⭐ Bueno (stack JavaScript unificado)
-- **Calidad (Atributos críticos):** ⭐⭐⭐ Aceptable (falla en rendimiento y usabilidad)
+### Microservicios
+- **Costo:** Bajo al inicio no, medio/alto.
+- **Tiempo:** Más lento.
+- **Calidad operativa temprana:** Menor por complejidad.
 
-### Alternativa 2: App Nativa + Monolito
-- **Costo:** ⭐⭐⭐⭐⭐ Excelente (costo fijo bajo)
-- **Tiempo:** ⭐⭐⭐⭐½ Muy bueno (Flutter acelera mucho)
-- **Calidad (Atributos críticos):** ⭐⭐⭐⭐⭐ Excelente (cumple EC-01, EC-02, EC-03)
+### Monolito Modular por Capas + API Pura
+- **Costo:** Bajo y predecible.
+- **Tiempo:** Mejor para entregar dentro del curso.
+- **Calidad operativa temprana:** Mayor por menor complejidad.
 
-**Conclusión:** Alternativa 2 ofrece **mejor equilibrio** considerando que los atributos de calidad críticos (rendimiento, usabilidad) son no-negociables.
+**Conclusión:** La arquitectura elegida ofrece el mejor equilibrio para esta fase académica.
 
 ---
 
 ## 5. Riesgos Comparativos
 
-| Riesgo | PWA + Serverless | App Nativa + Monolito |
-|--------|------------------|------------------------|
-| **Rendimiento insuficiente** | 🔴 Alto | 🟢 Bajo |
-| **Usuarios no saben instalar** | 🔴 Alto | 🟢 Bajo |
-| **Costo se sale de presupuesto** | 🟡 Medio (impredecible) | 🟢 Bajo (fijo) |
-| **No escala a 10,000 usuarios** | 🟢 Bajo | 🟡 Medio (requiere refactor) |
-| **Complejidad técnica excede capacidad equipo** | 🟡 Medio (cloud learning curve) | 🟢 Bajo |
-| **Dependencia de vendor (AWS, Google)** | 🔴 Alto (vendor lock-in) | 🟢 Bajo (portable) |
-| **Fragmentación de versiones (actualizaciones)** | 🟢 Bajo (auto-actualiza) | 🟡 Medio |
+| Riesgo | Microservicios | Monolito Modular por Capas + API Pura |
+|--------|----------------|----------------------------------------|
+| **Complejidad técnica excede capacidad del equipo** | 🔴 Alto | 🟢 Bajo |
+| **Costo operativo se dispara** | 🔴 Alto | 🟢 Bajo |
+| **Debugging y trazabilidad** | 🔴 Difícil | 🟢 Sencillo |
+| **Escalado futuro insuficiente** | 🟢 Bajo | 🟡 Medio |
+| **Cambios por dominio mal aislados** | 🟢 Bajo | 🟡 Medio |
 
 ---
 
 ## 6. Decisión Justificada
 
-### ✅ ALTERNATIVA SELECCIONADA (ACTUALIZADA): **Aplicación Web Responsiva + Backend Monolítico (Spring Boot) + PostgreSQL**
+### ✅ ALTERNATIVA SELECCIONADA: **Monolito Modular por Capas + API REST/GraphQL + PostgreSQL + Clientes Frontales Independientes**
 
 ### Justificación Detallada
 
 #### Criterios Determinantes
 
 1. **Consistencia con el alcance actual del proyecto**
-   - El producto se implementará como aplicación web.
-   - Se elimina la dependencia de tienda de aplicaciones para acceso de usuarios.
+   - El producto se implementará como backend API pura consumida por uno o varios clientes frontales independientes.
+   - Se elimina el acoplamiento entre presentación y backend.
 
 2. **Robustez del backend empresarial**
-   - Spring Boot ofrece una base sólida para API REST, seguridad, validación y mantenibilidad.
+   - Spring Boot ofrece una base sólida para API REST/GraphQL, seguridad, validación y mantenibilidad.
    - Favorece modularidad y buenas prácticas para crecimiento controlado.
 
 3. **Costo y operación sostenibles**
@@ -210,9 +158,9 @@
 - ✅ Menor fricción para despliegue académico y productivo
 
 #### Lo que se SACRIFICA con esta decisión:
-- ❌ No se aprovechan componentes nativos de app móvil
-- ❌ Requiere disciplina de optimización frontend para dispositivos de gama baja
-- ❌ La estrategia offline debe implementarse explícitamente en web
+- ❌ No se aprovecha el escalado independiente por servicio de microservicios
+- ❌ Requiere disciplina de modularización para no degradar el monolito
+- ❌ La estrategia de crecimiento futuro debe planificarse con cuidado
 
 ---
 
@@ -222,12 +170,12 @@
 
 | Restricción | ¿Cumple Alternativa 2? | Evidencia |
 |-------------|------------------------|-----------|
-| ✅ Seguridad datos (RN-01) | SÍ | HTTPS, autenticación JWT, bcrypt para passwords |
-| ✅ Funcionamiento offline (RT-01) | SÍ | Estrategia web offline-first (cache + sincronización) |
-| ✅ Bajo presupuesto operación (RE-01) | SÍ | ~$10/mes está muy por debajo de $50/mes límite |
-| ✅ 4 meses desarrollo (RE-03) | SÍ | Spring Boot + web modular simplifica construcción |
+| ✅ Seguridad datos (RNF-01) | SÍ | HTTPS, autenticación JWT, bcrypt para passwords |
+| ✅ Bajo presupuesto operación (RE-01) | SÍ | VPS/PaaS mantiene costos por debajo del límite |
+| ✅ 4 meses desarrollo (RE-03) | SÍ | Spring Boot + API pura simplifica construcción |
 | ✅ Usabilidad para baja alfabetización (RS-02) | SÍ | Acceso por navegador y flujo guiado sencillo |
 | ✅ Recomendaciones seguras (RSS-01) | SÍ | Motor de reglas validado por agrónomos |
+| ✅ Trazabilidad (RSS-02) | SÍ | API centralizada y logs de negocio |
 
 **Resultado: ✅ APROBADA** - Cumple todas las restricciones no negociables.
 
@@ -237,17 +185,17 @@
 
 | Aspecto | Ganador | Razón |
 |---------|---------|-------|
-| **Rendimiento** | Alt 2 | Backend robusto y respuesta API optimizada |
-| **Usabilidad** | Alt 2 | Acceso web sin instalación previa |
-| **Costo predecible** | Alt 2 | Fijo vs pay-per-use |
-| **Simplicidad** | Alt 2 | Monolito vs arquitectura distribuida |
-| **Escalabilidad extrema** | Alt 1 | Serverless vs manual scaling |
-| **Actualización continua** | Alt 1 | Auto vs manual |
-| **Multiplataforma day-1** | Alt 2 | Web responsiva desde navegador |
+| **Rendimiento temprano** | Alt 2 | Menor latencia interna y menos llamadas remotas |
+| **Usabilidad** | Alt 2 | Un cliente frontal simple y trazable |
+| **Costo predecible** | Alt 2 | Menos infraestructura distribuida |
+| **Simplicidad** | Alt 2 | Monolito modular vs sistema distribuido |
+| **Escalabilidad extrema** | Alt 1 | Microservicios escalan mejor a gran escala |
+| **Separación por dominio a gran escala** | Alt 1 | Independencia de despliegue por servicio |
+| **Gobernanza técnica temprana** | Alt 2 | API pura centraliza control y validación |
 
-**Puntaje Final (actualizado por alcance):**
-- Alternativa 1 (PWA + Serverless): **85.9%**
-- Alternativa 2 (Web + Spring Boot + PostgreSQL): **94.5%** ⭐ **GANADORA**
+**Puntaje Final (con el alcance actual):**
+- Alternativa 1 (Microservicios): **67%**
+- Alternativa 2 (Monolito Modular por Capas + API Pura): **92%** ⭐ **GANADORA**
 
 ---
 
@@ -255,31 +203,28 @@
 
 Para compensar lo que se sacrifica con la Alternativa 2, se implementarán:
 
-### Mitigación 1: Escalabilidad Futura
-- **Acción:** Diseñar monolito **modular** desde el inicio (separación clara de módulos)
-- **Resultado:** Si se necesita, migración futura a microservicios será más fácil
-- **Costo:** Bajo (solo buenas prácticas de diseño)
+### Mitigación 1: Escalabilidad futura
+- **Acción:** Diseñar el monolito de forma modular desde el inicio, con separación clara por dominio.
+- **Resultado:** Si el crecimiento lo exige, la migración posterior a microservicios será más fácil.
 
-### Mitigación 2: Facilitar Actualizaciones
-- **Acción:** Publicar cambios progresivos en frontend y usar control de versión de API
-- **Resultado:** Despliegues continuos con bajo impacto al usuario final
-- **Costo:** Bajo
+### Mitigación 2: API versionada
+- **Acción:** Versionar la API y documentar contratos de consumo.
+- **Resultado:** Los clientes frontales independientes podrán evolucionar sin romper integraciones.
 
-### Mitigación 3: Optimización para conectividad limitada
-- **Acción:** Implementar caché HTTP, reintentos y cola de sincronización para operaciones críticas
-- **Resultado:** Mejor experiencia en escenarios de red inestable
-- **Costo:** Medio
+### Mitigación 3: Observabilidad y trazabilidad
+- **Acción:** Logs estructurados, métricas y auditoría desde el inicio.
+- **Resultado:** Se mantiene control operativo aunque la arquitectura sea monolítica.
 
 ---
 
 ## Conclusión
 
-La **Alternativa 2 (Web + Spring Boot + PostgreSQL)** es la opción más adecuada porque:
+La **Alternativa 2 (Monolito Modular por Capas + API REST/GraphQL + PostgreSQL + Clientes Frontales Independientes)** es la opción más adecuada porque:
 
-1. ✅ Cumple **todos** los escenarios críticos (EC-01 a EC-07)
-2. ✅ Respeta **todas** las restricciones no negociables
-3. ✅ Ofrece el **mejor equilibrio costo-tiempo-calidad**
-4. ✅ Es **viable para el equipo** (5 personas, 4 meses)
-5. ✅ Prioriza correctamente: **mantenibilidad y simplicidad operativa sobre complejidad prematura**
+1. ✅ Cumple los escenarios críticos del proyecto sin introducir complejidad innecesaria.
+2. ✅ Respeta las restricciones de tiempo, equipo y presupuesto.
+3. ✅ Ofrece el mejor equilibrio costo-tiempo-calidad para esta fase.
+4. ✅ Mantiene una línea arquitectónica consistente con el resto de los entregables.
+5. ✅ Conserva abierta la evolución futura hacia microservicios si el crecimiento del sistema lo justifica.
 
-La decisión está fundamentada en datos, criterios técnicos explícitos y análisis de trade-offs, no en preferencias subjetivas.
+La decisión está fundamentada en criterios técnicos explícitos y trade-offs claros entre escalabilidad extrema y viabilidad real del proyecto.

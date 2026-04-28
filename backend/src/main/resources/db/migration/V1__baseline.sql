@@ -1,0 +1,2 @@
+-- Baseline inicial del esquema.
+-- Las tablas de dominio se incorporarán en las siguientes fases.
