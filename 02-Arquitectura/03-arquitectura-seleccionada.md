@@ -44,7 +44,7 @@
 │  - Posibles clientes futuros: móvil o desktop           │
 │  - Consumo de API y manejo de sesión por token          │
 └───────────────────────┬─────────────────────────────────┘
-                        │ REST/JSON o GraphQL + JWT
+                        │ REST/JSON  
                         ▼
 ┌─────────────────────────────────────────────────────────┐
 │              BACKEND API (Spring Boot)                  │
@@ -87,7 +87,6 @@
 - **Java 17+**
 - **Spring Boot 3.x**
 - **Spring Web** para API REST
-- **Spring for GraphQL** cuando aplique
 - **Spring Security + JWT** para autenticación/autorización
 - **Spring Data JPA (Hibernate)** para persistencia
 - **Bean Validation** para validaciones de entrada
@@ -97,7 +96,7 @@
 - Diseño relacional con claves foráneas, índices y constraints
 
 ### 4.4. Infraestructura y despliegue
-- Opción 1: VPS Linux (Nginx + app Spring Boot + PostgreSQL)
+- Opción 1: VPS Linux (app Spring Boot + PostgreSQL)
 - Opción 2: PaaS para API y base de datos administrada
 - HTTPS obligatorio en todos los ambientes
 
@@ -105,7 +104,7 @@
 
 ## 5. Organización por Capas y Módulos
 
-- **Capa API:** controladores REST o GraphQL por módulo.
+- **Capa API:** controladores REST por módulo.
 - **Capa de Servicio:** reglas de negocio y orquestación.
 - **Capa de Persistencia:** repositorios JPA y consultas optimizadas.
 - **Módulos principales:** autenticación, cultivos, insumos, recomendaciones, reportes, usuarios.
@@ -130,4 +129,4 @@ Esta versión reemplaza cualquier referencia previa a:
 - Aplicación móvil híbrida con Flutter
 
 La línea oficial del proyecto queda definida como:
-**Monolito modular por capas + API REST/GraphQL + PostgreSQL + clientes frontales independientes**.
+**Monolito modular por capas + API REST + PostgreSQL + clientes frontales independientes**.
