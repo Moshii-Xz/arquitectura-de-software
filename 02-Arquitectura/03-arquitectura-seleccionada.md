@@ -3,7 +3,7 @@
 ## 1. Decisión Arquitectónica
 
 ### Arquitectura Elegida
-**Monolito Modular por Capas + API REST/GraphQL + Base de Datos Relacional (PostgreSQL)**
+**Monolito Modular por Capas + API REST+ Base de Datos Relacional (PostgreSQL)**
 
 ### Estilo Arquitectónico Principal
 **Cliente-Servidor en Capas (Layered Architecture) con API pura en la capa de presentación**
@@ -14,7 +14,7 @@
 
 ### Razones de la selección
 - Se prioriza simplicidad de despliegue, mantenibilidad y trazabilidad para el equipo actual.
-- Spring Boot permite una base robusta para una API REST/GraphQL, validaciones, seguridad y crecimiento modular.
+- Spring Boot permite una base robusta para una API REST, validaciones, seguridad y crecimiento modular.
 - La capa de presentación queda desacoplada del backend, de modo que uno o varios clientes frontales independientes puedan consumir la misma API.
 - PostgreSQL cubre bien el modelo relacional del dominio (usuarios, cultivos, insumos, recomendaciones y reportes).
 
