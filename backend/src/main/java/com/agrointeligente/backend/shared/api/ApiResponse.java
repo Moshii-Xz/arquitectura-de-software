@@ -1,11 +1,7 @@
 package com.agrointeligente.backend.shared.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Getter;
 
-@Getter
-@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
@@ -13,15 +9,33 @@ public class ApiResponse<T> {
     private final String message;
     private final T data;
 
+    public ApiResponse(boolean success, String message, T data) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
     public static <T> ApiResponse<T> ok(String message, T data) {
-        return ApiResponse.<T>builder()
-            .success(true)
-            .message(message)
-            .data(data)
-            .build();
+        return new ApiResponse<>(true, message, data);
     }
 
     public static <T> ApiResponse<T> ok(T data) {
         return ok("Operacion exitosa", data);
+    }
+
+    public static <T> ApiResponse<T> success(T data, String message) {
+        return ok(message, data);
     }
 }

@@ -3,7 +3,7 @@ package com.agrointeligente.backend.crop.repository;
 import com.agrointeligente.backend.crop.entity.CropPhoto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.ListCrudRepository;
+import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface CropPhotoRepository extends ListCrudRepository<CropPhoto, Long> {

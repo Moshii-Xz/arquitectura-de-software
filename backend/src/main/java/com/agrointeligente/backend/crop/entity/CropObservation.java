@@ -1,6 +1,6 @@
 package com.agrointeligente.backend.crop.entity;
 
-import com.agrointeligente.backend.user.entity.User;
+import com.agrointeligente.backend.auth.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

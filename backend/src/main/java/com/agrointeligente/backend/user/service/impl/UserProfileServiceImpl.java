@@ -88,7 +88,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     @Override
     public UserLocationDto createUserLocation(Long userId, UserLocationDto dto) {
         var location = UserLocation.builder()
-            .user(new com.agrointeligente.backend.auth.entity.User().toBuilder().id(userId).build())
+            .user(com.agrointeligente.backend.auth.entity.User.builder().id(userId).build())
             .latitude(dto.getLatitude() != null ? new java.math.BigDecimal(dto.getLatitude()) : null)
             .longitude(dto.getLongitude() != null ? new java.math.BigDecimal(dto.getLongitude()) : null)
             .createdAt(LocalDateTime.now())

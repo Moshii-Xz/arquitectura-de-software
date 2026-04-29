@@ -36,30 +36,30 @@ public class JwtProvider {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
 
         return Jwts.builder()
-            .setSubject(email)
-            .setIssuedAt(new Date())
-            .setExpiration(new Date((new Date()).getTime() + expirationTime))
-            .signWith(key, SignatureAlgorithm.HS512)
+            .subject(email)
+            .issuedAt(new Date())
+            .expiration(new Date((new Date()).getTime() + expirationTime))
+            .signWith(key)
             .compact();
     }
 
     public String getEmailFromToken(String token) {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
-        Claims claims = Jwts.parserBuilder()
-            .setSigningKey(key)
+        Claims claims = Jwts.parser()
+            .verifyWith(key)
             .build()
-            .parseClaimsJws(token)
-            .getBody();
+            .parseSignedClaims(token)
+            .getPayload();
         return claims.getSubject();
     }
 
     public boolean validateToken(String authToken) {
         try {
             SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
-            Jwts.parserBuilder()
-                .setSigningKey(key)
+            Jwts.parser()
+                .verifyWith(key)
                 .build()
-                .parseClaimsJws(authToken);
+                .parseSignedClaims(authToken);
             return true;
         } catch (Exception ex) {
             log.error("Token validacion fallida: {}", ex.getMessage());

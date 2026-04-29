@@ -46,14 +46,14 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<ErrorResponse> build(HttpStatus status, String message, String path, List<String> details) {
-        ErrorResponse errorResponse = ErrorResponse.builder()
-            .timestamp(OffsetDateTime.now())
-            .status(status.value())
-            .error(status.getReasonPhrase())
-            .message(message)
-            .path(path)
-            .details(details)
-            .build();
+        ErrorResponse errorResponse = new ErrorResponse(
+            OffsetDateTime.now(),
+            status.value(),
+            status.getReasonPhrase(),
+            message,
+            path,
+            details
+        );
         return ResponseEntity.status(status).body(errorResponse);
     }
 

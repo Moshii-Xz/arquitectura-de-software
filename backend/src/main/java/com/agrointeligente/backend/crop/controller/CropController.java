@@ -3,7 +3,7 @@ package com.agrointeligente.backend.crop.controller;
 import com.agrointeligente.backend.crop.dto.*;
 import com.agrointeligente.backend.crop.entity.CropStatus;
 import com.agrointeligente.backend.crop.service.CropService;
-import com.agrointeligente.backend.shared.dto.ApiResponse;
+import com.agrointeligente.backend.shared.api.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
